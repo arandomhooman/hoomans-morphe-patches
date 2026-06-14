@@ -25,9 +25,17 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 
 <!-- PATCHES_END -->
 
-## ➕ Add to Morphe
+## 💊 Patch details
 
-Add `https://github.com/arandomhooman/hoomans-morphe-patches` as a remote source in Morphe Manager, or use the [deeplink](https://morphe.software/add-source?github=arandomhooman/hoomans-morphe-patches).
+### Enable Premium
+
+Forces the app's local premium flag on — unlocking **uninstall protection, focus mode, custom blocklists, daily/weekly time limits, block-on-restart, and the block recent-apps screen**. No subscription or login required. **Target:** BlockerHero `1.5.0`.
+
+## 📥 How to install
+
+1. **Get BlockerHero 1.5.0** — download it from [APKPure](https://apkpure.net/blockerhero-content-blocker/com.blockerhero/download) (or install it from the [Play Store](https://play.google.com/store/apps/details?id=com.blockerhero)).
+2. **Add this patch source** to Morphe Manager: `https://github.com/arandomhooman/hoomans-morphe-patches` — or use the [deeplink](https://morphe.software/add-source?github=arandomhooman/hoomans-morphe-patches).
+3. **Select BlockerHero**, apply the *Enable Premium* patch, then install the patched app.
 
 ## 🛠️ Building
 
