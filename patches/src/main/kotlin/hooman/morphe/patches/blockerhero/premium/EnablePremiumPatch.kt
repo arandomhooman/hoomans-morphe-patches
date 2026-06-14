@@ -56,5 +56,23 @@ val enablePremiumPatch = bytecodePatch(
                 return v0
             """,
         )
+
+        // With premium + login forced on, premium toggles still try to sync to the server,
+        // which 401s (no real token) and shows an "Unauthenticated." toast every time. The
+        // toast helper Q(Context, message) is shared app-wide, so rather than disable it
+        // wholesale, skip it only for auth-error messages — every other toast still shows.
+        val toast = ShowToastFingerprint.method
+        toast.addInstructionsWithLabels(
+            0,
+            """
+                if-eqz p1, :show
+                const-string v0, "uthenticat"
+                invoke-virtual {p1, v0}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+                move-result v0
+                if-eqz v0, :show
+                return-void
+            """,
+            ExternalLabel("show", toast.getInstruction(0)),
+        )
     }
 }

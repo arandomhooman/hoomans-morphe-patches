@@ -58,3 +58,26 @@ object IsLoggedInFingerprint : Fingerprint(
         opcode(Opcode.IF_LEZ),
     ),
 )
+
+/**
+ * Resolves the app-wide toast helper `Q(Context, String message)` in `p5.f`, which shows a
+ * `Toast` of whatever message it is given. That includes the server's "Unauthenticated." 401
+ * body, which fires whenever a premium toggle tries to sync without a real account/token.
+ *
+ * The class is pinned via a distinctive subscription-screen string it also contains, then the
+ * method is matched by its `(Context, String) -> void` signature and its `Toast.makeText` call.
+ */
+object ShowToastFingerprint : Fingerprint(
+    classFingerprint = Fingerprint(
+        strings = listOf("*3-Day Money-Back Guarantee"),
+    ),
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC),
+    returnType = "V",
+    parameters = listOf("Landroid/content/Context;", "Ljava/lang/String;"),
+    filters = listOf(
+        methodCall(
+            definingClass = "Landroid/widget/Toast;",
+            name = "makeText",
+        ),
+    ),
+)
