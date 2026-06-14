@@ -6,9 +6,8 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 
 ## 🩹 Patches
 
-| App | Patch | Description |
-|-----|-------|-------------|
-| **BlockerHero** (`com.blockerhero`) | Enable Premium | Unlocks the premium features (uninstall protection, focus mode, custom blocklists, daily/weekly time limits, block-on-restart, block recent-apps screen, …) without a subscription. Target: `1.5.0`. |
+<!-- PATCHES_START EXPANDED -->
+<!-- PATCHES_END -->
 
 ## ➕ Add to Morphe
 
