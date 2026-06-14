@@ -1,3 +1,9 @@
+## [1.0.2](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.0.1...v1.0.2) (2026-06-14)
+
+### 🐛 Bug Fixes
+
+* **BlockerHero:** suppress the spurious "Unauthenticated." toast on premium sync ([b8e3a68](https://github.com/arandomhooman/hoomans-morphe-patches/commit/b8e3a684d45d8841f0aecdcdb3dc2924b2b9c7b3))
+
 ## [1.0.1](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.0.0...v1.0.1) (2026-06-14)
 
 ### 🐛 Bug Fixes
