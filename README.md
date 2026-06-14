@@ -31,11 +31,28 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 
 Forces the app's local premium flag on — unlocking **uninstall protection, focus mode, custom blocklists, daily/weekly time limits, block-on-restart, and the block recent-apps screen**. No subscription or login required. **Target:** BlockerHero `1.5.0`.
 
+### Unlock Premium
+
+Forces Teach Me Anatomy's local **Pro** flag on — removing the upgrade banners and ads, and unlocking the gated **reference articles, the Question Bank (1,900+ quiz questions), flashcards, and 3D models**. No subscription required. Pro is a local flag, so already-synced content works offline; genuinely server-side features still need a real account. **Target:** Teach Me Anatomy `5.115`.
+
+### Disable License Check
+
+Removes the PairIP Google Play license check that Teach Me Anatomy otherwise runs at startup — on any sideloaded (patched) install it shows a Play paywall and kills the app. **Required for the patched app to launch at all**, so keep it enabled. **Target:** Teach Me Anatomy `5.115`.
+
 ## 📥 How to install
 
-1. **Download the app** — [**BlockerHero 1.5.0 (universal APK)**](https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.0.0/blockerhero-1.5.0-universal.apk) — a single, ready-to-patch APK (no split/XAPK to merge).
-2. **Add this patch source** to Morphe Manager: `https://github.com/arandomhooman/hoomans-morphe-patches` — or use the [deeplink](https://morphe.software/add-source?github=arandomhooman/hoomans-morphe-patches).
-3. In Morphe Manager, **patch the downloaded APK** with the *Enable Premium* patch, then install it.
+**Add the patch source** to Morphe Manager once: `https://github.com/arandomhooman/hoomans-morphe-patches` — or use the [deeplink](https://morphe.software/add-source?github=arandomhooman/hoomans-morphe-patches). Then, for the app you want:
+
+### BlockerHero
+
+1. Download [**BlockerHero 1.5.0 (universal APK)**](https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.0.0/blockerhero-1.5.0-universal.apk) — a single, ready-to-patch APK (no split/XAPK to merge).
+2. In Morphe Manager, **patch it** with the *Enable Premium* patch, then install.
+
+### Teach Me Anatomy
+
+1. Download [**Teach Me Anatomy 5.115 (universal APK)**](https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.0.0/teachmeanatomy-5.115-universal.apk) — a single, ready-to-patch APK.
+2. In Morphe Manager, **patch it** with the *Unlock Premium* **and** *Disable License Check* patches (both enabled by default), then install.
+3. Open it and tap **Continue Without Account** (or sign in with your own account) — Pro is unlocked.
 
 ## 🛠️ Building
 
