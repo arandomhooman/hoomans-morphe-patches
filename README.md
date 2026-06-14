@@ -33,9 +33,9 @@ Forces the app's local premium flag on — unlocking **uninstall protection, foc
 
 ## 📥 How to install
 
-1. **Get BlockerHero 1.5.0** — download it from [APKPure](https://apkpure.net/blockerhero-content-blocker/com.blockerhero/download) (or install it from the [Play Store](https://play.google.com/store/apps/details?id=com.blockerhero)).
+1. **Download the app** — [**BlockerHero 1.5.0 (universal APK)**](https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.0.0/blockerhero-1.5.0-universal.apk) — a single, ready-to-patch APK (no split/XAPK to merge).
 2. **Add this patch source** to Morphe Manager: `https://github.com/arandomhooman/hoomans-morphe-patches` — or use the [deeplink](https://morphe.software/add-source?github=arandomhooman/hoomans-morphe-patches).
-3. **Select BlockerHero**, apply the *Enable Premium* patch, then install the patched app.
+3. In Morphe Manager, **patch the downloaded APK** with the *Enable Premium* patch, then install it.
 
 ## 🛠️ Building
 
