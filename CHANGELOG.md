@@ -1,3 +1,9 @@
+## [1.0.1](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.0.0...v1.0.1) (2026-06-14)
+
+### 🐛 Bug Fixes
+
+* **BlockerHero:** bypass the Google login gate so premium features are usable ([16c0c16](https://github.com/arandomhooman/hoomans-morphe-patches/commit/16c0c166ba31f158bb2dd1b1fdfbb33324ea212d))
+
 ## 1.0.0 (2026-06-14)
 
 ### 🐛 Bug Fixes
