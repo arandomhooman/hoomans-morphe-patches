@@ -1,5 +1,6 @@
 package hooman.morphe.patches.blockerhero.premium
 
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
 import app.morphe.patcher.patch.AppTarget
@@ -12,7 +13,7 @@ val enablePremiumPatch = bytecodePatch(
     name = "Enable Premium",
     description = "Unlocks the premium features (uninstall protection, focus mode, custom " +
         "blocklists, daily/weekly time limits, block-on-restart, block recent-apps screen, " +
-        "etc.) without a subscription.",
+        "etc.) without a subscription or Google login.",
 ) {
     compatibleWith(
         Compatibility(
@@ -42,6 +43,18 @@ val enablePremiumPatch = bytecodePatch(
                 return v0
             """,
             ExternalLabel("original", method.getInstruction(0)),
+        )
+
+        // Premium features are gated a *second* time behind a Google login. The prefs
+        // manager's isLoggedIn check `l()` returns `userId > 0`; forcing it true bypasses
+        // the "Login required." prompt (which the re-signed app could never satisfy via
+        // Google sign-in anyway) so the unlocked local features are actually usable.
+        IsLoggedInFingerprint.method.addInstructions(
+            0,
+            """
+                const/4 v0, 0x1
+                return v0
+            """,
         )
     }
 }

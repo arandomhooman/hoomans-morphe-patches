@@ -2,7 +2,9 @@ package hooman.morphe.patches.blockerhero.premium
 
 import app.morphe.patcher.Fingerprint
 import app.morphe.patcher.methodCall
+import app.morphe.patcher.opcode
 import com.android.tools.smali.dexlib2.AccessFlags
+import com.android.tools.smali.dexlib2.Opcode
 
 /**
  * Resolves the single boolean `SharedPreferences` getter that every premium check
@@ -29,5 +31,30 @@ object PrefsGetBooleanFingerprint : Fingerprint(
             definingClass = "Landroid/content/SharedPreferences;",
             name = "getBoolean",
         ),
+    ),
+)
+
+/**
+ * Resolves the `isLoggedIn` gate `l()` in the same preferences manager class (`Y3.b`):
+ *
+ *     public final boolean l() { return j() > 0; }   // j() = MyApplication.userId ?: -1
+ *
+ * Premium features are gated a *second* time on this (a Google account / login), separate
+ * from the premium flag. Tapping one while logged out shows "Login required." — and the
+ * re-signed patched app can't complete Google sign-in anyway. Forcing it true bypasses the
+ * gate so the (local) premium features are usable without an account.
+ *
+ * Within `Y3.b` it is the only no-arg `() -> boolean` method that uses an `if-lez`
+ * (the `j() > 0` comparison), which uniquely identifies it.
+ */
+object IsLoggedInFingerprint : Fingerprint(
+    classFingerprint = Fingerprint(
+        strings = listOf("com.blockerhero.KEY_IS_PREMIUM"),
+    ),
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
+    returnType = "Z",
+    parameters = emptyList(),
+    filters = listOf(
+        opcode(Opcode.IF_LEZ),
     ),
 )
