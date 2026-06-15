@@ -60,6 +60,29 @@ object IsLoggedInFingerprint : Fingerprint(
 )
 
 /**
+ * Resolves the constructor of the `PreferencesState` data class (`Y3.c` in 1.5.0), the
+ * immutable UI-state snapshot exposed via a `StateFlow`.
+ *
+ * This is the real premium chokepoint at runtime. The feature gates (e.g. the keyword /
+ * app blocklist 10-item cap, focus mode) do NOT read `e(g())` live — they read the
+ * **cached** `isPremium` field off this state object. That cached field is populated from
+ * the stored premium pref, which on a fresh / re-signed / billing-less install is false,
+ * so hooking the `e()` getter alone leaves the gates closed even though the badge flips.
+ *
+ * Pinning the class by its data-class `toString` prefix `"PreferencesState(test="`, the
+ * sole constructor takes the fields in declaration order; the 2nd parameter (`p2`, the
+ * first `boolean`) is `isPremium`. Forcing it true makes every state snapshot report
+ * premium, which is what the gates actually consult.
+ */
+object PrefsStateConstructorFingerprint : Fingerprint(
+    classFingerprint = Fingerprint(
+        strings = listOf("PreferencesState(test="),
+    ),
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.CONSTRUCTOR),
+    returnType = "V",
+)
+
+/**
  * Resolves the app-wide toast helper `Q(Context, String message)` in `p5.f`, which shows a
  * `Toast` of whatever message it is given. That includes the server's "Unauthenticated." 401
  * body, which fires whenever a premium toggle tries to sync without a real account/token.
