@@ -1,3 +1,9 @@
+## [1.2.4](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.2.3...v1.2.4) (2026-06-15)
+
+### 🐛 Bug Fixes
+
+* **Cronometer:** clarify the libapp.so-not-found guard message ([0b39992](https://github.com/arandomhooman/hoomans-morphe-patches/commit/0b39992a141faf555cba16775fc30fb4dc7b35fb))
+
 ## [1.2.3](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.2.2...v1.2.3) (2026-06-15)
 
 ### 🐛 Bug Fixes
