@@ -8,11 +8,12 @@ import app.morphe.patcher.patch.bytecodePatch
 import com.android.tools.smali.dexlib2.iface.Method
 
 @Suppress("unused")
+// Internal patch (no name): not user-selectable on its own. It is pulled in automatically as a
+// dependency of Unlock Pro, so the license bypass is always applied with the unlock.
 val disableLicenseCheckPatch = bytecodePatch(
-    name = "Disable License Check",
     description = "Removes the PairIP Google Play license check that returns NOT_LICENSED on a " +
         "sideloaded (patched) install and shuts the app down (\"Local install check failed due to " +
-        "wrong installer\"). Required alongside Unlock Pro for the patched app to launch.",
+        "wrong installer\"). Applied automatically with Unlock Pro so the patched app can launch.",
 ) {
     compatibleWith(
         Compatibility(

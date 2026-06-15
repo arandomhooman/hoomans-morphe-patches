@@ -40,7 +40,9 @@ fun main() {
 private fun generatePatchList(version: String, patches: Set<Patch<*>>) {
     val listJson = File("../patches-list.json")
 
-    val patchesMap = patches.sortedBy { it.name }.map { patch ->
+    // Internal patches (no name) are dependencies only — never user-selectable — so they are
+    // excluded from the user-facing list. This also keeps the patch.name!! below safe.
+    val patchesMap = patches.filter { it.name != null }.sortedBy { it.name }.map { patch ->
         JsonPatch(
             name = patch.name!!,
             description = patch.description,
