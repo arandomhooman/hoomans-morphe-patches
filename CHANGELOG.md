@@ -1,3 +1,9 @@
+## [1.4.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.3.0...v1.4.0) (2026-06-15)
+
+### ✨ New Features
+
+* bundle the PairIP license-check bypass into the unlock patches ([c31cf95](https://github.com/arandomhooman/hoomans-morphe-patches/commit/c31cf95968a390ad7433f6f3c575db9cfbb049c3))
+
 ## [1.3.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.2.4...v1.3.0) (2026-06-15)
 
 ### ✨ New Features
