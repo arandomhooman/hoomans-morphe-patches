@@ -1,3 +1,9 @@
+## [1.1.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.0.2...v1.1.0) (2026-06-15)
+
+### ✨ New Features
+
+* **TeachMeAnatomy:** add Unlock Premium and Disable License Check patches ([049823c](https://github.com/arandomhooman/hoomans-morphe-patches/commit/049823c2e1abe6d826ee8c3792430aaa6d976b15))
+
 ## [1.0.2](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.0.1...v1.0.2) (2026-06-14)
 
 ### 🐛 Bug Fixes

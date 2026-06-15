@@ -1,7 +1,32 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "patches": [
+    {
+      "name": "Disable License Check",
+      "description": "Removes the PairIP Google Play license check that otherwise shows a paywall and kills the app on any sideloaded (patched) install. Required for the patched app to launch at all.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.atomengineapps.teachmeanatomy",
+          "name": "Teach Me Anatomy",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#00A99D",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "5.115",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
     {
       "name": "Enable Premium",
       "description": "Unlocks the premium features (uninstall protection, focus mode, custom blocklists, daily/weekly time limits, block-on-restart, block recent-apps screen, etc.) without a subscription or Google login.",
@@ -18,6 +43,31 @@
           "targets": [
             {
               "version": "1.5.0",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
+      "description": "Unlocks Pro — removes the upgrade banners and ads, and unlocks the gated reference articles, quizzes and flashcards — without a subscription. Pro is a local flag so already-synced content works offline; genuinely server-side features still require a real account.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.atomengineapps.teachmeanatomy",
+          "name": "Teach Me Anatomy",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#00A99D",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "5.115",
               "isExperimental": false,
               "minSdk": null,
               "description": null
