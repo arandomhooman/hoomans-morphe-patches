@@ -1,3 +1,9 @@
+## [1.2.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.1.0...v1.2.0) (2026-06-15)
+
+### ✨ New Features
+
+* add Cronometer Unlock Gold patch ([5f5dc46](https://github.com/arandomhooman/hoomans-morphe-patches/commit/5f5dc461b4caed2b802ca80f9d57cc3ce6a33f73))
+
 ## [1.1.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.0.2...v1.1.0) (2026-06-15)
 
 ### ✨ New Features

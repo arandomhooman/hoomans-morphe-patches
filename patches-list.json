@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "patches": [
     {
       "name": "Disable License Check",
@@ -43,6 +43,31 @@
           "targets": [
             {
               "version": "1.5.0",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Gold",
+      "description": "Unlocks Cronometer Gold (custom charts, advanced reports, fasting tracker, custom biometrics, diary timestamps & groups, ad-free, and the other Gold gates) without a subscription, by forcing the app's local Gold override on. Gold features run on your own on-device diary data, so they work offline; anything genuinely served from Cronometer's servers still needs a real account.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.cronometer.android.gold",
+          "name": "Cronometer",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#F26B21",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "4.56.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
