@@ -12,10 +12,10 @@ import app.morphe.patcher.util.smali.ExternalLabel
 @Suppress("unused")
 val unlockPremiumPatch = bytecodePatch(
     name = "Unlock Premium",
-    description = "Unlocks Pro — removes the upgrade banners and ads, and unlocks the gated " +
-        "reference articles, quizzes and flashcards — without a subscription. Pro is a local " +
-        "flag so already-synced content works offline; genuinely server-side features still " +
-        "require a real account.",
+    description = "Unlocks Teach Me Anatomy's Pro features without a subscription: no upgrade " +
+        "banners or ads, plus the gated reference articles, quizzes, and flashcards. Content " +
+        "you have already synced works offline. Features served from the server still need a " +
+        "real account.",
 ) {
     compatibleWith(
         Compatibility(

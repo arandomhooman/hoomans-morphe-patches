@@ -27,11 +27,11 @@ import app.morphe.patcher.patch.rawResourcePatch
 @Suppress("unused")
 val unlockGoldPatch = rawResourcePatch(
     name = "Unlock Gold",
-    description = "Unlocks Cronometer Gold (custom charts, advanced reports, fasting " +
-        "tracker, custom biometrics, diary timestamps & groups, ad-free, and the other " +
-        "Gold gates) without a subscription, by forcing the app's local Gold override on. " +
-        "Gold features run on your own on-device diary data, so they work offline; " +
-        "anything genuinely served from Cronometer's servers still needs a real account.",
+    description = "Forces Cronometer's local Gold flag on, unlocking custom charts, advanced " +
+        "reports, the fasting tracker, custom biometrics, diary timestamps and groups, and an " +
+        "ad-free view without a subscription. These features run on the diary data already on " +
+        "your device, so they keep working offline. Anything Cronometer computes on its own " +
+        "servers still needs a subscription.",
 ) {
     compatibleWith(
         Compatibility(
