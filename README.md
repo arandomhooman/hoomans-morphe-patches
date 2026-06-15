@@ -61,12 +61,12 @@ Removes the PairIP Google Play license check that Teach Me Anatomy otherwise run
 
 ### BlockerHero
 
-1. Download [**BlockerHero 1.5.0 (universal APK)**](https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.0.0/blockerhero-1.5.0-universal.apk) — a single, ready-to-patch APK (no split/XAPK to merge).
+1. Download [**BlockerHero 1.5.0 (universal APK)**](https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.0.0/blockerhero-1.5.0-universal.apk)
 2. In Morphe Manager, **patch it** with the *Enable Premium* patch, then install.
 
 ### Teach Me Anatomy
 
-1. Download [**Teach Me Anatomy 5.115 (universal APK)**](https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.0.0/teachmeanatomy-5.115-universal.apk) — a single, ready-to-patch APK.
+1. Download [**Teach Me Anatomy 5.115 (universal APK)**](https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.0.0/teachmeanatomy-5.115-universal.apk)
 2. In Morphe Manager, **patch it** with the *Unlock Premium* **and** *Disable License Check* patches (both enabled by default), then install.
 3. Open it and tap **Continue Without Account** (or sign in with your own account) — Pro is unlocked.
 
