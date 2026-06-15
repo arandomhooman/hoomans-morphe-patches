@@ -5,9 +5,8 @@ import app.morphe.patcher.patch.AppTarget
 import app.morphe.patcher.patch.Compatibility
 import app.morphe.patcher.patch.bytecodePatch
 
+// Internal (no name): applied automatically as a dependency of Unlock Premium.
 @Suppress("unused")
-// Internal patch (no name): not user-selectable on its own. It is pulled in automatically as a
-// dependency of Unlock Premium, so the license bypass is always applied with the unlock.
 val disableLicenseCheckPatch = bytecodePatch(
     description = "Removes the PairIP Google Play license check, which shows a paywall and " +
         "kills the app on a sideloaded (patched) install. Applied automatically with Unlock " +
@@ -23,13 +22,11 @@ val disableLicenseCheckPatch = bytecodePatch(
     )
 
     execute {
-        // Entry point: LicenseContentProvider.onCreate() and the static checkLicense() both call
-        // initializeLicenseCheck(). Returning immediately skips the bind to Play's licensing
-        // service entirely, so NOT_LICENSED is never received and no paywall/shutdown is queued.
+        // initializeLicenseCheck() is PairIP's entry point (from LicenseContentProvider and the
+        // static checkLicense()); returning immediately skips the Play bind, so NOT_LICENSED never
+        // fires and no paywall/shutdown is queued.
         InitializeLicenseCheckFingerprint.method.addInstructions(0, "return-void")
-
-        // Failsafe: neutralize the paywall+shutdown launcher directly, so even an unforeseen path
-        // into the check cannot show the Play paywall or kill the process.
+        // Failsafe: also neutralize the paywall+shutdown launcher.
         StartPaywallActivityFingerprint.method.addInstructions(0, "return-void")
     }
 }

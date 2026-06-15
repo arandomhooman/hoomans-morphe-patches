@@ -14,8 +14,7 @@ val unlockProPatch = bytecodePatch(
         "with no server-side check, so switching it on enables the Pro features the app gates " +
         "on device.",
 ) {
-    // The PairIP license check shuts down any sideloaded build, so it must run whenever Pro is
-    // unlocked. Pull it in as an internal dependency instead of a separate user-facing patch.
+    // A sideloaded build can't launch with the license check active, so bundle it as a dependency.
     dependsOn(disableLicenseCheckPatch)
 
     compatibleWith(
@@ -28,17 +27,11 @@ val unlockProPatch = bytecodePatch(
     )
 
     execute {
-        // Pro is a local SharedPreferences boolean: key "is_premium_user" in the "gallery_prefs"
-        // file, owned by com.soepic.photogallery.utils.SharedPreferencesManager. Every gate reads
-        // it through one chokepoint getter `isPremiumUser()Z` (`getBoolean("is_premium_user",
-        // false)`), and the exposed `isPremiumUser` StateFlow is *seeded* from that same getter at
-        // construction — so forcing the getter true makes both the initial flow value and every
-        // direct read report Pro. RevenueCat validates the subscription server-side, but the only
-        // writer (setPremiumUser, called solely from the RevenueCat purchase/restore callback in
-        // gk/a.java) never runs on a free account, so forcing the *read* is reset-proof.
-        //
-        // Pin the class by its unique premium-pref key string (survives class renames) and the
-        // getter by name + shape (no-arg, returns Z). Fail loudly if the shape changed.
+        // Pro is the local pref "is_premium_user" (gallery_prefs), read through one getter
+        // isPremiumUser()Z; the exposed StateFlow is seeded from that same getter, so forcing it
+        // true covers both. The only writer is the RevenueCat purchase/restore callback, which never
+        // runs on a free account, so forcing the read is reset-proof. Pin by the key string, match
+        // the getter by shape (no-arg, returns Z); fail loudly if it changed.
         val getter = classDefByStrings("is_premium_user")
             .firstNotNullOfOrNull { classDef ->
                 mutableClassDefBy(classDef).methods.firstOrNull { method ->

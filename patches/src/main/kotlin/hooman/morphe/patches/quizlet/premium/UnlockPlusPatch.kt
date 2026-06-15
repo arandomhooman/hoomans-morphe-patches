@@ -25,17 +25,10 @@ val unlockPlusPatch = bytecodePatch(
     )
 
     execute {
-        // Plus status + ad display are decided on-device from DBUser.userUpgradeType
-        // (0=free, 1/3=Plus, 2=teacher). getUserUpgradeType() is the master local getter, and the
-        // canonical "is this user free" check is isFreeUser = (getUserUpgradeType() == 0). Forcing
-        // the upgrade type to PLUS(1) flips isFreeUser false app-wide, which removes ads and unlocks
-        // every locally-gated Plus surface. Server-side metered/AI features
-        // (RemoteEntitlementData.canUseFeature + metering) are unaffected and remain locked.
-
-        // Primary chokepoint — DBUser.getUserUpgradeType() -> 1 (PLUS). DBUser is a JSON/OrmLite
-        // model, so its class + method names survive R8 (they must match the server JSON and DB
-        // columns); pin it by exact type and match the getter by name + shape (no-arg, returns int).
-        // Fail loudly if the shape changed.
+        // Plus and ads are decided on-device from DBUser.userUpgradeType (0=free, 1/3=Plus,
+        // 2=teacher); isFreeUser = (type == 0). DBUser is a JSON/OrmLite model so its names survive
+        // R8. Force the getter to PLUS(1) to flip isFreeUser false app-wide; server-side AI/metered
+        // features are unaffected. Pin by exact type, match the getter by shape; fail loudly if gone.
         val dbUser = mutableClassDefByOrNull("Lcom/quizlet/db/data/models/persisted/DBUser;")
             ?: throw PatchException("Quizlet: DBUser class not found — model package changed.")
         val upgradeTypeGetter = dbUser.methods.firstOrNull { method ->
@@ -54,10 +47,8 @@ val unlockPlusPatch = bytecodePatch(
             """,
         )
 
-        // Belt-and-suspenders — LoggedInUserStatusKt.isFreeUser(LoggedInUserStatus) -> false, in
-        // case R8 inlined getUserUpgradeType() at the canonical free-user check. Best-effort: the
-        // method calls the (now-forced) getter, so this is redundant when not inlined; only patch it
-        // if present, don't fail the whole patch if the obfuscation moved it.
+        // Failsafe in case R8 inlined the getter at the free-user check: force isFreeUser(..) false
+        // if present. Best-effort — don't fail the patch if obfuscation moved it.
         val isFreeUser = mutableClassDefByOrNull(
             "Lcom/quizlet/db/data/models/wrappers/LoggedInUserStatusKt;",
         )?.methods?.firstOrNull { method ->

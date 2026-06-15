@@ -18,8 +18,7 @@ val unlockPremiumPatch = bytecodePatch(
         "you have already synced works offline. Features served from the server still need a " +
         "real account.",
 ) {
-    // The PairIP license check kills any sideloaded build, so it must run whenever Pro is
-    // unlocked. Pull it in as an internal dependency instead of a separate user-facing patch.
+    // A sideloaded build can't launch with the license check active, so bundle it as a dependency.
     dependsOn(disableLicenseCheckPatch)
 
     compatibleWith(
@@ -32,11 +31,9 @@ val unlockPremiumPatch = bytecodePatch(
     )
 
     execute {
-        // Premium is a single local SharedPreferences boolean "isProAccount" in the
-        // "app_preference" file. There is no read wrapper: ~25 gate sites read it directly via
-        // appPreferences.getBoolean("isProAccount", false). The one shared write path is the
-        // prefs manager's d(String, boolean) setter, so force it to always store true for that
-        // key — then no purchase re-check, login response or logout can flip it back to false.
+        // Premium is the local pref "isProAccount" (app_preference). There's no read wrapper, so
+        // force the one shared writer d(String, boolean) to always store true for that key — then no
+        // purchase re-check, login response or logout can flip it back.
         val setter = PrefsPutBooleanFingerprint.method
         setter.addInstructionsWithLabels(
             0,
@@ -50,10 +47,8 @@ val unlockPremiumPatch = bytecodePatch(
             ExternalLabel("original", setter.getInstruction(0)),
         )
 
-        // Forcing the setter only helps once isProAccount is written at least once. A guest who
-        // never logs in never triggers that write, so seed the flag true in the prefs manager's
-        // constructor — right before it returns, after the SharedPreferences field is assigned.
-        // Routed through the (now-forced) setter on the same instance, so it stores true.
+        // Seed it for a guest who never logs in (and so never triggers a write): call the now-forced
+        // setter at the end of the prefs-manager constructor, after the field is assigned.
         val constructor = PrefsConstructorFingerprint.method
         constructor.addInstructions(
             constructor.instructions.lastIndex,
