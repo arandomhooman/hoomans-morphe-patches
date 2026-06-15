@@ -107,6 +107,10 @@ Turns on Liquid Gallery's local Pro flag, unlocking the Pro features the app gat
 
 Sets Quizlet's local account tier to Plus. Ads disappear and the on-device Plus features unlock, including the upgrade prompts and the local Plus toggles, because that status is read from a cached flag. The AI and cloud features (Magic Notes, generation) run on Quizlet's servers and stay locked. You still sign into your own free account. Target: Quizlet `10.38.1`.
 
+### Unlock Premium
+
+Forces Alpha Progression's local Pro flag on, unlocking the premium training tools (the training-plan generator, charts, exercise evaluations, warmup calculator, progression recommendations, deload, periodisation, and RIR tracking) without a subscription. They run on the workout data already on your device, so they keep working offline. Alpha Progression is a Capacitor/Ionic app, so this patch edits the JavaScript bundle instead of the DEX, forcing the flag at every place it is written. Your account's subscription is validated by RevenueCat and stays unchanged. Target: Alpha Progression `6.8.1`.
+
 ## 📥 How to install
 
 **Add the patch source** to Morphe Manager once: `https://github.com/arandomhooman/hoomans-morphe-patches`, or use the [deeplink](https://morphe.software/add-source?github=arandomhooman/hoomans-morphe-patches). Then, for the app you want:
@@ -143,6 +147,14 @@ Sets Quizlet's local account tier to Plus. Ads disappear and the on-device Plus 
 3. Open it and sign in with your Quizlet account. Ads are gone and the locally-gated Plus features are unlocked.
 
 > Quizlet's AI and cloud features (Magic Notes, generation) are produced server-side and stay locked. This patch covers the ad-free experience and the on-device Plus features.
+
+### Alpha Progression
+
+1. Download [**Alpha Progression 6.8.1 (universal APK)**](https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.0.0/alphaprogression-6.8.1-universal.apk)
+2. In Morphe Manager, **patch it** with the *Unlock Premium* patch, then install.
+3. Open it. The Pro training tools (plan generator, charts, deload, periodisation, RIR) are unlocked.
+
+> Alpha Progression is split APKs; the link above is a pre-merged universal APK. Your subscription status stays "free" because that is server-side, but the on-device Pro features are unlocked.
 
 ## 🛠️ Building
 
