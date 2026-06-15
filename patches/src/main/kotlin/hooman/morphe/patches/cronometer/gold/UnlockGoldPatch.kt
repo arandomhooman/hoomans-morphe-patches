@@ -47,8 +47,11 @@ val unlockGoldPatch = rawResourcePatch(
         val lib = get(libPath)
         if (!lib.exists()) {
             throw PatchException(
-                "$libPath not found. Cronometer ships split APKs — patch a merged " +
-                    "universal (arm64-v8a) APK, not just base.apk.",
+                "$libPath not found in the APK. Use the prebuilt universal APK from " +
+                    "this patch's repository releases. If the APK embeds another APK " +
+                    "(e.g. a Wear OS companion at res/raw/*.apk), Morphe Manager can " +
+                    "misdetect it as a split bundle and merge away the native libraries " +
+                    "— the release APK is built to avoid this.",
             )
         }
 
