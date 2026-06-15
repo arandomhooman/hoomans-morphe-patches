@@ -5,6 +5,7 @@ import app.morphe.patcher.patch.AppTarget
 import app.morphe.patcher.patch.Compatibility
 import app.morphe.patcher.patch.PatchException
 import app.morphe.patcher.patch.bytecodePatch
+import hooman.morphe.patches.liquidgallery.license.disableLicenseCheckPatch
 
 @Suppress("unused")
 val unlockProPatch = bytecodePatch(
@@ -13,6 +14,10 @@ val unlockProPatch = bytecodePatch(
         "with no server-side check, so switching it on enables the Pro features the app gates " +
         "on device.",
 ) {
+    // The PairIP license check shuts down any sideloaded build, so it must run whenever Pro is
+    // unlocked. Pull it in as an internal dependency instead of a separate user-facing patch.
+    dependsOn(disableLicenseCheckPatch)
+
     compatibleWith(
         Compatibility(
             name = "Liquid Gallery",

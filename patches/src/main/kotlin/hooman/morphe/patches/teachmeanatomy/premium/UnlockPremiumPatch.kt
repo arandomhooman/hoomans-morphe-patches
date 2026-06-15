@@ -8,6 +8,7 @@ import app.morphe.patcher.patch.AppTarget
 import app.morphe.patcher.patch.Compatibility
 import app.morphe.patcher.patch.bytecodePatch
 import app.morphe.patcher.util.smali.ExternalLabel
+import hooman.morphe.patches.teachmeanatomy.license.disableLicenseCheckPatch
 
 @Suppress("unused")
 val unlockPremiumPatch = bytecodePatch(
@@ -17,6 +18,10 @@ val unlockPremiumPatch = bytecodePatch(
         "you have already synced works offline. Features served from the server still need a " +
         "real account.",
 ) {
+    // The PairIP license check kills any sideloaded build, so it must run whenever Pro is
+    // unlocked. Pull it in as an internal dependency instead of a separate user-facing patch.
+    dependsOn(disableLicenseCheckPatch)
+
     compatibleWith(
         Compatibility(
             name = "Teach Me Anatomy",

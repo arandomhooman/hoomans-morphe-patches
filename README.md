@@ -95,11 +95,7 @@ Unlocks BlockerHero's premium features without a subscription or Google sign-in:
 
 ### Unlock Premium
 
-Switches on Teach Me Anatomy's local Pro flag. That removes the upgrade banners and ads and unlocks the gated reference articles, the Question Bank (1,900+ quiz questions), flashcards, and 3D models. Content you have already synced keeps working offline; anything served fresh from the server still needs a real account. Target: Teach Me Anatomy `5.115`.
-
-### Disable License Check
-
-Teach Me Anatomy and Liquid Gallery both run a PairIP Google Play license check at startup. On a sideloaded (patched) install it returns NOT_LICENSED and closes the app, so this patch removes it. Keep it enabled alongside the unlock patch. Targets: Teach Me Anatomy `5.115`, Liquid Gallery `2.0.14` / `2.1.11`.
+Switches on Teach Me Anatomy's local Pro flag. That removes the upgrade banners and ads and unlocks the gated reference articles, the Question Bank (1,900+ quiz questions), flashcards, and 3D models. Content you have already synced keeps working offline; anything served fresh from the server still needs a real account. It also applies the PairIP license-check bypass automatically, which a sideloaded build needs in order to launch. Target: Teach Me Anatomy `5.115`.
 
 ### Unlock Gold
 
@@ -107,7 +103,7 @@ Forces Cronometer's local Gold override on, which unlocks custom charts, advance
 
 ### Unlock Pro
 
-Turns on Liquid Gallery's local Pro flag, unlocking the Pro features the app gates on device, such as colour customization and batch operations on more than five items. There is no server-side check, so the flag alone is enough. Pair it with *Disable License Check* above. Target: Liquid Gallery `2.0.14` / `2.1.11`.
+Turns on Liquid Gallery's local Pro flag, unlocking the Pro features the app gates on device, such as colour customization and batch operations on more than five items. There is no server-side check, so the flag alone is enough. It also applies the PairIP license-check bypass automatically, which a sideloaded build needs in order to launch. Target: Liquid Gallery `2.0.14` / `2.1.11`.
 
 ### Unlock Plus
 
@@ -125,7 +121,7 @@ Sets Quizlet's local account tier to Plus. Ads disappear and the on-device Plus 
 ### Teach Me Anatomy
 
 1. Download [**Teach Me Anatomy 5.115 (universal APK)**](https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.0.0/teachmeanatomy-5.115-universal.apk)
-2. In Morphe Manager, **patch it** with the *Unlock Premium* **and** *Disable License Check* patches (both enabled by default), then install.
+2. In Morphe Manager, **patch it** with the *Unlock Premium* patch, then install. The required PairIP license-check bypass is applied automatically.
 3. Open it and tap **Continue Without Account** (or sign in with your own account). Pro is unlocked.
 
 ### Cronometer
@@ -139,7 +135,7 @@ Sets Quizlet's local account tier to Plus. Ads disappear and the on-device Plus 
 ### Liquid Gallery
 
 1. Download [**Liquid Gallery 2.1.11 (universal APK)**](https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.0.0/liquidgallery-2.1.11-universal.apk)
-2. In Morphe Manager, **patch it** with the *Unlock Pro* **and** *Disable License Check* patches (both enabled by default), then install.
+2. In Morphe Manager, **patch it** with the *Unlock Pro* patch, then install. The required PairIP license-check bypass is applied automatically.
 3. Open it. Pro is unlocked.
 
 ### Quizlet

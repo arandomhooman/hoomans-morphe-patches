@@ -6,11 +6,12 @@ import app.morphe.patcher.patch.Compatibility
 import app.morphe.patcher.patch.bytecodePatch
 
 @Suppress("unused")
+// Internal patch (no name): not user-selectable on its own. It is pulled in automatically as a
+// dependency of Unlock Premium, so the license bypass is always applied with the unlock.
 val disableLicenseCheckPatch = bytecodePatch(
-    name = "Disable License Check",
     description = "Removes the PairIP Google Play license check, which shows a paywall and " +
-        "kills the app on a sideloaded (patched) install. Keep it enabled so the patched app " +
-        "can launch.",
+        "kills the app on a sideloaded (patched) install. Applied automatically with Unlock " +
+        "Premium so the patched app can launch.",
 ) {
     compatibleWith(
         Compatibility(
