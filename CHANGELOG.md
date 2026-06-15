@@ -1,3 +1,10 @@
+## [1.3.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.2.4...v1.3.0) (2026-06-15)
+
+### ✨ New Features
+
+* **Liquid Gallery:** add Unlock Pro and Disable License Check ([9694805](https://github.com/arandomhooman/hoomans-morphe-patches/commit/96948051edd286b40365b0c00ff91b6ee1586e15))
+* **Quizlet:** add Unlock Plus ([12ab764](https://github.com/arandomhooman/hoomans-morphe-patches/commit/12ab764d0a0d5c49f9b0ea558697f92bd2129c2c))
+
 ## [1.2.4](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.2.3...v1.2.4) (2026-06-15)
 
 ### 🐛 Bug Fixes
