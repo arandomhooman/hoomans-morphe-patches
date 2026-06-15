@@ -7,7 +7,7 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 ## 🩹 Patches
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.2.2](https://github.com/arandomhooman/hoomans-morphe-patches/releases/tag/v1.2.2)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;4 patches total
+> **[v1.2.3](https://github.com/arandomhooman/hoomans-morphe-patches/releases/tag/v1.2.3)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;4 patches total
 <details>
 <summary>📦 Teach Me Anatomy&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
 <br>
@@ -45,7 +45,7 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 
 **🎯 Supported versions:**
 
-| 🧪&nbsp;4.56.0 |
+| 4.56.0 |
 | :---: |
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |

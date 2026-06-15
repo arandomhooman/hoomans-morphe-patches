@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-06-15T06:33:07",
-  "description": "## [1.2.2](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.2.1...v1.2.2) (2026-06-15)\n\n### 🐛 Bug Fixes\n\n* actually unlock BlockerHero premium (force cached isPremium state) ([052de71](https://github.com/arandomhooman/hoomans-morphe-patches/commit/052de715ab8085791bb16188ac45101dbf68e021))",
-  "download_url": "https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.2.2/patches-1.2.2.mpp",
+  "created_at": "2026-06-15T07:27:21",
+  "description": "## [1.2.3](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.2.2...v1.2.3) (2026-06-15)\n\n### 🐛 Bug Fixes\n\n* **Cronometer:** mark Unlock Gold 4.56.0 as stable ([faa4999](https://github.com/arandomhooman/hoomans-morphe-patches/commit/faa49998b9a11c769008a97c264ad466ac8f2832))",
+  "download_url": "https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.2.3/patches-1.2.3.mpp",
   "signature_download_url": "",
-  "version": "1.2.2"
+  "version": "1.2.3"
 }
