@@ -1,3 +1,14 @@
+## [1.3.0-dev.1](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.2.3...v1.3.0-dev.1) (2026-06-15)
+
+### 🐛 Bug Fixes
+
+* **Cronometer:** clarify the libapp.so-not-found guard message ([0b39992](https://github.com/arandomhooman/hoomans-morphe-patches/commit/0b39992a141faf555cba16775fc30fb4dc7b35fb))
+
+### ✨ New Features
+
+* **Liquid Gallery:** add Unlock Pro and Disable License Check ([e90b2ac](https://github.com/arandomhooman/hoomans-morphe-patches/commit/e90b2aca6d69a391fdcc1ca0440344b195e957b7))
+* **Quizlet:** add Unlock Plus ([0a38749](https://github.com/arandomhooman/hoomans-morphe-patches/commit/0a38749b73544dbdcd9fc52a2186d873dd23a0b6))
+
 ## [1.2.3](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.2.2...v1.2.3) (2026-06-15)
 
 ### 🐛 Bug Fixes
