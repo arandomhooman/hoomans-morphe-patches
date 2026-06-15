@@ -7,9 +7,8 @@ import app.morphe.patcher.patch.PatchException
 import app.morphe.patcher.patch.bytecodePatch
 import com.android.tools.smali.dexlib2.iface.Method
 
+// Internal (no name): applied automatically as a dependency of Unlock Pro.
 @Suppress("unused")
-// Internal patch (no name): not user-selectable on its own. It is pulled in automatically as a
-// dependency of Unlock Pro, so the license bypass is always applied with the unlock.
 val disableLicenseCheckPatch = bytecodePatch(
     description = "Removes the PairIP Google Play license check that returns NOT_LICENSED on a " +
         "sideloaded (patched) install and shuts the app down (\"Local install check failed due to " +
@@ -25,16 +24,10 @@ val disableLicenseCheckPatch = bytecodePatch(
     )
 
     execute {
-        // PairIP's standard Play-licensing check (com.pairip.licensecheck.LicenseClient). On a
-        // sideloaded build it gets NOT_LICENSED (or, on a Play-less device, no account) and PairIP
-        // schedules a "graceful shutdown" + Play paywall, so the app exits before any UI. This is
-        // the DEX-level, bypassable variant (no native libpairipcore.so VM here), same as the
-        // Teach Me Anatomy patch.
-        //
-        // The class is pinned by the unique licensing-service interface string. PairIP keeps these
-        // method names unobfuscated; pin by name + shape (this class has TWO public no-arg void
-        // methods — connectToLicensingService and initializeLicenseCheck — so an accessFlags/shape
-        // fingerprint alone would be ambiguous). Fail loudly if the layout changed.
+        // PairIP's DEX-level Play-licensing check (LicenseClient). On a sideloaded build it gets
+        // NOT_LICENSED and schedules a shutdown + Play paywall, so the app exits before any UI.
+        // PairIP keeps these names unobfuscated, but the class has two public no-arg void methods,
+        // so pin by name + shape. (No native libpairipcore.so here, unlike pairip-VM apps.)
         val licenseClass = classDefByStrings("com.android.vending.licensing.ILicensingService")
             .firstOrNull()
             ?: throw PatchException(
@@ -52,11 +45,8 @@ val disableLicenseCheckPatch = bytecodePatch(
             method.addInstructions(0, "return-void")
         }
 
-        // Entry point — LicenseContentProvider.onCreate() does
-        //   new LicenseClient(ctx).initializeLicenseCheck();
-        // No-opping it skips the whole check; nothing in the app reads the license result.
+        // initializeLicenseCheck() is the entry point; startPaywallActivity() is the failsafe.
         noOp("initializeLicenseCheck") { it.returnType == "V" && it.parameterTypes.isEmpty() }
-        // Failsafe — the paywall + shutdown launcher, in case any path reaches it.
         noOp("startPaywallActivity") { it.returnType == "V" && it.parameterTypes.size == 1 }
     }
 }

@@ -5,25 +5,11 @@ import app.morphe.patcher.patch.Compatibility
 import app.morphe.patcher.patch.PatchException
 import app.morphe.patcher.patch.rawResourcePatch
 
-/**
- * Cronometer is a Flutter app: its logic is AOT-compiled into `lib/arm64-v8a/libapp.so`,
- * so there is nothing in the DEX to fingerprint. Gold is gated client-side off a single
- * cached override field on the `User` singleton (Blutter calls it `field_63`), which is
- * set from the account payload as `field_63 = (accountData["gold"] == "true")`. Every
- * in-app Gold gate reads that field first (`if (override == true) -> gold`), so forcing
- * it on unlocks all of them at once — the Gold features operate on your own local diary
- * data, so they actually work once the gate is open.
- *
- * The setter materialises the bool with the canonical Dart sequence
- * `tbnz w0,#4,+0xc ; add x2,NULL,#0x20(true) ; b +8 ; add x2,NULL,#0x30(false)` and then
- * stores it with `stur w2,[x0,#0x63]`. NOP-ing the `tbnz` makes execution always fall
- * through to the `true` branch, so the override is stored as `true` regardless of the
- * server's answer.
- *
- * Offsets shift between releases, so the patch locates the instruction by a byte
- * signature (anchored on the `field_63` store, which is what makes it unique) rather than
- * a hard-coded address, and refuses to touch anything if the signature isn't found.
- */
+// Cronometer is Flutter: logic is AOT-compiled into libapp.so, so there's nothing in the DEX to
+// fingerprint. Gold is gated on one cached override (Blutter's field_63) on the User singleton, set
+// from the account payload. NOP-ing the tbnz in its setter makes the bool always store true, which
+// unlocks every Gold gate at once. Offsets shift between releases, so match a byte signature
+// anchored on the field_63 store and refuse to patch if it isn't uniquely present.
 @Suppress("unused")
 val unlockGoldPatch = rawResourcePatch(
     name = "Unlock Gold",
@@ -75,8 +61,7 @@ val unlockGoldPatch = rawResourcePatch(
                     "build and the signature must be re-derived.",
             )
 
-        // Replace the leading `tbnz w0,#4,+0xc` with `nop` (0xD503201F) so the bool always
-        // falls through to the `true` branch.
+        // Overwrite the leading tbnz with nop (0xD503201F) so the bool always takes the true branch.
         val nop = intArrayOf(0x1F, 0x20, 0x03, 0xD5).map { it.toByte() }
         nop.forEachIndexed { i, b -> bytes[match + i] = b }
 
@@ -84,11 +69,8 @@ val unlockGoldPatch = rawResourcePatch(
     }
 }
 
-/**
- * Finds the single occurrence of [pattern] in this array, returning its start index, or
- * `null` if absent. Throws if the pattern occurs more than once (an ambiguous match means
- * the signature is too weak and must not be applied blindly).
- */
+// Returns the single start index of [pattern], or null if absent. Throws on more than one match —
+// an ambiguous signature is too weak to apply blindly.
 private fun ByteArray.findUnique(pattern: ByteArray): Int? {
     var found: Int? = null
     val last = size - pattern.size

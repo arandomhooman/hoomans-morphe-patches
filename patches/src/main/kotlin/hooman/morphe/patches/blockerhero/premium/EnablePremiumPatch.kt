@@ -25,16 +25,9 @@ val enablePremiumPatch = bytecodePatch(
     )
 
     execute {
+        // Force the live premium getter e(key, default) true for KEY_IS_PREMIUM. Hooking the read
+        // rather than the stored value survives any Play Billing re-sync, but isn't enough alone.
         val method = PrefsGetBooleanFingerprint.method
-
-        // Premium is a local SharedPreferences boolean stored under the key
-        // "com.blockerhero.KEY_IS_PREMIUM" (assembled by g()) and read through this getter
-        // as e(g(), false). Forcing the *read* — rather than the stored value — to return
-        // true is immune to any Play Billing re-sync that would write the stored flag back
-        // to false. This flips the "Premium" badge and the few sites that call e(g())
-        // *live* (e.g. focus mode's "one timer in free version" check). It is NOT enough on
-        // its own: the blocklist/app caps read a *cached* PreferencesState.isPremium, forced
-        // separately below.
         method.addInstructionsWithLabels(
             0,
             """
@@ -48,21 +41,16 @@ val enablePremiumPatch = bytecodePatch(
             ExternalLabel("original", method.getInstruction(0)),
         )
 
-        // The actual feature gates (keyword/app blocklist 10-item cap, focus mode, the
-        // Premium screen) read the cached `isPremium` field off the PreferencesState
-        // snapshot, NOT a live e() call — and that cache is populated from the stored pref,
-        // which is false on a fresh/billing-less install, so the e() hook above leaves the
-        // gates closed. Force the state's isPremium field on at its constructor so every
-        // snapshot reports premium. The 2nd ctor param (p2, first boolean) is isPremium.
+        // The feature gates read the cached isPremium off the PreferencesState snapshot, not the
+        // getter above (that cache comes from the stored pref, false on a fresh install). Force it
+        // on at the constructor: p2, the first boolean param, is isPremium.
         PrefsStateConstructorFingerprint.method.addInstructions(
             0,
             "const/4 p2, 0x1",
         )
 
-        // Premium features are gated a *second* time behind a Google login. The prefs
-        // manager's isLoggedIn check `l()` returns `userId > 0`; forcing it true bypasses
-        // the "Login required." prompt (which the re-signed app could never satisfy via
-        // Google sign-in anyway) so the unlocked local features are actually usable.
+        // Second gate: a Google login (l() = userId > 0) the re-signed app can't satisfy. Force it
+        // true so the unlocked local features are usable.
         IsLoggedInFingerprint.method.addInstructions(
             0,
             """
@@ -71,10 +59,8 @@ val enablePremiumPatch = bytecodePatch(
             """,
         )
 
-        // With premium + login forced on, premium toggles still try to sync to the server,
-        // which 401s (no real token) and shows an "Unauthenticated." toast every time. The
-        // toast helper Q(Context, message) is shared app-wide, so rather than disable it
-        // wholesale, skip it only for auth-error messages — every other toast still shows.
+        // Premium toggles still sync and 401, spamming an "Unauthenticated" toast. The toast helper
+        // is shared, so suppress only auth-error messages and leave every other toast alone.
         val toast = ShowToastFingerprint.method
         toast.addInstructionsWithLabels(
             0,
