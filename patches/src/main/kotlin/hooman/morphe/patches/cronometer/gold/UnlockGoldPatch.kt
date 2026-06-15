@@ -38,15 +38,7 @@ val unlockGoldPatch = rawResourcePatch(
             name = "Cronometer",
             packageName = "com.cronometer.android.gold",
             appIconColor = 0xF26B21,
-            // Marked experimental so Morphe Manager hides this version behind the
-            // per-bundle "experimental versions" (pre-release) toggle until the
-            // signature/version situation is confirmed against a real 4.56.0 build.
-            targets = listOf(
-                AppTarget(
-                    version = "4.56.0",
-                    isExperimental = true,
-                ),
-            ),
+            targets = listOf(AppTarget("4.56.0")),
         ),
     )
 
