@@ -202,11 +202,15 @@ actual_start = marker_match.group(0)
 # Auto-expand threshold
 AUTO_EXPAND_THRESHOLD = 20
 
-# Spoilers are expanded if:
-# 1. Total patch count is small (≤ AUTO_EXPAND_THRESHOLD)
-#    with only a few patches where collapsing adds no benefit.
+# Number of top-level groups (one per app, plus a universal group if present).
+num_groups = len(by_pkg) + (1 if universal else 0)
+
+# Spoilers are expanded only when there is a SINGLE group and either:
+# 1. Total patch count is small (≤ AUTO_EXPAND_THRESHOLD), or
 # 2. The README marker explicitly requests it: <!-- PATCHES_START EXPANDED -->
-expanded = (
+# With multiple apps, stacked open <details> blocks read as if one app is
+# nested under another, so collapse them into distinct, separate dropdowns.
+expanded = num_groups <= 1 and (
     total <= AUTO_EXPAND_THRESHOLD or
     "EXPANDED" in actual_start
 )
