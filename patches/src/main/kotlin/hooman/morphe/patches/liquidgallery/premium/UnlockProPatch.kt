@@ -9,9 +9,9 @@ import app.morphe.patcher.patch.bytecodePatch
 @Suppress("unused")
 val unlockProPatch = bytecodePatch(
     name = "Unlock Pro",
-    description = "Unlocks Liquid Gallery Pro (all premium features) without a purchase. Pro is a " +
-        "single local SharedPreferences flag with no server-side gate, so forcing it on unlocks " +
-        "everything the app gates locally.",
+    description = "Unlocks Liquid Gallery Pro without a purchase. Pro is a single local flag " +
+        "with no server-side check, so switching it on enables the Pro features the app gates " +
+        "on device.",
 ) {
     compatibleWith(
         Compatibility(

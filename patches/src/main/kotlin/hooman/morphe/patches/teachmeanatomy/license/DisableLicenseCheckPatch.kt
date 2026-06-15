@@ -8,9 +8,9 @@ import app.morphe.patcher.patch.bytecodePatch
 @Suppress("unused")
 val disableLicenseCheckPatch = bytecodePatch(
     name = "Disable License Check",
-    description = "Removes the PairIP Google Play license check that otherwise shows a paywall " +
-        "and kills the app on any sideloaded (patched) install. Required for the patched app to " +
-        "launch at all.",
+    description = "Removes the PairIP Google Play license check, which shows a paywall and " +
+        "kills the app on a sideloaded (patched) install. Keep it enabled so the patched app " +
+        "can launch.",
 ) {
     compatibleWith(
         Compatibility(
