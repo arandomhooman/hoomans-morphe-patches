@@ -1,3 +1,9 @@
+## [1.2.1](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.2.0...v1.2.1) (2026-06-15)
+
+### 🐛 Bug Fixes
+
+* **Cronometer:** gate Unlock Gold behind experimental toggle ([72487fe](https://github.com/arandomhooman/hoomans-morphe-patches/commit/72487fef0054ffe5c52660d8d2766afee7305416))
+
 ## [1.2.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.1.0...v1.2.0) (2026-06-15)
 
 ### ✨ New Features
