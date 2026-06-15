@@ -1,3 +1,9 @@
+## [1.5.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.4.0...v1.5.0) (2026-06-15)
+
+### ✨ New Features
+
+* add Alpha Progression Unlock Premium patch ([053d72e](https://github.com/arandomhooman/hoomans-morphe-patches/commit/053d72ec55ef95bf3de35ccd8166ad4c8762516b))
+
 ## [1.4.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.3.0...v1.4.0) (2026-06-15)
 
 ### ✨ New Features
