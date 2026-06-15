@@ -8,7 +8,7 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 
 <!-- PATCHES_START EXPANDED -->
 > **[v1.1.0](https://github.com/arandomhooman/hoomans-morphe-patches/releases/tag/v1.1.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;3 patches total
-<details open>
+<details>
 <summary>📦 Teach Me Anatomy&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
 <br>
 
@@ -24,7 +24,7 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 
 </details>
 
-<details open>
+<details>
 <summary>📦 BlockerHero&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
 <br>
 
