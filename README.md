@@ -7,7 +7,7 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 ## 🩹 Patches
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.1.0](https://github.com/arandomhooman/hoomans-morphe-patches/releases/tag/v1.1.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;3 patches total
+> **[v1.2.0](https://github.com/arandomhooman/hoomans-morphe-patches/releases/tag/v1.2.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;4 patches total
 <details>
 <summary>📦 Teach Me Anatomy&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
 <br>
@@ -39,6 +39,21 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 
 </details>
 
+<details>
+<summary>📦 Cronometer&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 4.56.0 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Gold](#unlock-gold) | Unlocks Cronometer Gold (custom charts, advanced reports, fasting tracker, custom biometrics, diary timestamps & groups, ad-free, and the other Gold gates) without a subscription, by forcing the app's local Gold override on. Gold features run on your own on-device diary data, so they work offline; anything genuinely served from Cronometer's servers still needs a real account. |  |
+
+</details>
+
 <!-- PATCHES_END -->
 
 ## 💊 Patch details
@@ -55,6 +70,10 @@ Forces Teach Me Anatomy's local **Pro** flag on — removing the upgrade banners
 
 Removes the PairIP Google Play license check that Teach Me Anatomy otherwise runs at startup — on any sideloaded (patched) install it shows a Play paywall and kills the app. **Required for the patched app to launch at all**, so keep it enabled. **Target:** Teach Me Anatomy `5.115`.
 
+### Unlock Gold
+
+Forces Cronometer's local **Gold** override on — unlocking custom charts, advanced nutrition reports, the **fasting tracker**, custom biometrics, **diary timestamps & groups**, ad-free, and the other Gold gates. No subscription required. Gold features run on your own on-device diary data, so they work offline; anything genuinely served from Cronometer's servers still needs a real subscription. Cronometer is a Flutter app, so — unlike the others — this patches the native `libapp.so` directly, locating the Gold flag by byte signature rather than a fixed offset. **Target:** Cronometer `4.56.0`.
+
 ## 📥 How to install
 
 **Add the patch source** to Morphe Manager once: `https://github.com/arandomhooman/hoomans-morphe-patches` — or use the [deeplink](https://morphe.software/add-source?github=arandomhooman/hoomans-morphe-patches). Then, for the app you want:
@@ -69,6 +88,14 @@ Removes the PairIP Google Play license check that Teach Me Anatomy otherwise run
 1. Download [**Teach Me Anatomy 5.115 (universal APK)**](https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.0.0/teachmeanatomy-5.115-universal.apk)
 2. In Morphe Manager, **patch it** with the *Unlock Premium* **and** *Disable License Check* patches (both enabled by default), then install.
 3. Open it and tap **Continue Without Account** (or sign in with your own account) — Pro is unlocked.
+
+### Cronometer
+
+1. Download [**Cronometer 4.56.0 (universal APK)**](https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.0.0/cronometer-4.56.0-universal.apk)
+2. In Morphe Manager, **patch it** with the *Unlock Gold* patch, then install.
+3. Open it and sign in with your Cronometer account — the Gold features are unlocked.
+
+> Cronometer ships as split APKs; the link above is a pre-merged universal APK. Gold status shown on the account/subscription screen still reads "free" (that's server-side) — but the gated **features** are unlocked.
 
 ## 🛠️ Building
 
