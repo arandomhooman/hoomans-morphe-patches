@@ -1,3 +1,9 @@
+## [1.2.2](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.2.1...v1.2.2) (2026-06-15)
+
+### 🐛 Bug Fixes
+
+* actually unlock BlockerHero premium (force cached isPremium state) ([052de71](https://github.com/arandomhooman/hoomans-morphe-patches/commit/052de715ab8085791bb16188ac45101dbf68e021))
+
 ## [1.2.1](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.2.0...v1.2.1) (2026-06-15)
 
 ### 🐛 Bug Fixes
