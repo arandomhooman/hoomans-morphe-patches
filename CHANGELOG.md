@@ -1,3 +1,9 @@
+## [1.2.3](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.2.2...v1.2.3) (2026-06-15)
+
+### 🐛 Bug Fixes
+
+* **Cronometer:** mark Unlock Gold 4.56.0 as stable ([faa4999](https://github.com/arandomhooman/hoomans-morphe-patches/commit/faa49998b9a11c769008a97c264ad466ac8f2832))
+
 ## [1.2.2](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.2.1...v1.2.2) (2026-06-15)
 
 ### 🐛 Bug Fixes
