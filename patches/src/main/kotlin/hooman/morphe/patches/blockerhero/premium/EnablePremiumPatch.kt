@@ -28,10 +28,13 @@ val enablePremiumPatch = bytecodePatch(
         val method = PrefsGetBooleanFingerprint.method
 
         // Premium is a local SharedPreferences boolean stored under the key
-        // "com.blockerhero.KEY_IS_PREMIUM" (assembled by g()) and read everywhere through
-        // this single getter as e(g(), false). Forcing the *read* — rather than the stored
-        // value — to return true unlocks every premium gate at once and is immune to any
-        // Play Billing re-sync that would otherwise write the stored flag back to false.
+        // "com.blockerhero.KEY_IS_PREMIUM" (assembled by g()) and read through this getter
+        // as e(g(), false). Forcing the *read* — rather than the stored value — to return
+        // true is immune to any Play Billing re-sync that would write the stored flag back
+        // to false. This flips the "Premium" badge and the few sites that call e(g())
+        // *live* (e.g. focus mode's "one timer in free version" check). It is NOT enough on
+        // its own: the blocklist/app caps read a *cached* PreferencesState.isPremium, forced
+        // separately below.
         method.addInstructionsWithLabels(
             0,
             """
@@ -43,6 +46,17 @@ val enablePremiumPatch = bytecodePatch(
                 return v0
             """,
             ExternalLabel("original", method.getInstruction(0)),
+        )
+
+        // The actual feature gates (keyword/app blocklist 10-item cap, focus mode, the
+        // Premium screen) read the cached `isPremium` field off the PreferencesState
+        // snapshot, NOT a live e() call — and that cache is populated from the stored pref,
+        // which is false on a fresh/billing-less install, so the e() hook above leaves the
+        // gates closed. Force the state's isPremium field on at its constructor so every
+        // snapshot reports premium. The 2nd ctor param (p2, first boolean) is isPremium.
+        PrefsStateConstructorFingerprint.method.addInstructions(
+            0,
+            "const/4 p2, 0x1",
         )
 
         // Premium features are gated a *second* time behind a Google login. The prefs
