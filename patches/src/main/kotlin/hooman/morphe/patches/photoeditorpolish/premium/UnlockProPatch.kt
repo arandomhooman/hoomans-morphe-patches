@@ -44,7 +44,7 @@ val unlockProPatch = bytecodePatch(
         // by shape (the lone static (Context)Z that reads two booleans). Fail loudly if it moved.
         val prefsClass = mutableClassDefByOrNull("Lyf;")
             ?: throw PatchException(
-                "Photo Editor Polish: prefs/billing helper Lyf; not found — obfuscation map changed.",
+                "Photo Editor Polish: prefs/billing helper Lyf; not found. The obfuscation map changed.",
             )
 
         val isProGetter = prefsClass.methods.singleOrNull { method ->
@@ -61,7 +61,7 @@ val unlockProPatch = bytecodePatch(
                 } ?: 0) >= 2
         } ?: throw PatchException(
             "Photo Editor Polish: the Pro getter (static (Context)Z reading two booleans) was not " +
-                "found uniquely in Lyf; — the premium-flag shape has changed.",
+                "found uniquely in Lyf; (the premium-flag shape has changed).",
         )
 
         isProGetter.addInstructions(
