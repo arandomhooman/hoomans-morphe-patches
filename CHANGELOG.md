@@ -1,3 +1,9 @@
+## [1.6.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.5.0...v1.6.0) (2026-06-16)
+
+### ✨ New Features
+
+* add Photo Editor Polish Unlock Pro patch ([77e6ce2](https://github.com/arandomhooman/hoomans-morphe-patches/commit/77e6ce2ee1fe33a1499d2740b510984298aafc20))
+
 ## [1.5.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.4.0...v1.5.0) (2026-06-15)
 
 ### ✨ New Features
