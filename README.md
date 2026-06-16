@@ -186,6 +186,14 @@ Forces Alpha Progression's local Pro flag on, unlocking the premium training too
 
 > Alpha Progression is split APKs; the link above is a pre-merged universal APK. Your subscription status stays "free" because that is server-side, but the on-device Pro features are unlocked.
 
+### Photo Editor Polish
+
+1. Download [**Photo Editor Polish 1.763.262 (universal APK)**](https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.0.0/photoeditorpolish-1.763.262-universal.apk)
+2. In Morphe Manager, **patch it** with the *Unlock Pro* patch, then install. The app's native and DEX signature checks are bypassed automatically, so the patched build runs.
+3. Open it. Pro is unlocked and the ads are gone.
+
+> Photo Editor Polish is split APKs; the link above is a pre-merged universal APK. The AI tools (AI Remove, AI Expand, Enhancer) run on the developer's servers and stay locked.
+
 ## 🛠️ Building
 
 ```bash
