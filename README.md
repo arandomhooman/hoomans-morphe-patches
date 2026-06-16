@@ -7,7 +7,7 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 ## 🩹 Patches
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.5.0](https://github.com/arandomhooman/hoomans-morphe-patches/releases/tag/v1.5.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;6 patches total
+> **[v1.6.0](https://github.com/arandomhooman/hoomans-morphe-patches/releases/tag/v1.6.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;7 patches total
 <details>
 <summary>📦 BlockerHero&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
 <br>
@@ -95,6 +95,21 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Unlock Pro](#unlock-pro) | Unlocks Liquid Gallery Pro without a purchase. Pro is a single local flag with no server-side check, so switching it on enables the Pro features the app gates on device. |  |
+
+</details>
+
+<details>
+<summary>📦 Photo Editor Polish&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 1.763.262 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Pro](#unlock-pro) | Unlocks the Pro features in Photo Editor Polish without a subscription. Pro is decided on-device from one cached flag that every premium gate reads, so forcing it on enables the locally-gated tools and drops the ads and upgrade prompts. Content generated or validated on the developer's servers (AI tools, cloud assets) stays locked. |  |
 
 </details>
 
