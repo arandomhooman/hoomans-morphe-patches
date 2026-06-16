@@ -68,8 +68,8 @@ val patchNativeTamperCheckPatch = rawResourcePatch(
     }
 }
 
-// Returns the single start index of [pattern], or null if absent. Throws on more than one match —
-// an ambiguous signature is too weak to apply blindly.
+// Returns the single start index of [pattern], or null if absent. Throws on more than one match,
+// since an ambiguous signature is too weak to apply blindly.
 private fun ByteArray.findUnique(pattern: ByteArray): Int? {
     var found: Int? = null
     val last = size - pattern.size

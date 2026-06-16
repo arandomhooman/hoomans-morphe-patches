@@ -65,7 +65,7 @@ val disableSignatureVerificationPatch = bytecodePatch(
         if (verifierClasses.isEmpty()) {
             throw PatchException(
                 "Photo Editor Polish: signature-verifier cluster not found (no class carries the " +
-                    "kill sentinel) — the anti-tamper layout has changed.",
+                    "kill sentinel). The anti-tamper layout has changed.",
             )
         }
 
@@ -104,7 +104,7 @@ val disableSignatureVerificationPatch = bytecodePatch(
         if (spoofedReaders == 0) {
             throw PatchException(
                 "Photo Editor Polish: verifier cluster found but no certificate reader " +
-                    "b(Context) to spoof — the check shape has changed.",
+                    "b(Context) to spoof. The check shape has changed.",
             )
         }
     }
