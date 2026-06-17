@@ -1,3 +1,9 @@
+## [1.8.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.7.0...v1.8.0) (2026-06-17)
+
+### ✨ New Features
+
+* add Essence Unlock Pro patch ([5026def](https://github.com/arandomhooman/hoomans-morphe-patches/commit/5026defb223fd534e9f6762b9821869c413d410b))
+
 ## [1.7.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.6.0...v1.7.0) (2026-06-17)
 
 ### ✨ New Features
