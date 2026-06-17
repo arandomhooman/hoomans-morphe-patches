@@ -130,32 +130,6 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 
 <!-- PATCHES_END -->
 
-## 💊 Patch details
-
-### Enable Premium
-
-Unlocks BlockerHero's premium features without a subscription or Google sign-in: uninstall protection, focus mode, custom blocklists, daily and weekly time limits, block-on-restart, and blocking the recent-apps screen. The app reads premium from one local flag, so setting it covers all of them. Target: BlockerHero `1.5.0`.
-
-### Unlock Premium
-
-Switches on Teach Me Anatomy's local Pro flag. That removes the upgrade banners and ads and unlocks the gated reference articles, the Question Bank (1,900+ quiz questions), flashcards, and 3D models. Content you have already synced keeps working offline; anything served fresh from the server still needs a real account. It also applies the PairIP license-check bypass automatically, which a sideloaded build needs in order to launch. Target: Teach Me Anatomy `5.115`.
-
-### Unlock Gold
-
-Forces Cronometer's local Gold override on, which unlocks custom charts, advanced nutrition reports, the fasting tracker, custom biometrics, diary timestamps and groups, and the ad-free view. These features run on the diary data already on your device, so they work offline. Anything Cronometer computes on its own servers still needs a subscription. Because Cronometer is a Flutter app, this patch edits the native `libapp.so` instead of the DEX, finding the Gold flag by byte signature rather than a fixed offset. Target: Cronometer `4.56.0`.
-
-### Unlock Pro
-
-Turns on Liquid Gallery's local Pro flag, unlocking the Pro features the app gates on device, such as colour customization and batch operations on more than five items. There is no server-side check, so the flag alone is enough. It also applies the PairIP license-check bypass automatically, which a sideloaded build needs in order to launch. Target: Liquid Gallery `2.0.14` / `2.1.11`.
-
-### Unlock Plus
-
-Sets Quizlet's local account tier to Plus. Ads disappear and the on-device Plus features unlock, including the upgrade prompts and the local Plus toggles, because that status is read from a cached flag. The AI and cloud features (Magic Notes, generation) run on Quizlet's servers and stay locked. You still sign into your own free account. Target: Quizlet `10.38.1`.
-
-### Unlock Premium
-
-Forces Alpha Progression's local Pro flag on, unlocking the premium training tools (the training-plan generator, charts, exercise evaluations, warmup calculator, progression recommendations, deload, periodisation, and RIR tracking) without a subscription. They run on the workout data already on your device, so they keep working offline. Alpha Progression is a Capacitor/Ionic app, so this patch edits the JavaScript bundle instead of the DEX, forcing the flag at every place it is written. Your account's subscription is validated by RevenueCat and stays unchanged. Target: Alpha Progression `6.8.1`.
-
 ## 📥 How to install
 
 **Add the patch source** to Morphe Manager once: `https://github.com/arandomhooman/hoomans-morphe-patches`, or use the [deeplink](https://morphe.software/add-source?github=arandomhooman/hoomans-morphe-patches). Then, for the app you want:
