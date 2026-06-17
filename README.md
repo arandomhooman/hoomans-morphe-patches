@@ -194,6 +194,14 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 
 > BandLab is split APKs; the link above is a pre-merged universal APK. Anything BandLab renders or validates on its servers (members-only beats, the stem Splitter, distribution, AI video) stays locked. On a de-Googled device login can fail because BandLab's server requires Google Play Integrity; on a normal phone with Play Services it signs in fine.
 
+### Essence: Quit Addiction
+
+1. Download [**Essence 4.2.8 (universal APK)**](https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.0.0/essence-4.2.8-universal.apk)
+2. In Morphe Manager, **patch it** with the *Unlock Pro* patch, then install. The PairIP license-check bypass that lets the re-signed build launch is applied automatically.
+3. Open it. During the signup flow you can tap **Continue without account**. The Pro tools (detailed statistics and insights, custom color themes, app lock, data export, and the other on-device premium features) are unlocked.
+
+> Essence is split APKs and ships an arm64 build; the link above is a pre-merged universal APK. The AI recovery coach and anything else Essence generates or serves from its backend still checks the account and stays locked.
+
 ## 🛠️ Building
 
 ```bash
