@@ -1,3 +1,9 @@
+## [1.7.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.6.0...v1.7.0) (2026-06-17)
+
+### ✨ New Features
+
+* add BandLab Unlock Membership patch ([c84249b](https://github.com/arandomhooman/hoomans-morphe-patches/commit/c84249b59ed8e1195dbe94fd3f0e7fa8a782d251))
+
 ## [1.6.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.5.0...v1.6.0) (2026-06-16)
 
 ### ✨ New Features
