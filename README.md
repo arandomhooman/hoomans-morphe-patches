@@ -194,6 +194,14 @@ Forces Alpha Progression's local Pro flag on, unlocking the premium training too
 
 > Photo Editor Polish is split APKs; the link above is a pre-merged universal APK. The AI tools (AI Remove, AI Expand, Enhancer) run on the developer's servers and stay locked.
 
+### BandLab
+
+1. Download [**BandLab 11.25.3 (universal APK)**](https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.0.0/bandlab-11.25.3-universal.apk)
+2. In Morphe Manager, **patch it** with the *Unlock Membership* patch, then install. The install-check bypass that lets the re-signed build launch is applied automatically.
+3. Open it and sign in with your own BandLab account. The Membership Studio tools (extra effects and instruments, the larger track count, AutoPitch and manual pitch correction, the voice changer, mastering EQ and presets, comping, audio-to-MIDI, the smart tools) are unlocked, and the ads are gone.
+
+> BandLab is split APKs; the link above is a pre-merged universal APK. Anything BandLab renders or validates on its servers (members-only beats, the stem Splitter, distribution, AI video) stays locked. On a de-Googled device login can fail because BandLab's server requires Google Play Integrity; on a normal phone with Play Services it signs in fine.
+
 ## 🛠️ Building
 
 ```bash
