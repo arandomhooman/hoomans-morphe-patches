@@ -3,6 +3,9 @@
 Personal [Morphe](https://morphe.software) patches for paid Android apps.
 
 > Patches are based on the prior work of [ReVanced](https://github.com/ReVanced).
+## 🙏 Requesting Patches
+
+**All** requests for patches **must** go under Patch Requests in the **[Discussions Tab](https://github.com/arandomhooman/hoomans-morphe-patches/discussions/new?category=new-patches)**.
 
 ## 🩹 Patches
 
