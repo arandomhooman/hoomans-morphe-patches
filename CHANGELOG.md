@@ -1,3 +1,9 @@
+## [1.9.1](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.9.0...v1.9.1) (2026-06-17)
+
+### 🐛 Bug Fixes
+
+* remove LingQ Unlock Premium patch ([e575e20](https://github.com/arandomhooman/hoomans-morphe-patches/commit/e575e20e6c28ff343fa1976f56a8794ff0811cd4))
+
 ## [1.9.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.8.0...v1.9.0) (2026-06-17)
 
 ### ✨ New Features

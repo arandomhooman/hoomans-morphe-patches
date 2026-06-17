@@ -10,7 +10,7 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 ## 🩹 Patches
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.9.0](https://github.com/arandomhooman/hoomans-morphe-patches/releases/tag/v1.9.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;10 patches total
+> **[v1.9.1](https://github.com/arandomhooman/hoomans-morphe-patches/releases/tag/v1.9.1)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;9 patches total
 <details>
 <summary>📦 BlockerHero&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
 <br>
@@ -83,21 +83,6 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Unlock Premium](#unlock-premium) | Forces Alpha Progression's local Pro flag on, unlocking the premium training tools — the training-plan generator, charts, exercise evaluations, warmup calculator, progression recommendations, deload, periodisation and RIR tracking — without a subscription. These run on the workout data already on your device, so they keep working offline. Your account's official subscription status is validated by RevenueCat and is unaffected. |  |
-
-</details>
-
-<details>
-<summary>📦 LingQ&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
-<br>
-
-**🎯 Supported versions:**
-
-| 6.1.23 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Premium](#unlock-premium) | Unlocks LingQ's Premium and Premium Plus tiers without a subscription. Membership is decided on-device from the account tier and the cached subscription details, so forcing the premium check and the cached Premium/Premium Plus flags turns on the locally-gated features. Lesson content, courses, and anything LingQ generates or counts on its servers (imports, AI, sync quotas) is validated server-side and stays tied to the real account. |  |
 
 </details>
 
