@@ -232,14 +232,6 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 
 > Essence is split APKs and ships an arm64 build; the link above is a pre-merged universal APK. The AI recovery coach and anything else Essence generates or serves from its backend still checks the account and stays locked.
 
-### LingQ: Learn Languages
-
-1. Download [**LingQ 6.1.23 (universal APK)**](https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.0.0/lingq-6.1.23-universal.apk)
-2. In Morphe Manager, **patch it** with the *Unlock Premium* patch, then install.
-3. Open it and sign in, or create a free account. The account reads as Premium and the on-device Premium and Premium Plus features are unlocked.
-
-> LingQ is split APKs; the link above is a pre-merged universal APK. Things LingQ counts or generates on its servers (audio transcription minutes, imports, AI, cloud sync) stay tied to the real account, so those limits don't change.
-
 ## 🛠️ Building
 
 ```bash
