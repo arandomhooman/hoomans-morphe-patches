@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.9.0",
+  "version": "1.9.1",
   "patches": [
     {
       "name": "Enable Premium",
@@ -120,31 +120,6 @@
           "targets": [
             {
               "version": "6.8.1",
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Unlock Premium",
-      "description": "Unlocks LingQ's Premium and Premium Plus tiers without a subscription. Membership is decided on-device from the account tier and the cached subscription details, so forcing the premium check and the cached Premium/Premium Plus flags turns on the locally-gated features. Lesson content, courses, and anything LingQ generates or counts on its servers (imports, AI, sync quotas) is validated server-side and stays tied to the real account.",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "com.linguist",
-          "name": "LingQ",
-          "description": null,
-          "apkFileType": null,
-          "appIconColor": "#3070E0",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "6.1.23",
               "isExperimental": false,
               "minSdk": null,
               "description": null
