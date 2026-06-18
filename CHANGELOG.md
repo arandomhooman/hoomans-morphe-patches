@@ -1,3 +1,9 @@
+## [1.10.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.9.1...v1.10.0) (2026-06-18)
+
+### ✨ New Features
+
+* add Tracked Unlock Pro patch ([7ada7af](https://github.com/arandomhooman/hoomans-morphe-patches/commit/7ada7af3a1c109a5f8c1f1679ace819a2ad895fb))
+
 ## [1.9.1](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.9.0...v1.9.1) (2026-06-17)
 
 ### 🐛 Bug Fixes
