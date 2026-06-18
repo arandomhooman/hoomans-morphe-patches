@@ -232,6 +232,14 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 
 > Essence is split APKs and ships an arm64 build; the link above is a pre-merged universal APK. The AI recovery coach and anything else Essence generates or serves from its backend still checks the account and stays locked.
 
+### Tracked
+
+1. Download [**Tracked 7.0.0 (universal APK)**](https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.0.0/tracked-7.0.0-universal.apk)
+2. In Morphe Manager, **patch it** with the *Unlock Pro* patch, then install.
+3. Open it. During onboarding you can tap **Do this later** to skip making an account. The Pro tools (muscle analytics, training programs, and the other on-device premium features) are unlocked.
+
+> Tracked is split APKs and ships an arm64 build; the link above is a pre-merged universal APK. Your account's official subscription status is server-side and stays unchanged, and the separate human-coaching marketplace still needs its own subscription.
+
 ## 🛠️ Building
 
 ```bash
