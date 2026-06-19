@@ -10,7 +10,7 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 ## 🩹 Patches
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.10.0](https://github.com/arandomhooman/hoomans-morphe-patches/releases/tag/v1.10.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;10 patches total
+> **[v1.11.0](https://github.com/arandomhooman/hoomans-morphe-patches/releases/tag/v1.11.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;11 patches total
 <details>
 <summary>📦 BlockerHero&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
 <br>
@@ -23,6 +23,21 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Enable Premium](#enable-premium) | Unlocks BlockerHero's premium features without a subscription or Google sign-in: uninstall protection, focus mode, custom blocklists, daily and weekly time limits, block-on-restart, and blocking the recent-apps screen. |  |
+
+</details>
+
+<details>
+<summary>📦 AGAMA Car Launcher&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 5.0.5 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Full Version](#unlock-full-version) | Unlocks AGAMA Car Launcher's paid full version without buying it, so the pro widgets, theme editor and other locked extras all open up. Full versus trial is just a stored flag that the Google Play purchase writes and never reads back, so forcing it on works without paying and survives reboots. The launcher runs everything on-device with no server entitlement, so nothing stays locked. |  |
 
 </details>
 
