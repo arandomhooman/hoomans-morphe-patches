@@ -263,6 +263,14 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 
 > AGAMA Car Launcher is split APKs; the link above is a pre-merged universal APK. The launcher keeps everything on the device with no account, so the whole paid feature set is unlocked.
 
+### Collectr
+
+1. Download [**Collectr 2.5.0 (universal APK)**](https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.0.0/collectr-2.5.0-universal.apk)
+2. In Morphe Manager, **patch it** with the *Unlock Premium* patch, then install.
+3. Open it. The on-device premium features (unlimited collections, price alerts, advanced analytics, and the other locally-gated extras) are unlocked.
+
+> Collectr is split APKs and ships a Flutter arm64 build; the link above is a pre-merged universal APK, so patch it on an arm64 device. Anything Collectr's backend gates or serves for your account is server-side and stays unchanged.
+
 ## 🛠️ Building
 
 ```bash
