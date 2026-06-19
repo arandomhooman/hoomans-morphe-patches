@@ -1,3 +1,9 @@
+## [1.11.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.10.0...v1.11.0) (2026-06-19)
+
+### ✨ New Features
+
+* add Car Launcher Unlock Full Version patch ([a04f188](https://github.com/arandomhooman/hoomans-morphe-patches/commit/a04f1888d62c0025e3620dc57d3c2ce32a912fb7))
+
 ## [1.10.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.9.1...v1.10.0) (2026-06-18)
 
 ### ✨ New Features
