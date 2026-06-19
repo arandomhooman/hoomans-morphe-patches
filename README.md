@@ -240,6 +240,14 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 
 > Tracked is split APKs and ships an arm64 build; the link above is a pre-merged universal APK. Your account's official subscription status is server-side and stays unchanged, and the separate human-coaching marketplace still needs its own subscription.
 
+### AGAMA Car Launcher
+
+1. Download [**AGAMA Car Launcher 5.0.5 (universal APK)**](https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.0.0/carlauncher-5.0.5-universal.apk)
+2. In Morphe Manager, **patch it** with the *Unlock Full Version* patch, then install.
+3. Open it. It runs as the licensed full version, so the pro widgets, theme editor, and the other paid extras are unlocked and the trial prompts are gone.
+
+> AGAMA Car Launcher is split APKs; the link above is a pre-merged universal APK. The launcher keeps everything on the device with no account, so the whole paid feature set is unlocked.
+
 ## 🛠️ Building
 
 ```bash
