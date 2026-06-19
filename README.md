@@ -286,6 +286,14 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 
 > Collectr is split APKs and ships a Flutter arm64 build; the link above is a pre-merged universal APK, so patch it on an arm64 device. Anything Collectr's backend gates or serves for your account is server-side and stays unchanged.
 
+### Adobe Acrobat
+
+1. Download [**Adobe Acrobat 26.5.0.45958 (universal APK)**](https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.0.0/acrobat-26.5.0.45958-universal.apk)
+2. In Morphe Manager, **patch it** with the *Unlock Pro* patch, then install.
+3. Open it. The on-device Pro tools (edit text and images, organize and rearrange pages, crop) are unlocked and the subscribe prompts on them are gone.
+
+> Adobe Acrobat is split APKs; the link above is a pre-merged universal APK. Only the tools that run on the device are unlocked. Anything Acrobat does on its servers (Export and Convert to Office, Create PDF, Combine, Compress, OCR, password, Document Cloud) is authorized server-side and stays locked, so those keep their crown.
+
 ## 🛠️ Building
 
 ```bash
