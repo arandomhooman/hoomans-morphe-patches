@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.12.0",
+  "version": "1.13.0",
   "patches": [
     {
       "name": "Enable Premium",
@@ -197,6 +197,31 @@
           "targets": [
             {
               "version": "5.115",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Pro",
+      "description": "Unlocks the Acrobat Pro features that run on-device behind the cached subscription status: editing text and images, and organizing/rearranging pages. Acrobat keeps every premium gate behind one services account that reports entitlements from a locally cached flag, so reporting the on-device Pro entitlements active opens those tools without paying. Features the server runs or stores, like Export/Convert to Office, Create PDF, and Document Cloud storage, are authorized on Adobe's side and stay locked.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.adobe.reader",
+          "name": "Adobe Acrobat",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#B30B00",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "26.5.0.45958",
               "isExperimental": false,
               "minSdk": null,
               "description": null
