@@ -1,3 +1,9 @@
+## [1.13.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.12.0...v1.13.0) (2026-06-19)
+
+### ✨ New Features
+
+* add Adobe Acrobat Unlock Pro patch ([91e1014](https://github.com/arandomhooman/hoomans-morphe-patches/commit/91e1014f3809e6c63c2dc61d8e5bccdbbe965106))
+
 ## [1.12.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.11.0...v1.12.0) (2026-06-19)
 
 ### ✨ New Features
