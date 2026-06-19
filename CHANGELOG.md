@@ -1,3 +1,9 @@
+## [1.12.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.11.0...v1.12.0) (2026-06-19)
+
+### ✨ New Features
+
+* add Collectr Unlock Premium patch ([77e5aaa](https://github.com/arandomhooman/hoomans-morphe-patches/commit/77e5aaa09b2788343a7989bd759ab7543bf408cf))
+
 ## [1.11.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.10.0...v1.11.0) (2026-06-19)
 
 ### ✨ New Features

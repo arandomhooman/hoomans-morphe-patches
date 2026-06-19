@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.11.0",
+  "version": "1.12.0",
   "patches": [
     {
       "name": "Enable Premium",
@@ -145,6 +145,31 @@
           "targets": [
             {
               "version": "6.8.1",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
+      "description": "Unlocks Collectr's client-gated premium features, like unlimited collections, price alerts, and the advanced analytics, by forcing the local membership tier to pro so the on-device checks treat the account as premium. This is the arm64 build. Anything Collectr's servers authorize or serve on their own (account-bound data the backend gates) is not granted by a local flag.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.collectrinc.collectr",
+          "name": "Collectr",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#00204B",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2.5.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
