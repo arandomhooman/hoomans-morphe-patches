@@ -1,3 +1,9 @@
+## [1.15.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.14.1...v1.15.0) (2026-06-20)
+
+### ✨ New Features
+
+* add Moovit Remove ads, Unlock Moovit+, and Maps key patches ([a967fdf](https://github.com/arandomhooman/hoomans-morphe-patches/commit/a967fdfe40a76a37590cbee0610357962a880938))
+
 ## [1.14.1](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.14.0...v1.14.1) (2026-06-20)
 
 ### 🐛 Bug Fixes
