@@ -333,6 +333,26 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 
 > Twitch is split APKs; the link above is a pre-merged universal APK. *Block live ads* reroutes live streams through the eu.luminous.dev proxy, so it depends on that proxy staying up; if it goes down, remove that patch and live streams load normally again. Between them the two patches clear the stitched live-stream ads and the banner, overlay, and in-feed display ads. The in-stream video ads on VODs are not covered.
 
+### Moovit
+
+Moovit needs an extra step the other apps don't. Its built-in Google Maps key is locked to Moovit's signing certificate, and patching re-signs the app, so Google stops accepting that key and the map goes blank. You have to supply a Maps key from your own Google Cloud project. It's free to set up and the patch won't apply without one.
+
+**Get a Google Maps API key first (free):**
+
+1. Go to the [Google Cloud Console](https://console.cloud.google.com/) and create a project (or pick an existing one).
+2. Open **APIs & Services > Library**, search for **Maps SDK for Android**, and enable it.
+3. Turn on **billing** for the project (the **Billing** section, link a billing account). Google requires one for the Maps SDK, but normal use stays inside the free monthly credit. Skipping this is the most common reason the map comes up blank.
+4. Open **APIs & Services > Credentials**, click **Create credentials > API key**, and copy the key.
+5. Leave the key **unrestricted** (simplest, and the right choice if you patch with Morphe Manager, since the cert it signs with isn't fixed). To lock it down instead, set **Application restrictions** to **Android apps** and add package `com.tranzmate` with the SHA-1 of the certificate your patched build is signed with (read it from the patched APK with `apksigner verify --print-certs`).
+
+**Then patch:**
+
+1. Download [**Moovit 5.194.0.1785 (universal APK)**](https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.0.0/moovit-5.194.0.1785-universal.apk)
+2. In Morphe Manager, select the *Remove ads* and *Unlock Moovit+* patches. Both pull in the *Use your own Maps API key* patch, which is what keeps the map working. Open its option, paste your key into **Google Maps API key**, then patch and install.
+3. Open it. The ads are gone, the on-device Moovit+ extras are unlocked, and the map loads on your own key.
+
+> Moovit is split APKs; the link above is a pre-merged universal APK. If the map is blank after patching, the key is empty or wrong, restricted to a different certificate, or its project is missing **Maps SDK for Android** or billing. The Moovit+ subscription is still checked by Moovit's backend, so server-side features like transit ticketing stay locked.
+
 ## 🛠️ Building
 
 ```bash
