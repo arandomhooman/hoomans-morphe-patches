@@ -1,3 +1,9 @@
+## [1.16.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.15.0...v1.16.0) (2026-06-20)
+
+### ✨ New Features
+
+* add AT4K Launcher Unlock Premium patch ([f656a2b](https://github.com/arandomhooman/hoomans-morphe-patches/commit/f656a2b47667ebbade299acc2ad7da5415a431f9))
+
 ## [1.15.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.14.1...v1.15.0) (2026-06-20)
 
 ### ✨ New Features
