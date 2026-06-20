@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.16.0",
+  "version": "1.17.0",
   "patches": [
     {
       "name": "Block live ads",
@@ -303,6 +303,31 @@
           "targets": [
             {
               "version": "2.5.0",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
+      "description": "Unlocks FolderSync's premium without the in-app purchase and removes the ads, so you get unlimited sync pairs and the advanced options.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "dk.tacit.android.foldersync.lite",
+          "name": "FolderSync",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#406FB8",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "4.9.3",
               "isExperimental": false,
               "minSdk": null,
               "description": null
