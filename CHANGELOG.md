@@ -1,3 +1,9 @@
+## [1.19.1](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.19.0...v1.19.1) (2026-06-20)
+
+### 🐛 Bug Fixes
+
+* remove Flightradar24 patches (blank Google Maps base map on re-sign) ([3f1fbb2](https://github.com/arandomhooman/hoomans-morphe-patches/commit/3f1fbb23478dbfeb5c21255655a22a4d0dbf20d7))
+
 ## [1.19.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.18.0...v1.19.0) (2026-06-20)
 
 ### ✨ New Features
