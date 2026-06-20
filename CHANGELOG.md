@@ -1,3 +1,9 @@
+## [1.18.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.17.0...v1.18.0) (2026-06-20)
+
+### ✨ New Features
+
+* add Flightradar24 Remove ads patch ([2ce6f3c](https://github.com/arandomhooman/hoomans-morphe-patches/commit/2ce6f3c99ed64e3ffce53c82522ce575070f15c4))
+
 ## [1.17.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.16.0...v1.17.0) (2026-06-20)
 
 ### ✨ New Features
