@@ -24,6 +24,10 @@ val unlockFullPatch = bytecodePatch(
         ),
     )
 
+    // The launcher re-checks the signing cert separately from the full/trial flag and turns the
+    // shortcut icons into skulls on a re-signed build. Bundle the bypass so it can't be left off.
+    dependsOn(disablePiracyDetectionPatch)
+
     execute {
         // isFull() is the one full/trial chokepoint: it compares a stored "FULL" pref against
         // fullCod(), and the billing flow only ever writes that pref, never reads it back. The TRIAL
