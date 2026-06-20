@@ -309,6 +309,14 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 
 > Adobe Acrobat is split APKs; the link above is a pre-merged universal APK. Only the tools that run on the device are unlocked. Anything Acrobat does on its servers (Export and Convert to Office, Create PDF, Combine, Compress, OCR, password, Document Cloud) is authorized server-side and stays locked, so those keep their crown.
 
+### Twitch
+
+1. Download [**Twitch 29.9.1 (universal APK)**](https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.0.0/twitch-29.9.1-universal.apk)
+2. In Morphe Manager, **patch it** with the *Block live ads* and *Hide display ads* patches, then install.
+3. Open it and sign in with your Twitch account. Live streams play without the stitched ad breaks, and the banner and in-feed display ads are gone.
+
+> Twitch is split APKs; the link above is a pre-merged universal APK. *Block live ads* reroutes live streams through the eu.luminous.dev proxy, so it depends on that proxy staying up; if it goes down, remove that patch and live streams load normally again. Between them the two patches clear the stitched live-stream ads and the banner, overlay, and in-feed display ads. The in-stream video ads on VODs are not covered.
+
 ## 🛠️ Building
 
 ```bash
