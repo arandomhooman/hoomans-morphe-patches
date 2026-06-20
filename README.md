@@ -416,6 +416,14 @@ Moovit needs an extra step the other apps don't. Its built-in Google Maps key is
 
 > FolderSync premium is a one-time purchase with no server or account check, so everything stays unlocked on the device.
 
+### Flightradar24
+
+1. Download [**Flightradar24 11.6.1 (universal APK)**](https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.0.0/fr24-11.6.1-universal.apk)
+2. In Morphe Manager, patch it with the *Remove ads* patch, then install.
+3. Open it. The banner and interstitial ads are gone.
+
+> This removes ads only. Flightradar24 Gold features (the weather/radar/satellite map layers, extended flight history, and 3D view) are produced on Flightradar24's servers and still need a subscription. Sign in with email if you log in; Google sign-in breaks on a re-signed build.
+
 ## 🛠️ Building
 
 ```bash
