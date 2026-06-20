@@ -9,12 +9,9 @@ import hooman.morphe.patches.moovit.maps.useMapsApiKeyPatch
 @Suppress("unused")
 val unlockPlusPatch = bytecodePatch(
     name = "Unlock Moovit+",
-    description = "Unlocks the Moovit+ features that are gated on-device by forcing the subscription " +
-        "check true. Moovit decides premium from a locally cached flag, so the client-side extras like " +
-        "the extra sort and time-of-travel options and compare-on-map open up without paying. The " +
-        "subscription is still validated by Moovit's backend, so features the server produces or " +
-        "authorizes separately, like public-transit ticketing through the Masabi/Justride SDK, stay " +
-        "locked. Pair this with Remove ads for the ad-free part of the subscription.",
+    description = "Unlocks the Moovit+ extras without paying, like the extra sort and time-of-travel " +
+        "options and compare-on-map. Things Moovit runs on its servers, like transit ticketing, still " +
+        "need the real subscription. Pair this with Remove ads for the ad-free part of Moovit+.",
 ) {
     // Re-signing invalidates Moovit's bundled Maps key, so require a user-supplied one. The dependency
     // refuses to apply with a blank key, so a patched build can't end up with a dead map.

@@ -8,11 +8,8 @@ import app.morphe.patcher.patch.bytecodePatch
 @Suppress("unused")
 val hideDisplayAdsPatch = bytecodePatch(
     name = "Hide display ads",
-    description = "Hides the banner, overlay, and in-feed display ads Twitch renders around the app " +
-        "(not the video ads in the stream itself). Every one of those ads is fetched from Twitch's ad " +
-        "edge and runs through a single parser before anything is drawn; forcing that parser to report " +
-        "no ad means none of them render. The decision is on-device, so this needs no account change " +
-        "and leaves the rest of the app alone.",
+    description = "Hides the banner, overlay, and in-feed display ads Twitch shows around the app. " +
+        "This doesn't touch the video ads in the stream itself.",
 ) {
     compatibleWith(
         Compatibility(

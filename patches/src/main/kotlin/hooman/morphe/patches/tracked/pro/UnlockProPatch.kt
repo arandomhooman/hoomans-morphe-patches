@@ -13,11 +13,10 @@ import app.morphe.patcher.patch.rawResourcePatch
 @Suppress("unused")
 val unlockProPatch = rawResourcePatch(
     name = "Unlock Pro",
-    description = "Forces Tracked's local Pro flag on, unlocking the premium training tools it gates " +
-        "on device, like muscle analytics and training programs, without a subscription. These run on " +
-        "the workout data already on your device, so they keep working offline. Your account's " +
-        "official subscription status is validated by RevenueCat and is unaffected, and the separate " +
-        "human-coaching marketplace still needs its own subscription.",
+    description = "Unlocks Tracked's premium training tools without a subscription, like muscle " +
+        "analytics and training programs. They run on the workout data already on your device, so " +
+        "they keep working offline. The separate human-coaching marketplace still needs its own " +
+        "subscription.",
 ) {
     compatibleWith(
         Compatibility(

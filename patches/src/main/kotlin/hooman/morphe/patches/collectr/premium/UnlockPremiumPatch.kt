@@ -15,11 +15,9 @@ import app.morphe.patcher.patch.rawResourcePatch
 @Suppress("unused")
 val unlockPremiumPatch = rawResourcePatch(
     name = "Unlock Premium",
-    description = "Unlocks Collectr's client-gated premium features, like unlimited collections, price " +
-        "alerts, and the advanced analytics, by forcing the local membership tier to pro so the on-device " +
-        "checks treat the account as premium. This is the arm64 build. Anything Collectr's servers " +
-        "authorize or serve on their own (account-bound data the backend gates) is not granted by a local " +
-        "flag.",
+    description = "Unlocks Collectr's premium features without a subscription, like unlimited " +
+        "collections, price alerts, and the advanced analytics. This is the arm64 build. Anything " +
+        "Collectr serves from its own servers still needs the real subscription.",
 ) {
     compatibleWith(
         Compatibility(

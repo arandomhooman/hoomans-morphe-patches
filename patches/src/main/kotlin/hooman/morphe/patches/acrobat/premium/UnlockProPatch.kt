@@ -13,12 +13,9 @@ import app.morphe.patcher.util.smali.ExternalLabel
 @Suppress("unused")
 val unlockProPatch = bytecodePatch(
     name = "Unlock Pro",
-    description = "Unlocks the Acrobat Pro features that run on-device behind the cached subscription " +
-        "status: editing text and images, and organizing/rearranging pages. Acrobat keeps every " +
-        "premium gate behind one services account that reports entitlements from a locally cached " +
-        "flag, so reporting the on-device Pro entitlements active opens those tools without paying. " +
-        "Features the server runs or stores, like Export/Convert to Office, Create PDF, and Document " +
-        "Cloud storage, are authorized on Adobe's side and stay locked.",
+    description = "Unlocks the Acrobat Pro tools that work on your device, like editing text and " +
+        "images and rearranging pages, without paying. The parts Adobe runs on its servers, such " +
+        "as Export to Office, Create PDF, and cloud storage, still need a real subscription.",
 ) {
     compatibleWith(
         Compatibility(

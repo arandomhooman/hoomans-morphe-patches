@@ -9,11 +9,9 @@ import app.morphe.patcher.patch.bytecodePatch
 @Suppress("unused")
 val unlockPlusPatch = bytecodePatch(
     name = "Unlock Plus",
-    description = "Removes ads and unlocks the locally-gated Quizlet Plus features by forcing the " +
-        "account's upgrade type to Plus. Plus status and ad display are decided on-device from a " +
-        "cached flag, so this works without a subscription. Server-side Plus features (AI \"Magic " +
-        "Notes\"/generation and other cloud/metered tools) are validated and produced on Quizlet's " +
-        "servers and stay locked.",
+    description = "Removes ads and unlocks the on-device Quizlet Plus features without a " +
+        "subscription. The AI tools, like Magic Notes and generation, run on Quizlet's servers and " +
+        "stay locked.",
 ) {
     compatibleWith(
         Compatibility(

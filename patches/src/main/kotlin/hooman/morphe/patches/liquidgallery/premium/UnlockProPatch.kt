@@ -10,9 +10,7 @@ import hooman.morphe.patches.liquidgallery.license.disableLicenseCheckPatch
 @Suppress("unused")
 val unlockProPatch = bytecodePatch(
     name = "Unlock Pro",
-    description = "Unlocks Liquid Gallery Pro without a purchase. Pro is a single local flag " +
-        "with no server-side check, so switching it on enables the Pro features the app gates " +
-        "on device.",
+    description = "Unlocks all of Liquid Gallery's Pro features without a purchase.",
 ) {
     // A sideloaded build can't launch with the license check active, so bundle it as a dependency.
     dependsOn(disableLicenseCheckPatch)
