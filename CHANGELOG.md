@@ -1,3 +1,13 @@
+## [1.20.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.19.1...v1.20.0) (2026-06-20)
+
+### 🐛 Bug Fixes
+
+* decouple Acrobat Pro unlock from the sign-in spoof to stop the Play Billing reconcile loop ([c159d2a](https://github.com/arandomhooman/hoomans-morphe-patches/commit/c159d2a0f6a6b224cd3f3e7fdf45ae3c1ee7ef2b))
+
+### ✨ New Features
+
+* add InShot Unlock Pro patch ([7f30aad](https://github.com/arandomhooman/hoomans-morphe-patches/commit/7f30aadd6d9a63c7f4b8313a9730451794f60ba4))
+
 ## [1.19.1](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.19.0...v1.19.1) (2026-06-20)
 
 ### 🐛 Bug Fixes

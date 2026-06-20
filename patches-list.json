@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.19.1",
+  "version": "1.20.0",
   "patches": [
     {
       "name": "Block live ads",
@@ -407,6 +407,31 @@
           "targets": [
             {
               "version": "4.2.8",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Pro",
+      "description": "Unlocks InShot's Pro features without a subscription: no export watermark, no ads, and the paid filters, effects, transitions, stickers and HD export open. The on-device AI tools (background remover, AI retouch, auto captions) verify the original signing key in native code, so those may not run on a re-signed build; the rest of Pro works offline.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.camerasideas.instashot",
+          "name": "InShot",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#FF2558",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2.214.1539",
               "isExperimental": false,
               "minSdk": null,
               "description": null
