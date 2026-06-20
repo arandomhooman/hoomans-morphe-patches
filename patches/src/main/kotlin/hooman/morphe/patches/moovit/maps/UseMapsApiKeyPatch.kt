@@ -14,11 +14,12 @@ import org.w3c.dom.Element
 // is dead, which is why this refuses to apply unless one is supplied.
 @Suppress("unused")
 val useMapsApiKeyPatch = resourcePatch(
-    name = "Use your own Maps API key",
-    description = "Required for the map to load. Patching re-signs the app, which invalidates Moovit's " +
-        "own Google Maps key (it is locked to Moovit's signing certificate), so you have to supply a " +
-        "key from your own Google Cloud project. Enter it in this patch's option. Remove ads and " +
-        "Unlock Moovit+ both pull this in, so the map keeps working after either of them.",
+    name = "Use your own Maps API key [REQUIRED]",
+    description = "Required for the map to load. Patching breaks Moovit's built-in Google Maps key, " +
+        "so you have to supply your own from a free Google Cloud project. In this patch's option, " +
+        "create a project, enable Maps SDK for Android, turn on billing, make an API key, and paste " +
+        "it in (leaving it unrestricted is easiest). Remove ads and Unlock Moovit+ both pull this in, " +
+        "so the map keeps working with either.",
 ) {
     compatibleWith(
         Compatibility(

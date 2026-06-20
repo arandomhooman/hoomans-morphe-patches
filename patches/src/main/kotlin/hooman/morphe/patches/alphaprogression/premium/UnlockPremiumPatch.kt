@@ -13,12 +13,9 @@ import app.morphe.patcher.patch.rawResourcePatch
 @Suppress("unused")
 val unlockPremiumPatch = rawResourcePatch(
     name = "Unlock Premium",
-    description = "Forces Alpha Progression's local Pro flag on, unlocking the premium training " +
-        "tools — the training-plan generator, charts, exercise evaluations, warmup calculator, " +
-        "progression recommendations, deload, periodisation and RIR tracking — without a " +
-        "subscription. These run on the workout data already on your device, so they keep working " +
-        "offline. Your account's official subscription status is validated by RevenueCat and is " +
-        "unaffected.",
+    description = "Unlocks Alpha Progression's premium training tools without a subscription, like " +
+        "the training-plan generator, charts, exercise evaluations, the warmup calculator, and more. " +
+        "They run on the workout data already on your device, so they keep working offline.",
 ) {
     compatibleWith(
         Compatibility(

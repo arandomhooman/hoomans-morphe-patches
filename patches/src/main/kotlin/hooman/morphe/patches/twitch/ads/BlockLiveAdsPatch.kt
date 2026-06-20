@@ -8,12 +8,9 @@ import app.morphe.patcher.patch.bytecodePatch
 @Suppress("unused")
 val blockLiveAdsPatch = bytecodePatch(
     name = "Block live ads",
-    description = "Removes the ads stitched into live streams (SureStream) by routing the HLS " +
-        "manifest request through the Luminous ad-block proxy (eu.luminous.dev) instead of Twitch's " +
-        "own usher server. The proxy fetches a clean manifest, so the stream comes back without the " +
-        "server-inserted ad segments. It relies on that third-party proxy staying up; if it goes " +
-        "down, live streams stop loading until you remove the patch. This covers the stitched " +
-        "live-stream ads only; VOD ads are not touched.",
+    description = "Removes the ads baked into live streams. It works through a free third-party " +
+        "proxy, so live streams need that proxy to be up; if it ever goes down, turn this patch off. " +
+        "VOD ads aren't covered.",
 ) {
     compatibleWith(
         Compatibility(

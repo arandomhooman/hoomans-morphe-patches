@@ -27,11 +27,10 @@ import hooman.morphe.patches.essence.license.disableLicenseCheckPatch
 @Suppress("unused")
 val unlockProPatch = rawResourcePatch(
     name = "Unlock Pro",
-    description = "Forces Essence's local Pro flag on, unlocking the premium tools that run on the " +
-        "device without a subscription: the detailed statistics and insights, the custom color " +
-        "themes, app lock, data export, and the other locally-gated premium features. The flag is " +
-        "read from one cached status, so it works offline. The AI recovery coach and anything else " +
-        "Essence generates or serves from its backend still checks the account and stays locked.",
+    description = "Unlocks Essence's premium tools without a subscription, like the detailed " +
+        "statistics and insights, custom themes, app lock, data export, and more. They run on your " +
+        "device, so they work offline. The AI recovery coach and anything else Essence makes on its " +
+        "servers still needs the real subscription.",
 ) {
     // A re-signed build fails PairIP's Play license check, which kills the app at launch. Bundle the
     // bypass as an internal dependency so it can't be omitted.

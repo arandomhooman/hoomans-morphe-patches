@@ -365,7 +365,7 @@ Moovit needs an extra step the other apps don't. Its built-in Google Maps key is
 **Then patch:**
 
 1. Download [**Moovit 5.194.0.1785 (universal APK)**](https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.0.0/moovit-5.194.0.1785-universal.apk)
-2. In Morphe Manager, select the *Remove ads* and *Unlock Moovit+* patches. Both pull in the *Use your own Maps API key* patch, which is what keeps the map working. Open its option, paste your key into **Google Maps API key**, then patch and install.
+2. In Morphe Manager, select the *Remove ads* and *Unlock Moovit+* patches. Both pull in the *Use your own Maps API key [REQUIRED]* patch, which is what keeps the map working. Open its option, paste your key into **Google Maps API key**, then patch and install.
 3. Open it. The ads are gone, the on-device Moovit+ extras are unlocked, and the map loads on your own key.
 
 > Moovit is split APKs; the link above is a pre-merged universal APK. If the map is blank after patching, the key is empty or wrong, restricted to a different certificate, or its project is missing **Maps SDK for Android** or billing. The Moovit+ subscription is still checked by Moovit's backend, so server-side features like transit ticketing stay locked.

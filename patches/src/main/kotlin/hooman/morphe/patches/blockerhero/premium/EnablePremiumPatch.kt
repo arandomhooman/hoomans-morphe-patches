@@ -11,9 +11,9 @@ import app.morphe.patcher.util.smali.ExternalLabel
 @Suppress("unused")
 val enablePremiumPatch = bytecodePatch(
     name = "Enable Premium",
-    description = "Unlocks BlockerHero's premium features without a subscription or Google " +
-        "sign-in: uninstall protection, focus mode, custom blocklists, daily and weekly time " +
-        "limits, block-on-restart, and blocking the recent-apps screen.",
+    description = "Unlocks BlockerHero's premium features without a subscription or Google sign-in, " +
+        "like uninstall protection, focus mode, custom blocklists, daily and weekly time limits, " +
+        "and more.",
 ) {
     compatibleWith(
         Compatibility(

@@ -14,10 +14,9 @@ import hooman.morphe.patches.photoeditorpolish.integrity.patchNativeTamperCheckP
 @Suppress("unused")
 val unlockProPatch = bytecodePatch(
     name = "Unlock Pro",
-    description = "Unlocks the Pro features in Photo Editor Polish without a subscription. Pro is " +
-        "decided on-device from one cached flag that every premium gate reads, so forcing it on " +
-        "enables the locally-gated tools and drops the ads and upgrade prompts. Content generated " +
-        "or validated on the developer's servers (AI tools, cloud assets) stays locked.",
+    description = "Unlocks the Pro features in Photo Editor Polish without a subscription and drops " +
+        "the ads and upgrade prompts. The AI tools and cloud assets, which the developer runs on its " +
+        "servers, stay locked.",
 ) {
     // A re-signed (patched) build can't launch with the app's anti-tamper active: a native check in
     // libitcore.so and a cluster of DEX signature checks each kill it. Bundle both bypasses so the

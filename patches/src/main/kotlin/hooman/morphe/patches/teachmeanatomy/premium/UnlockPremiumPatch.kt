@@ -13,10 +13,9 @@ import hooman.morphe.patches.teachmeanatomy.license.disableLicenseCheckPatch
 @Suppress("unused")
 val unlockPremiumPatch = bytecodePatch(
     name = "Unlock Premium",
-    description = "Unlocks Teach Me Anatomy's Pro features without a subscription: no upgrade " +
-        "banners or ads, plus the gated reference articles, quizzes, and flashcards. Content " +
-        "you have already synced works offline. Features served from the server still need a " +
-        "real account.",
+    description = "Unlocks Teach Me Anatomy's premium features without a subscription, dropping the " +
+        "upgrade banners and ads and opening up the locked articles, quizzes, and flashcards. Content " +
+        "served from the server still needs a real account.",
 ) {
     // A sideloaded build can't launch with the license check active, so bundle it as a dependency.
     dependsOn(disableLicenseCheckPatch)

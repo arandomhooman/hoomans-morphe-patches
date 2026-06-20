@@ -14,13 +14,10 @@ import hooman.morphe.patches.bandlab.integrity.bypassInstallationCheckPatch
 @Suppress("unused")
 val unlockMembershipPatch = bytecodePatch(
     name = "Unlock Membership",
-    description = "Unlocks the BandLab Membership tools that run on the device. The app decides " +
-        "membership from one cached status object read through a single repository, so forcing the " +
-        "member flag and the per-feature check turns on the in-Studio tools a subscription would " +
-        "give. That covers the extra effects and instruments, the larger track count, pitch tools " +
-        "like AutoPitch and manual correction, the voice changer, mastering EQ and presets, comping, " +
-        "and audio-to-MIDI. Anything BandLab renders on its servers (stem Splitter, AI video, " +
-        "distribution, members-only beats) still checks the account server-side and stays locked.",
+    description = "Unlocks the BandLab Membership tools that run inside the app without a " +
+        "subscription, like the extra effects and instruments, more tracks, pitch tools, the voice " +
+        "changer, mastering, and more. Anything BandLab makes on its servers, like the stem Splitter, " +
+        "AI video, and distribution, still needs a real membership.",
 ) {
     // A re-signed build trips BandLab's repackaging check and won't launch. Bundle the bypass as an
     // internal dependency so it can't be omitted.

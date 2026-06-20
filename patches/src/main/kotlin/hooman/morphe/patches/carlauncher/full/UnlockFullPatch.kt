@@ -9,11 +9,8 @@ import app.morphe.patcher.patch.bytecodePatch
 @Suppress("unused")
 val unlockFullPatch = bytecodePatch(
     name = "Unlock Full Version",
-    description = "Unlocks AGAMA Car Launcher's paid full version without buying it, so the pro " +
-        "widgets, theme editor and other locked extras all open up. Full versus trial is just a " +
-        "stored flag that the Google Play purchase writes and never reads back, so forcing it on " +
-        "works without paying and survives reboots. The launcher runs everything on-device with no " +
-        "server entitlement, so nothing stays locked.",
+    description = "Unlocks the paid full version of AGAMA Car Launcher, so the pro widgets, theme " +
+        "editor, and the other locked extras open up without buying it.",
 ) {
     compatibleWith(
         Compatibility(
