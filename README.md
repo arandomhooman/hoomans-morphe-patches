@@ -370,6 +370,14 @@ Moovit needs an extra step the other apps don't. Its built-in Google Maps key is
 
 > Moovit is split APKs; the link above is a pre-merged universal APK. If the map is blank after patching, the key is empty or wrong, restricted to a different certificate, or its project is missing **Maps SDK for Android** or billing. The Moovit+ subscription is still checked by Moovit's backend, so server-side features like transit ticketing stay locked.
 
+### AT4K Launcher
+
+1. Download [**AT4K Launcher 0.99 (universal APK)**](https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.0.0/at4k-0.99-universal.apk)
+2. In Morphe Manager, **patch it** with the *Unlock Premium* patch, then install. The Play license check that would otherwise block a re-signed build is bypassed automatically.
+3. Open it. The premium features (more apps per row, the premium wallpapers, and the other customizations) are unlocked.
+
+> AT4K Launcher is an Android TV launcher and ships as split APKs; the link above is a pre-merged universal APK. Everything runs on the device, so nothing stays locked.
+
 ## 🛠️ Building
 
 ```bash
