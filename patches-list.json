@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.14.0",
+  "version": "1.14.1",
   "patches": [
     {
       "name": "Block live ads",
@@ -81,7 +81,9 @@
       "name": "Unlock Full Version",
       "description": "Unlocks AGAMA Car Launcher's paid full version without buying it, so the pro widgets, theme editor and other locked extras all open up. Full versus trial is just a stored flag that the Google Play purchase writes and never reads back, so forcing it on works without paying and survives reboots. The launcher runs everything on-device with no server entitlement, so nothing stays locked.",
       "default": true,
-      "dependencies": [],
+      "dependencies": [
+        "BytecodePatch"
+      ],
       "compatiblePackages": [
         {
           "packageName": "altergames.carlauncher",
