@@ -289,156 +289,21 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 
 ## 📥 How to install
 
-**Add the patch source** to Morphe Manager once: `https://github.com/arandomhooman/hoomans-morphe-patches`, or use the [deeplink](https://morphe.software/add-source?github=arandomhooman/hoomans-morphe-patches). Then, for the app you want:
+The patches apply to the **official app, which you supply yourself** — this repo doesn't host or redistribute any app. For each app:
 
-### BlockerHero
+1. **Add the patch source** to Morphe Manager once: `https://github.com/arandomhooman/hoomans-morphe-patches`, or use the [deeplink](https://morphe.software/add-source?github=arandomhooman/hoomans-morphe-patches).
+2. **Get the app's APK** at the exact version in the table above — export it from the Play Store, or download it from APKMirror / APKCombo. Split bundles (`.apks` / `.xapk`) are fine; Morphe Manager merges them automatically (or merge with APKEditor first).
+3. **Patch and install** in Morphe Manager with the patch(es) you want. Required companion patches (PairIP / license-check / signature bypasses) are pulled in automatically.
 
-1. Download [**BlockerHero 1.5.0 (universal APK)**](https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.0.0/blockerhero-1.5.0-universal.apk)
-2. In Morphe Manager, **patch it** with the *Enable Premium* patch, then install.
+> Patching re-signs the app, so **Google sign-in stops working** on patched builds — log in with email or username where the app allows it. Official subscription/account status is decided server-side and often still reads "free"; the patches unlock the on-device features, not anything the app computes or streams from its servers.
 
-### Teach Me Anatomy
+### App-specific notes
 
-1. Download [**Teach Me Anatomy 5.115 (universal APK)**](https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.0.0/teachmeanatomy-5.115-universal.apk)
-2. In Morphe Manager, **patch it** with the *Unlock Premium* patch, then install. The required PairIP license-check bypass is applied automatically.
-3. Open it and tap **Continue Without Account** (or sign in with your own account). Pro is unlocked.
-
-### Cronometer
-
-1. Download [**Cronometer 4.56.0 (universal APK)**](https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.0.0/cronometer-4.56.0-universal.apk)
-2. In Morphe Manager, **patch it** with the *Unlock Gold* patch, then install.
-3. Open it and sign in with your Cronometer account. The Gold features are unlocked.
-
-> Cronometer ships as split APKs; the link above is a pre-merged universal APK. Gold status on the account screen still reads "free" because that is server-side, but the gated features are unlocked.
-
-### Liquid Gallery
-
-1. Download [**Liquid Gallery 2.1.11 (universal APK)**](https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.0.0/liquidgallery-2.1.11-universal.apk)
-2. In Morphe Manager, **patch it** with the *Unlock Pro* patch, then install. The required PairIP license-check bypass is applied automatically.
-3. Open it. Pro is unlocked.
-
-### Quizlet
-
-1. Download [**Quizlet 10.38.1 (universal APK)**](https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.0.0/quizlet-10.38.1-universal.apk)
-2. In Morphe Manager, **patch it** with the *Unlock Plus* patch, then install.
-3. Open it and sign in with your Quizlet account. Ads are gone and the locally-gated Plus features are unlocked.
-
-> Quizlet's AI and cloud features (Magic Notes, generation) are produced server-side and stay locked. This patch covers the ad-free experience and the on-device Plus features.
-
-### Alpha Progression
-
-1. Download [**Alpha Progression 6.8.1 (universal APK)**](https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.0.0/alphaprogression-6.8.1-universal.apk)
-2. In Morphe Manager, **patch it** with the *Unlock Premium* patch, then install.
-3. Open it. The Pro training tools (plan generator, charts, deload, periodisation, RIR) are unlocked.
-
-> Alpha Progression is split APKs; the link above is a pre-merged universal APK. Your subscription status stays "free" because that is server-side, but the on-device Pro features are unlocked.
-
-### Photo Editor Polish
-
-1. Download [**Photo Editor Polish 1.763.262 (universal APK)**](https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.0.0/photoeditorpolish-1.763.262-universal.apk)
-2. In Morphe Manager, **patch it** with the *Unlock Pro* patch, then install. The app's native and DEX signature checks are bypassed automatically, so the patched build runs.
-3. Open it. Pro is unlocked and the ads are gone.
-
-> Photo Editor Polish is split APKs; the link above is a pre-merged universal APK. The AI tools (AI Remove, AI Expand, Enhancer) run on the developer's servers and stay locked.
-
-### BandLab
-
-1. Download [**BandLab 11.25.3 (universal APK)**](https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.0.0/bandlab-11.25.3-universal.apk)
-2. In Morphe Manager, **patch it** with the *Unlock Membership* patch, then install. The install-check bypass that lets the re-signed build launch is applied automatically.
-3. Open it and sign in with your own BandLab account. The Membership Studio tools (extra effects and instruments, the larger track count, AutoPitch and manual pitch correction, the voice changer, mastering EQ and presets, comping, audio-to-MIDI, the smart tools) are unlocked, and the ads are gone.
-
-> BandLab is split APKs; the link above is a pre-merged universal APK. Anything BandLab renders or validates on its servers (members-only beats, the stem Splitter, distribution, AI video) stays locked. On a de-Googled device login can fail because BandLab's server requires Google Play Integrity; on a normal phone with Play Services it signs in fine.
-
-### Essence: Quit Addiction
-
-1. Download [**Essence 4.2.8 (universal APK)**](https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.0.0/essence-4.2.8-universal.apk)
-2. In Morphe Manager, **patch it** with the *Unlock Pro* patch, then install. The PairIP license-check bypass that lets the re-signed build launch is applied automatically.
-3. Open it. During the signup flow you can tap **Continue without account**. The Pro tools (detailed statistics and insights, custom color themes, app lock, data export, and the other on-device premium features) are unlocked.
-
-> Essence is split APKs and ships an arm64 build; the link above is a pre-merged universal APK. The AI recovery coach and anything else Essence generates or serves from its backend still checks the account and stays locked.
-
-### Tracked
-
-1. Download [**Tracked 7.0.0 (universal APK)**](https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.0.0/tracked-7.0.0-universal.apk)
-2. In Morphe Manager, **patch it** with the *Unlock Pro* patch, then install.
-3. Open it. During onboarding you can tap **Do this later** to skip making an account. The Pro tools (muscle analytics, training programs, and the other on-device premium features) are unlocked.
-
-> Tracked is split APKs and ships an arm64 build; the link above is a pre-merged universal APK. Your account's official subscription status is server-side and stays unchanged, and the separate human-coaching marketplace still needs its own subscription.
-
-### AGAMA Car Launcher
-
-1. Download [**AGAMA Car Launcher 5.0.5 (universal APK)**](https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.0.0/carlauncher-5.0.5-universal.apk)
-2. In Morphe Manager, **patch it** with the *Unlock Full Version* patch, then install.
-3. Open it. It runs as the licensed full version, so the pro widgets, theme editor, and the other paid extras are unlocked and the trial prompts are gone.
-
-> AGAMA Car Launcher is split APKs; the link above is a pre-merged universal APK. The launcher keeps everything on the device with no account, so the whole paid feature set is unlocked.
-
-### Collectr
-
-1. Download [**Collectr 2.5.0 (universal APK)**](https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.0.0/collectr-2.5.0-universal.apk)
-2. In Morphe Manager, **patch it** with the *Unlock Premium* patch, then install.
-3. Open it. The on-device premium features (unlimited collections, price alerts, advanced analytics, and the other locally-gated extras) are unlocked.
-
-> Collectr is split APKs and ships a Flutter arm64 build; the link above is a pre-merged universal APK, so patch it on an arm64 device. Anything Collectr's backend gates or serves for your account is server-side and stays unchanged.
-
-### Adobe Acrobat
-
-1. Download [**Adobe Acrobat 26.5.0.45958 (universal APK)**](https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.0.0/acrobat-26.5.0.45958-universal.apk)
-2. In Morphe Manager, **patch it** with the *Unlock Pro* patch, then install.
-3. Open it. The on-device Pro tools (edit text and images, organize and rearrange pages, crop) are unlocked and the subscribe prompts on them are gone.
-
-> Adobe Acrobat is split APKs; the link above is a pre-merged universal APK. Only the tools that run on the device are unlocked. Anything Acrobat does on its servers (Export and Convert to Office, Create PDF, Combine, Compress, OCR, password, Document Cloud) is authorized server-side and stays locked, so those keep their crown.
-
-### Twitch
-
-1. Download [**Twitch 29.9.1 (universal APK)**](https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.0.0/twitch-29.9.1-universal.apk)
-2. In Morphe Manager, **patch it** with the *Block live ads* and *Hide display ads* patches, then install.
-3. Open it and sign in with your Twitch account. Live streams play without the stitched ad breaks, and the banner and in-feed display ads are gone.
-
-> Twitch is split APKs; the link above is a pre-merged universal APK. *Block live ads* reroutes live streams through the eu.luminous.dev proxy, so it depends on that proxy staying up; if it goes down, remove that patch and live streams load normally again. Between them the two patches clear the stitched live-stream ads and the banner, overlay, and in-feed display ads. The in-stream video ads on VODs are not covered.
-
-### Moovit
-
-Moovit needs an extra step the other apps don't. Its built-in Google Maps key is locked to Moovit's signing certificate, and patching re-signs the app, so Google stops accepting that key and the map goes blank. You have to supply a Maps key from your own Google Cloud project. It's free to set up and the patch won't apply without one.
-
-**Get a Google Maps API key first (free):**
-
-1. Go to the [Google Cloud Console](https://console.cloud.google.com/) and create a project (or pick an existing one).
-2. Open **APIs & Services > Library**, search for **Maps SDK for Android**, and enable it.
-3. Turn on **billing** for the project (the **Billing** section, link a billing account). Google requires one for the Maps SDK, but normal use stays inside the free monthly credit. Skipping this is the most common reason the map comes up blank.
-4. Open **APIs & Services > Credentials**, click **Create credentials > API key**, and copy the key.
-5. Leave the key **unrestricted** (simplest, and the right choice if you patch with Morphe Manager, since the cert it signs with isn't fixed). To lock it down instead, set **Application restrictions** to **Android apps** and add package `com.tranzmate` with the SHA-1 of the certificate your patched build is signed with (read it from the patched APK with `apksigner verify --print-certs`).
-
-**Then patch:**
-
-1. Download [**Moovit 5.194.0.1785 (universal APK)**](https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.0.0/moovit-5.194.0.1785-universal.apk)
-2. In Morphe Manager, select the *Remove ads* and *Unlock Moovit+* patches. Both pull in the *Use your own Maps API key [REQUIRED]* patch, which is what keeps the map working. Open its option, paste your key into **Google Maps API key**, then patch and install.
-3. Open it. The ads are gone, the on-device Moovit+ extras are unlocked, and the map loads on your own key.
-
-> Moovit is split APKs; the link above is a pre-merged universal APK. If the map is blank after patching, the key is empty or wrong, restricted to a different certificate, or its project is missing **Maps SDK for Android** or billing. The Moovit+ subscription is still checked by Moovit's backend, so server-side features like transit ticketing stay locked.
-
-### AT4K Launcher
-
-1. Download [**AT4K Launcher 0.99 (universal APK)**](https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.0.0/at4k-0.99-universal.apk)
-2. In Morphe Manager, **patch it** with the *Unlock Premium* patch, then install. The Play license check that would otherwise block a re-signed build is bypassed automatically.
-3. Open it. The premium features (more apps per row, the premium wallpapers, and the other customizations) are unlocked.
-
-> AT4K Launcher is an Android TV launcher and ships as split APKs; the link above is a pre-merged universal APK. Everything runs on the device, so nothing stays locked.
-
-### FolderSync
-
-1. Download [**FolderSync 4.9.3 (universal APK)**](https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.0.0/foldersync-4.9.3-universal.apk)
-2. In Morphe Manager, patch it with the *Unlock Premium* patch, then install.
-3. Open it. Settings shows "FolderSync (Premium)", the sync-pair limit and advanced options are unlocked, and the ads are gone.
-
-> FolderSync premium is a one-time purchase with no server or account check, so everything stays unlocked on the device.
-
-### Flightradar24
-
-1. Download [**Flightradar24 11.6.1 (universal APK)**](https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.0.0/fr24-11.6.1-universal.apk)
-2. In Morphe Manager, patch it with the *Remove ads* patch, then install.
-3. Open it. The banner and interstitial ads are gone.
-
-> This removes ads only. Flightradar24 Gold features (the weather/radar/satellite map layers, extended flight history, and 3D view) are produced on Flightradar24's servers and still need a subscription. Sign in with email if you log in; Google sign-in breaks on a re-signed build.
+- **Moovit** (and **Flightradar24**, once its map fix ships) — re-signing invalidates the built-in Google Maps key, so the map goes blank. The *Use your own Maps API key [REQUIRED]* patch takes a key you make for free in the [Google Cloud Console](https://console.cloud.google.com/): create a project, enable **Maps SDK for Android**, turn on **billing** (the Maps SDK requires it; normal use stays in the free monthly credit — skipping it is the most common cause of a blank map), create an API key under **Credentials**, leave it unrestricted, and paste it into the patch's option.
+- **Twitch** — *Block live ads* reroutes live streams through the `eu.luminous.dev` proxy, so it depends on that proxy staying up; if live streams stop loading, remove that patch. VOD in-stream video ads aren't covered.
+- **Collectr** — Flutter arm64 build; patch it on an arm64 device.
+- **PairIP apps** (Teach Me Anatomy, Liquid Gallery, Essence, BandLab, Photo Editor Polish, AT4K) — the license-check / signature bypass that lets the re-signed build launch is applied automatically; most let you skip making an account ("Continue without account" / "Do this later").
+- **Server-gated extras stay locked** — Acrobat's cloud tools (Export/Create/Combine/OCR), Photo Editor Polish's AI tools, Quizlet's Magic Notes, WEBTOON's locked episodes, BandLab's stem Splitter, and the like are computed or served by each app's backend, so the patches don't touch them.
 
 ## 🛠️ Building
 
