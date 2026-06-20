@@ -1,3 +1,9 @@
+## [1.17.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.16.0...v1.17.0) (2026-06-20)
+
+### ✨ New Features
+
+* add FolderSync Unlock Premium patch ([f0aa724](https://github.com/arandomhooman/hoomans-morphe-patches/commit/f0aa724875e883dbc27b9e65bf6de630b48ef097))
+
 ## [1.16.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.15.0...v1.16.0) (2026-06-20)
 
 ### ✨ New Features
