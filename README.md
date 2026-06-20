@@ -10,7 +10,7 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 ## 🩹 Patches
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.15.0](https://github.com/arandomhooman/hoomans-morphe-patches/releases/tag/v1.15.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;18 patches total
+> **[v1.16.0](https://github.com/arandomhooman/hoomans-morphe-patches/releases/tag/v1.16.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;19 patches total
 <details>
 <summary>📦 Twitch&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
 <br>
@@ -22,8 +22,8 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
-| [Block live ads](#block-live-ads) | Removes the ads stitched into live streams (SureStream) by routing the HLS manifest request through the Luminous ad-block proxy (eu.luminous.dev) instead of Twitch's own usher server. The proxy fetches a clean manifest, so the stream comes back without the server-inserted ad segments. It relies on that third-party proxy staying up; if it goes down, live streams stop loading until you remove the patch. This covers the stitched live-stream ads only; VOD ads are not touched. |  |
-| [Hide display ads](#hide-display-ads) | Hides the banner, overlay, and in-feed display ads Twitch renders around the app (not the video ads in the stream itself). Every one of those ads is fetched from Twitch's ad edge and runs through a single parser before anything is drawn; forcing that parser to report no ad means none of them render. The decision is on-device, so this needs no account change and leaves the rest of the app alone. |  |
+| [Block live ads](#block-live-ads) | Removes the ads baked into live streams. It works through a free third-party proxy, so live streams need that proxy to be up; if it ever goes down, turn this patch off. VOD ads aren't covered. |  |
+| [Hide display ads](#hide-display-ads) | Hides the banner, overlay, and in-feed display ads Twitch shows around the app. This doesn't touch the video ads in the stream itself. |  |
 
 </details>
 
@@ -38,7 +38,7 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
-| [Enable Premium](#enable-premium) | Unlocks BlockerHero's premium features without a subscription or Google sign-in: uninstall protection, focus mode, custom blocklists, daily and weekly time limits, block-on-restart, and blocking the recent-apps screen. |  |
+| [Enable Premium](#enable-premium) | Unlocks BlockerHero's premium features without a subscription or Google sign-in, like uninstall protection, focus mode, custom blocklists, daily and weekly time limits, and more. |  |
 
 </details>
 
@@ -53,9 +53,9 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
-| [Remove ads](#remove-ads) | Removes the ads Moovit shows around the map and search and between screens. Every banner and interstitial request resolves its ad unit through a single method that returns the unit id to show an ad or an empty string to skip it; forcing the empty string means nothing loads. The check is on-device, so this needs no subscription and leaves the rest of the app alone. |  |
-| [Unlock Moovit+](#unlock-moovit) | Unlocks the Moovit+ features that are gated on-device by forcing the subscription check true. Moovit decides premium from a locally cached flag, so the client-side extras like the extra sort and time-of-travel options and compare-on-map open up without paying. The subscription is still validated by Moovit's backend, so features the server produces or authorizes separately, like public-transit ticketing through the Masabi/Justride SDK, stay locked. Pair this with Remove ads for the ad-free part of the subscription. |  |
-| [Use your own Maps API key](#use-your-own-maps-api-key) | Required for the map to load. Patching re-signs the app, which invalidates Moovit's own Google Maps key (it is locked to Moovit's signing certificate), so you have to supply a key from your own Google Cloud project. Enter it in this patch's option. Remove ads and Unlock Moovit+ both pull this in, so the map keeps working after either of them. | • Google Maps API key |
+| [Remove ads](#remove-ads) | Removes the ads Moovit shows around the map and search and between screens. |  |
+| [Unlock Moovit+](#unlock-moovit) | Unlocks the Moovit+ extras without paying, like the extra sort and time-of-travel options and compare-on-map. Things Moovit runs on its servers, like transit ticketing, still need the real subscription. Pair this with Remove ads for the ad-free part of Moovit+. |  |
+| [Use your own Maps API key [REQUIRED]](#use-your-own-maps-api-key-required) | Required for the map to load. Patching breaks Moovit's built-in Google Maps key, so you have to supply your own from a free Google Cloud project. In this patch's option, create a project, enable Maps SDK for Android, turn on billing, make an API key, and paste it in (leaving it unrestricted is easiest). Remove ads and Unlock Moovit+ both pull this in, so the map keeps working with either. | • Google Maps API key |
 
 </details>
 
@@ -70,7 +70,7 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
-| [Unlock Full Version](#unlock-full-version) | Unlocks AGAMA Car Launcher's paid full version without buying it, so the pro widgets, theme editor and other locked extras all open up. Full versus trial is just a stored flag that the Google Play purchase writes and never reads back, so forcing it on works without paying and survives reboots. The launcher runs everything on-device with no server entitlement, so nothing stays locked. |  |
+| [Unlock Full Version](#unlock-full-version) | Unlocks the paid full version of AGAMA Car Launcher, so the pro widgets, theme editor, and the other locked extras open up without buying it. |  |
 
 </details>
 
@@ -85,7 +85,7 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
-| [Unlock Gold](#unlock-gold) | Forces Cronometer's local Gold flag on, unlocking custom charts, advanced reports, the fasting tracker, custom biometrics, diary timestamps and groups, and an ad-free view without a subscription. These features run on the diary data already on your device, so they keep working offline. Anything Cronometer computes on its own servers still needs a subscription. |  |
+| [Unlock Gold](#unlock-gold) | Unlocks Cronometer Gold without a subscription, like custom charts, advanced reports, the fasting tracker, custom biometrics, an ad-free view, and more. Anything Cronometer works out on its own servers still needs Gold. |  |
 
 </details>
 
@@ -100,7 +100,7 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
-| [Unlock Membership](#unlock-membership) | Unlocks the BandLab Membership tools that run on the device. The app decides membership from one cached status object read through a single repository, so forcing the member flag and the per-feature check turns on the in-Studio tools a subscription would give. That covers the extra effects and instruments, the larger track count, pitch tools like AutoPitch and manual correction, the voice changer, mastering EQ and presets, comping, and audio-to-MIDI. Anything BandLab renders on its servers (stem Splitter, AI video, distribution, members-only beats) still checks the account server-side and stays locked. |  |
+| [Unlock Membership](#unlock-membership) | Unlocks the BandLab Membership tools that run inside the app without a subscription, like the extra effects and instruments, more tracks, pitch tools, the voice changer, mastering, and more. Anything BandLab makes on its servers, like the stem Splitter, AI video, and distribution, still needs a real membership. |  |
 
 </details>
 
@@ -115,7 +115,7 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
-| [Unlock Plus](#unlock-plus) | Removes ads and unlocks the locally-gated Quizlet Plus features by forcing the account's upgrade type to Plus. Plus status and ad display are decided on-device from a cached flag, so this works without a subscription. Server-side Plus features (AI "Magic Notes"/generation and other cloud/metered tools) are validated and produced on Quizlet's servers and stay locked. |  |
+| [Unlock Plus](#unlock-plus) | Removes ads and unlocks the on-device Quizlet Plus features without a subscription. The AI tools, like Magic Notes and generation, run on Quizlet's servers and stay locked. |  |
 
 </details>
 
@@ -130,7 +130,22 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
-| [Unlock Premium](#unlock-premium) | Forces Alpha Progression's local Pro flag on, unlocking the premium training tools — the training-plan generator, charts, exercise evaluations, warmup calculator, progression recommendations, deload, periodisation and RIR tracking — without a subscription. These run on the workout data already on your device, so they keep working offline. Your account's official subscription status is validated by RevenueCat and is unaffected. |  |
+| [Unlock Premium](#unlock-premium) | Unlocks Alpha Progression's premium training tools without a subscription, like the training-plan generator, charts, exercise evaluations, the warmup calculator, and more. They run on the workout data already on your device, so they keep working offline. |  |
+
+</details>
+
+<details>
+<summary>📦 AT4K Launcher&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 0.99 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Premium](#unlock-premium) | Unlocks AT4K Launcher's premium features without paying, like more apps per row and the premium wallpaper options. It all runs on the device, so nothing stays locked. |  |
 
 </details>
 
@@ -145,7 +160,7 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
-| [Unlock Premium](#unlock-premium) | Unlocks Collectr's client-gated premium features, like unlimited collections, price alerts, and the advanced analytics, by forcing the local membership tier to pro so the on-device checks treat the account as premium. This is the arm64 build. Anything Collectr's servers authorize or serve on their own (account-bound data the backend gates) is not granted by a local flag. |  |
+| [Unlock Premium](#unlock-premium) | Unlocks Collectr's premium features without a subscription, like unlimited collections, price alerts, and the advanced analytics. This is the arm64 build. Anything Collectr serves from its own servers still needs the real subscription. |  |
 
 </details>
 
@@ -160,7 +175,7 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
-| [Unlock Premium](#unlock-premium) | Unlocks Teach Me Anatomy's Pro features without a subscription: no upgrade banners or ads, plus the gated reference articles, quizzes, and flashcards. Content you have already synced works offline. Features served from the server still need a real account. |  |
+| [Unlock Premium](#unlock-premium) | Unlocks Teach Me Anatomy's premium features without a subscription, dropping the upgrade banners and ads and opening up the locked articles, quizzes, and flashcards. Content served from the server still needs a real account. |  |
 
 </details>
 
@@ -175,7 +190,7 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
-| [Unlock Pro](#unlock-pro) | Unlocks the Acrobat Pro features that run on-device behind the cached subscription status: editing text and images, and organizing/rearranging pages. Acrobat keeps every premium gate behind one services account that reports entitlements from a locally cached flag, so reporting the on-device Pro entitlements active opens those tools without paying. Features the server runs or stores, like Export/Convert to Office, Create PDF, and Document Cloud storage, are authorized on Adobe's side and stay locked. |  |
+| [Unlock Pro](#unlock-pro) | Unlocks the Acrobat Pro tools that work on your device, like editing text and images and rearranging pages, without paying. The parts Adobe runs on its servers, such as Export to Office, Create PDF, and cloud storage, still need a real subscription. |  |
 
 </details>
 
@@ -190,7 +205,7 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
-| [Unlock Pro](#unlock-pro) | Forces Essence's local Pro flag on, unlocking the premium tools that run on the device without a subscription: the detailed statistics and insights, the custom color themes, app lock, data export, and the other locally-gated premium features. The flag is read from one cached status, so it works offline. The AI recovery coach and anything else Essence generates or serves from its backend still checks the account and stays locked. |  |
+| [Unlock Pro](#unlock-pro) | Unlocks Essence's premium tools without a subscription, like the detailed statistics and insights, custom themes, app lock, data export, and more. They run on your device, so they work offline. The AI recovery coach and anything else Essence makes on its servers still needs the real subscription. |  |
 
 </details>
 
@@ -205,7 +220,7 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
-| [Unlock Pro](#unlock-pro) | Unlocks Liquid Gallery Pro without a purchase. Pro is a single local flag with no server-side check, so switching it on enables the Pro features the app gates on device. |  |
+| [Unlock Pro](#unlock-pro) | Unlocks all of Liquid Gallery's Pro features without a purchase. |  |
 
 </details>
 
@@ -220,7 +235,7 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
-| [Unlock Pro](#unlock-pro) | Unlocks the Pro features in Photo Editor Polish without a subscription. Pro is decided on-device from one cached flag that every premium gate reads, so forcing it on enables the locally-gated tools and drops the ads and upgrade prompts. Content generated or validated on the developer's servers (AI tools, cloud assets) stays locked. |  |
+| [Unlock Pro](#unlock-pro) | Unlocks the Pro features in Photo Editor Polish without a subscription and drops the ads and upgrade prompts. The AI tools and cloud assets, which the developer runs on its servers, stay locked. |  |
 
 </details>
 
@@ -235,7 +250,7 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
-| [Unlock Pro](#unlock-pro) | Forces Tracked's local Pro flag on, unlocking the premium training tools it gates on device, like muscle analytics and training programs, without a subscription. These run on the workout data already on your device, so they keep working offline. Your account's official subscription status is validated by RevenueCat and is unaffected, and the separate human-coaching marketplace still needs its own subscription. |  |
+| [Unlock Pro](#unlock-pro) | Unlocks Tracked's premium training tools without a subscription, like muscle analytics and training programs. They run on the workout data already on your device, so they keep working offline. The separate human-coaching marketplace still needs its own subscription. |  |
 
 </details>
 
