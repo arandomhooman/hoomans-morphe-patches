@@ -10,7 +10,23 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 ## 🩹 Patches
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.13.0](https://github.com/arandomhooman/hoomans-morphe-patches/releases/tag/v1.13.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;13 patches total
+> **[v1.14.0](https://github.com/arandomhooman/hoomans-morphe-patches/releases/tag/v1.14.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;15 patches total
+<details>
+<summary>📦 Twitch&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 29.9.1 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Block live ads](#block-live-ads) | Removes the ads stitched into live streams (SureStream) by routing the HLS manifest request through the Luminous ad-block proxy (eu.luminous.dev) instead of Twitch's own usher server. The proxy fetches a clean manifest, so the stream comes back without the server-inserted ad segments. It relies on that third-party proxy staying up; if it goes down, live streams stop loading until you remove the patch. This covers the stitched live-stream ads only; VOD ads are not touched. |  |
+| [Hide display ads](#hide-display-ads) | Hides the banner, overlay, and in-feed display ads Twitch renders around the app (not the video ads in the stream itself). Every one of those ads is fetched from Twitch's ad edge and runs through a single parser before anything is drawn; forcing that parser to report no ad means none of them render. The decision is on-device, so this needs no account change and leaves the rest of the app alone. |  |
+
+</details>
+
 <details>
 <summary>📦 BlockerHero&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
 <br>
