@@ -1,3 +1,9 @@
+## [1.14.1](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.14.0...v1.14.1) (2026-06-20)
+
+### 🐛 Bug Fixes
+
+* stop Car Launcher's re-sign check from turning icons into skulls ([5e646bc](https://github.com/arandomhooman/hoomans-morphe-patches/commit/5e646bc7ead33916b5a6705a9bf2c79ac167fe04))
+
 ## [1.14.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.13.0...v1.14.0) (2026-06-20)
 
 ### ✨ New Features

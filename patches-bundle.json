@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-06-20T00:52:28",
-  "description": "## [1.14.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.13.0...v1.14.0) (2026-06-20)\n\n### ✨ New Features\n\n* add Twitch ad-removal patches ([2df32fc](https://github.com/arandomhooman/hoomans-morphe-patches/commit/2df32fcff813672b26645d074eacca620fd14661))",
-  "download_url": "https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.14.0/patches-1.14.0.mpp",
+  "created_at": "2026-06-20T01:06:39",
+  "description": "## [1.14.1](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.14.0...v1.14.1) (2026-06-20)\n\n### 🐛 Bug Fixes\n\n* stop Car Launcher's re-sign check from turning icons into skulls ([5e646bc](https://github.com/arandomhooman/hoomans-morphe-patches/commit/5e646bc7ead33916b5a6705a9bf2c79ac167fe04))",
+  "download_url": "https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.14.1/patches-1.14.1.mpp",
   "signature_download_url": "",
-  "version": "1.14.0"
+  "version": "1.14.1"
 }
