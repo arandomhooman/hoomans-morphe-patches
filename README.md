@@ -393,6 +393,14 @@ Moovit needs an extra step the other apps don't. Its built-in Google Maps key is
 
 > AT4K Launcher is an Android TV launcher and ships as split APKs; the link above is a pre-merged universal APK. Everything runs on the device, so nothing stays locked.
 
+### FolderSync
+
+1. Download [**FolderSync 4.9.3 (universal APK)**](https://github.com/arandomhooman/hoomans-morphe-patches/releases/download/v1.0.0/foldersync-4.9.3-universal.apk)
+2. In Morphe Manager, patch it with the *Unlock Premium* patch, then install.
+3. Open it. Settings shows "FolderSync (Premium)", the sync-pair limit and advanced options are unlocked, and the ads are gone.
+
+> FolderSync premium is a one-time purchase with no server or account check, so everything stays unlocked on the device.
+
 ## 🛠️ Building
 
 ```bash
