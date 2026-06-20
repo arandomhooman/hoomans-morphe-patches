@@ -10,7 +10,7 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 ## 🩹 Patches
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.14.1](https://github.com/arandomhooman/hoomans-morphe-patches/releases/tag/v1.14.1)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;15 patches total
+> **[v1.15.0](https://github.com/arandomhooman/hoomans-morphe-patches/releases/tag/v1.15.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;18 patches total
 <details>
 <summary>📦 Twitch&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
 <br>
@@ -39,6 +39,23 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Enable Premium](#enable-premium) | Unlocks BlockerHero's premium features without a subscription or Google sign-in: uninstall protection, focus mode, custom blocklists, daily and weekly time limits, block-on-restart, and blocking the recent-apps screen. |  |
+
+</details>
+
+<details>
+<summary>📦 Moovit&nbsp;&nbsp;•&nbsp;&nbsp;3 patches</summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 5.194.0.1785 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Remove ads](#remove-ads) | Removes the ads Moovit shows around the map and search and between screens. Every banner and interstitial request resolves its ad unit through a single method that returns the unit id to show an ad or an empty string to skip it; forcing the empty string means nothing loads. The check is on-device, so this needs no subscription and leaves the rest of the app alone. |  |
+| [Unlock Moovit+](#unlock-moovit) | Unlocks the Moovit+ features that are gated on-device by forcing the subscription check true. Moovit decides premium from a locally cached flag, so the client-side extras like the extra sort and time-of-travel options and compare-on-map open up without paying. The subscription is still validated by Moovit's backend, so features the server produces or authorizes separately, like public-transit ticketing through the Masabi/Justride SDK, stay locked. Pair this with Remove ads for the ad-free part of the subscription. |  |
+| [Use your own Maps API key](#use-your-own-maps-api-key) | Required for the map to load. Patching re-signs the app, which invalidates Moovit's own Google Maps key (it is locked to Moovit's signing certificate), so you have to supply a key from your own Google Cloud project. Enter it in this patch's option. Remove ads and Unlock Moovit+ both pull this in, so the map keeps working after either of them. | • Google Maps API key |
 
 </details>
 
