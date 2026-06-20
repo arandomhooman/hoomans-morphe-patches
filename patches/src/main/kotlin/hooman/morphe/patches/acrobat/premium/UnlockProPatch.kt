@@ -1,6 +1,5 @@
 package hooman.morphe.patches.acrobat.premium
 
-import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
 import app.morphe.patcher.patch.AppTarget
@@ -28,26 +27,21 @@ val unlockProPatch = bytecodePatch(
 
     execute {
         // SVServicesAccount is the single entitlement chokepoint, and its names survive R8. Every
-        // gate reads cached subscription flags through it, short-circuiting to false unless E0()
-        // (signed in) is true. Pin the class by descriptor, match each method by shape.
+        // feature gate reads it through z0/G0/H0, which short-circuit to false unless E0() (signed
+        // in) is true. Pin the class by descriptor, match each method by shape.
         val account = mutableClassDefByOrNull("Lcom/adobe/libs/services/auth/SVServicesAccount;")
             ?: throw PatchException(
                 "Acrobat: SVServicesAccount not found. The services-account package changed.",
             )
 
-        // Re-signing breaks Adobe login, so force E0() (signed in) true; otherwise every entitlement
-        // read below short-circuits to false before it runs.
-        val e0 = account.methods.firstOrNull {
-            it.name == "E0" && it.returnType == "Z" && it.parameterTypes.isEmpty()
-        }
-            ?: throw PatchException("Acrobat: SVServicesAccount.E0()Z not found. The login gate shape changed.")
-        e0.addInstructions(
-            0,
-            """
-                const/4 v0, 0x1
-                return v0
-            """,
-        )
+        // We grant the on-device entitlements at the TOP of z0/G0/H0, before their own !E0() guard
+        // runs, so the granted types read true even though the account is really signed out. We do
+        // NOT force E0() itself: a globally-spoofed signed-in state with no real Adobe token sends
+        // the app down the authenticated paths it can't finish. The worst is a Play-Billing /
+        // paywall subscription reconcile that never converges and respins a BillingClient about
+        // twice a second for the whole session (the "glitchy" behaviour). Leaving E0() honest keeps
+        // that reconcile on its signed-out branch, which resolves cleanly, while the per-type grants
+        // still unlock the tools.
 
         // z0(SERVICE_TYPE) backs every feature gate. Grant the on-device Pro types and let the cloud
         // types fall through to their real value, so the app doesn't offer cloud work it can't finish.
@@ -62,6 +56,7 @@ val unlockProPatch = bytecodePatch(
             "ACROBAT_PREMIUM_SERVICE",
             "EDITPDF_SERVICE",
             "ORGANIZEPDF_SERVICE",
+            "CROPPDF_SERVICE",
             "ACROBAT_DC_LITE_SERVICE",
         )
 
