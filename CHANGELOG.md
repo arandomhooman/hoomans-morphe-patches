@@ -1,3 +1,9 @@
+## [1.14.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.13.0...v1.14.0) (2026-06-20)
+
+### ✨ New Features
+
+* add Twitch ad-removal patches ([2df32fc](https://github.com/arandomhooman/hoomans-morphe-patches/commit/2df32fcff813672b26645d074eacca620fd14661))
+
 ## [1.13.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.12.0...v1.13.0) (2026-06-19)
 
 ### ✨ New Features
