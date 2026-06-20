@@ -1,3 +1,9 @@
+## [1.19.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.18.0...v1.19.0) (2026-06-20)
+
+### ✨ New Features
+
+* add Flightradar24 Unlock aircraft data patch ([759deb7](https://github.com/arandomhooman/hoomans-morphe-patches/commit/759deb79d044893a2bd30df16df04180daedd758))
+
 ## [1.18.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.17.0...v1.18.0) (2026-06-20)
 
 ### ✨ New Features
