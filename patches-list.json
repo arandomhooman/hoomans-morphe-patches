@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.23.0",
+  "version": "1.24.0",
   "patches": [
     {
       "name": "Auto claim channel points",
@@ -441,6 +441,33 @@
     },
     {
       "name": "Unlock Premium",
+      "description": "Unlocks Money Manager's premium and removes the ads: passcode lock, more accounts, custom categories and themes, repeat transactions, advanced stats, and local backup all open. PC/web sync and cloud backup stay tied to the server (it issues an expiry the app checks online), so those keep needing a real subscription.",
+      "default": true,
+      "dependencies": [
+        "BytecodePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.realbyteapps.moneymanagerfree",
+          "name": "Money Manager",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#EE3D1F",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "4.11.1 GF",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
       "description": "Unlocks Teach Me Anatomy's premium features without a subscription, dropping the upgrade banners and ads and opening up the locked articles, quizzes, and flashcards. Content served from the server still needs a real account.",
       "default": true,
       "dependencies": [
@@ -620,6 +647,33 @@
           "targets": [
             {
               "version": "7.0.0",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Pro",
+      "description": "Lifts Wanderlog's free-tier caps without a subscription: unlimited places per trip, the in-app feature gates unlocked, and no more upgrade nags. Your trips already sync on any tier, so this surfaces them rather than faking data. Features that run on Wanderlog's own servers still need the real subscription and may not work with this alone, including the AI Trip Assistant (the query cap is lifted on-device, but the assistant itself is server-run), offline guide downloads, and live flight-price tracking.",
+      "default": true,
+      "dependencies": [
+        "ResourcePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.wanderlog.android",
+          "name": "Wanderlog",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#F75940",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2.208",
               "isExperimental": false,
               "minSdk": null,
               "description": null
