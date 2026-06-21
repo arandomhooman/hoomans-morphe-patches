@@ -288,17 +288,17 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 
 ## 📥 How to install
 
-The patches apply to the **official app, which you supply yourself** — this repo doesn't host or redistribute any app. For each app:
+The patches apply to the official app, which you supply yourself; this repo doesn't host or redistribute any app. For each app:
 
 1. **Add the patch source** to Morphe Manager once: `https://github.com/arandomhooman/hoomans-morphe-patches`, or use the [deeplink](https://morphe.software/add-source?github=arandomhooman/hoomans-morphe-patches).
 2. **Get the app's APK** at the exact version in the table above — export it from the Play Store, or download it from APKMirror / APKCombo. Split bundles (`.apks` / `.xapk`) are fine; Morphe Manager merges them automatically (or merge with APKEditor first).
 3. **Patch and install** in Morphe Manager with the patch(es) you want. Required companion patches (PairIP / license-check / signature bypasses) are pulled in automatically.
 
-> Patching re-signs the app, so **Google sign-in stops working** on patched builds — log in with email or username where the app allows it. Official subscription/account status is decided server-side and often still reads "free"; the patches unlock the on-device features, not anything the app computes or streams from its servers.
+> Patching re-signs the app, so Google sign-in stops working on patched builds; log in with email or username where the app allows it. Official subscription/account status is decided server-side and often still reads "free", so the patches unlock the on-device features, not anything the app computes or streams from its servers.
 
 ### App-specific notes
 
-- **Moovit** (and **Flightradar24**, once its map fix ships) — re-signing invalidates the built-in Google Maps key, so the map goes blank. The *Use your own Maps API key [REQUIRED]* patch takes a key you make for free in the [Google Cloud Console](https://console.cloud.google.com/): create a project, enable **Maps SDK for Android**, turn on **billing** (the Maps SDK requires it; normal use stays in the free monthly credit — skipping it is the most common cause of a blank map), create an API key under **Credentials**, leave it unrestricted, and paste it into the patch's option.
+- **Moovit** (and **Flightradar24**, once its map fix ships) — re-signing invalidates the built-in Google Maps key, so the map goes blank. The *Use your own Maps API key [REQUIRED]* patch takes a key you make for free in the [Google Cloud Console](https://console.cloud.google.com/): create a project, enable **Maps SDK for Android**, turn on **billing** (the Maps SDK requires it; normal use stays in the free monthly credit, and skipping it is the most common cause of a blank map), create an API key under **Credentials**, leave it unrestricted, and paste it into the patch's option.
 - **Twitch** — *Block live ads* reroutes live streams through the `eu.luminous.dev` proxy, so it depends on that proxy staying up; if live streams stop loading, remove that patch. VOD in-stream video ads aren't covered.
 - **Collectr** — Flutter arm64 build; patch it on an arm64 device.
 - **PairIP apps** (Teach Me Anatomy, Liquid Gallery, Essence, BandLab, Photo Editor Polish, AT4K) — the license-check / signature bypass that lets the re-signed build launch is applied automatically; most let you skip making an account ("Continue without account" / "Do this later").
