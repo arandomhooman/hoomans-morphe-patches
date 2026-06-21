@@ -1,3 +1,14 @@
+## [1.24.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.23.0...v1.24.0) (2026-06-21)
+
+### 🐛 Bug Fixes
+
+* patch Photo Editor Polish libitcore tamper check on all ABIs ([c22dacc](https://github.com/arandomhooman/hoomans-morphe-patches/commit/c22dacc502f60894a597c5c4568595801ee37973)), closes [#42](https://github.com/arandomhooman/hoomans-morphe-patches/issues/42)
+
+### ✨ New Features
+
+* add Money Manager Unlock Premium patch ([1f29f72](https://github.com/arandomhooman/hoomans-morphe-patches/commit/1f29f72e5a7eaf5ebc49977bf80087414689c5dc))
+* add Wanderlog Unlock Pro patch ([83430f9](https://github.com/arandomhooman/hoomans-morphe-patches/commit/83430f926689663b3bc59ac4e19ca7a2d1954d28))
+
 ## [1.23.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.22.0...v1.23.0) (2026-06-21)
 
 ### ✨ New Features
