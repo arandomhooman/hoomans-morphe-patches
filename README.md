@@ -10,9 +10,9 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 ## 🩹 Patches
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.22.0](https://github.com/arandomhooman/hoomans-morphe-patches/releases/tag/v1.22.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;25 patches total
+> **[v1.23.0](https://github.com/arandomhooman/hoomans-morphe-patches/releases/tag/v1.23.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;27 patches total
 <details>
-<summary>📦 Twitch&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
+<summary>📦 Twitch&nbsp;&nbsp;•&nbsp;&nbsp;4 patches</summary>
 <br>
 
 **🎯 Supported versions:**
@@ -22,8 +22,10 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
+| [Auto claim channel points](#auto-claim-channel-points) | Claims the channel points bonus chest for you automatically. Whenever Twitch makes a bonus available, the claim fires on its own so you don't have to tap the chest. |  |
 | [Block live ads](#block-live-ads) | Removes the ads baked into live streams. It works through a free third-party proxy, so live streams need that proxy to be up; if it ever goes down, turn this patch off. VOD ads aren't covered. |  |
 | [Hide display ads](#hide-display-ads) | Hides the banner, overlay, and in-feed display ads Twitch shows around the app. This doesn't touch the video ads in the stream itself. |  |
+| [Show deleted messages](#show-deleted-messages) | Keeps deleted or moderated chat messages readable instead of replacing them with "<message deleted>". The message turns into a tappable spoiler: tap it to reveal the original text. Normally only moderators can do this; the patch grants that access to everyone. |  |
 
 </details>
 
@@ -71,7 +73,7 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Remove ads](#remove-ads) | Removes the ads Moovit shows around the map and search and between screens. |  |
-| [Unlock Moovit+](#unlock-moovit) | Unlocks the Moovit+ extras without paying, like the extra sort and time-of-travel options and compare-on-map. Things Moovit runs on its servers, like transit ticketing, still need the real subscription. Pair this with Remove ads for the ad-free part of Moovit+. |  |
+| [Unlock Moovit+](#unlock-moovit) | Unlocks the Moovit+ extras without paying, like the extra sort and time-of-travel options and compare-on-map, and stops the upgrade-to-Moovit+ popups that nag you on app open. Things Moovit runs on its servers, like transit ticketing, still need the real subscription. Pair this with Remove ads for the ad-free part of Moovit+. |  |
 | [Use your own Maps API key [REQUIRED]](#use-your-own-maps-api-key-required) | Required for the map to load. Patching breaks Moovit's built-in Google Maps key, so you have to supply your own from a free Google Cloud project. In this patch's option, create a project, enable Maps SDK for Android, turn on billing, make an API key, and paste it in (leaving it unrestricted is easiest). Remove ads and Unlock Moovit+ both pull this in, so the map keeps working with either. | • Google Maps API key |
 
 </details>

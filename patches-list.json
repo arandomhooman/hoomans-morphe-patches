@@ -1,7 +1,32 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.22.0",
+  "version": "1.23.0",
   "patches": [
+    {
+      "name": "Auto claim channel points",
+      "description": "Claims the channel points bonus chest for you automatically. Whenever Twitch makes a bonus available, the claim fires on its own so you don't have to tap the chest.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "tv.twitch.android.app",
+          "name": "Twitch",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#9147FF",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "29.9.1",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
     {
       "name": "Block live ads",
       "description": "Removes the ads baked into live streams. It works through a free third-party proxy, so live streams need that proxy to be up; if it ever goes down, turn this patch off. VOD ads aren't covered.",
@@ -157,6 +182,31 @@
       "options": []
     },
     {
+      "name": "Show deleted messages",
+      "description": "Keeps deleted or moderated chat messages readable instead of replacing them with \"<message deleted>\". The message turns into a tappable spoiler: tap it to reveal the original text. Normally only moderators can do this; the patch grants that access to everyone.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "tv.twitch.android.app",
+          "name": "Twitch",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#9147FF",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "29.9.1",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Unlock Full Version",
       "description": "Unlocks the paid full version of AGAMA Car Launcher, so the pro widgets, theme editor, and the other locked extras open up without buying it.",
       "default": true,
@@ -237,7 +287,7 @@
     },
     {
       "name": "Unlock Moovit+",
-      "description": "Unlocks the Moovit+ extras without paying, like the extra sort and time-of-travel options and compare-on-map. Things Moovit runs on its servers, like transit ticketing, still need the real subscription. Pair this with Remove ads for the ad-free part of Moovit+.",
+      "description": "Unlocks the Moovit+ extras without paying, like the extra sort and time-of-travel options and compare-on-map, and stops the upgrade-to-Moovit+ popups that nag you on app open. Things Moovit runs on its servers, like transit ticketing, still need the real subscription. Pair this with Remove ads for the ad-free part of Moovit+.",
       "default": true,
       "dependencies": [
         "ResourcePatch"

@@ -1,3 +1,10 @@
+## [1.23.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.22.0...v1.23.0) (2026-06-21)
+
+### ✨ New Features
+
+* add Twitch show deleted messages and auto-claim channel points ([c44bdcb](https://github.com/arandomhooman/hoomans-morphe-patches/commit/c44bdcbe2b672155ddf657536ac9ab680445175a))
+* skip the upgrade-to-Moovit+ popups in Unlock Moovit+ ([e8223e1](https://github.com/arandomhooman/hoomans-morphe-patches/commit/e8223e1f246c79c1f2ad297d686c0dd3a0d5171a))
+
 ## [1.22.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.21.0...v1.22.0) (2026-06-21)
 
 ### ✨ New Features
