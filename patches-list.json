@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.20.0",
+  "version": "1.21.0",
   "patches": [
     {
       "name": "Block live ads",
@@ -95,6 +95,31 @@
           "targets": [
             {
               "version": "5.194.0.1785",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Remove ads",
+      "description": "Removes the ads WEBTOON shows while reading and browsing: the in-viewer top and end ads, the home feed ads, and the title-page banner. Locked episodes (Fast Pass, Daily Pass, coin-unlocked) are served by WEBTOON's servers and still need coins or a wait, so this does not unlock them.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.naver.linewebtoon",
+          "name": "WEBTOON",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#00DC64",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "3.9.5",
               "isExperimental": false,
               "minSdk": null,
               "description": null

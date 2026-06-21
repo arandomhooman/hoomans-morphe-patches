@@ -1,3 +1,9 @@
+## [1.21.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.20.0...v1.21.0) (2026-06-21)
+
+### ✨ New Features
+
+* add WEBTOON Remove ads patch ([11bf3c9](https://github.com/arandomhooman/hoomans-morphe-patches/commit/11bf3c904cdac669a92fb23f094b884610da3adb))
+
 ## [1.20.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.19.1...v1.20.0) (2026-06-20)
 
 ### 🐛 Bug Fixes
