@@ -1,3 +1,9 @@
+## [1.22.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.21.0...v1.22.0) (2026-06-21)
+
+### ✨ New Features
+
+* add Flightradar24 patches (ads, aircraft data, own Maps key) ([77f640a](https://github.com/arandomhooman/hoomans-morphe-patches/commit/77f640a2323ddcbd712bfdf43b98e013c7d79d05))
+
 ## [1.21.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.20.0...v1.21.0) (2026-06-21)
 
 ### ✨ New Features
