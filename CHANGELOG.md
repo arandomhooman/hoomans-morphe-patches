@@ -1,3 +1,9 @@
+## [1.26.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.25.0...v1.26.0) (2026-06-22)
+
+### ✨ New Features
+
+* add Tumblr Remove ads and Enable premium UI patches ([2407435](https://github.com/arandomhooman/hoomans-morphe-patches/commit/2407435e9b5d3fd299762149e0083d818e63016b))
+
 ## [1.25.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.24.1...v1.25.0) (2026-06-22)
 
 ### ✨ New Features
