@@ -31,7 +31,7 @@ val unlockPremiumPatch = bytecodePatch(
 
     execute {
         // Premium is the local pref "isProAccount" (app_preference). There's no read wrapper, so
-        // force the one shared writer d(String, boolean) to always store true for that key — then no
+        // force the one shared writer d(String, boolean) to always store true for that key, so no
         // purchase re-check, login response or logout can flip it back.
         val setter = PrefsPutBooleanFingerprint.method
         setter.addInstructionsWithLabels(
