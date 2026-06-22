@@ -46,7 +46,7 @@ val unlockPlusPatch = bytecodePatch(
         )
 
         // Failsafe in case R8 inlined the getter at the free-user check: force isFreeUser(..) false
-        // if present. Best-effort — don't fail the patch if obfuscation moved it.
+        // if present. Best-effort, so don't fail the patch if obfuscation moved it.
         val isFreeUser = mutableClassDefByOrNull(
             "Lcom/quizlet/db/data/models/wrappers/LoggedInUserStatusKt;",
         )?.methods?.firstOrNull { method ->
