@@ -1,3 +1,10 @@
+## [1.25.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.24.1...v1.25.0) (2026-06-22)
+
+### ✨ New Features
+
+* add Battery Guru Unlock PRO patch ([6ced239](https://github.com/arandomhooman/hoomans-morphe-patches/commit/6ced239e45402ea4682a99362d15515a58ba7fb5))
+* add Rumble Unlock Premium patch ([983b989](https://github.com/arandomhooman/hoomans-morphe-patches/commit/983b989feddff50834e65c5f9ce8a99e7cedced2))
+
 ## [1.24.1](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.24.0...v1.24.1) (2026-06-22)
 
 ### 🐛 Bug Fixes
