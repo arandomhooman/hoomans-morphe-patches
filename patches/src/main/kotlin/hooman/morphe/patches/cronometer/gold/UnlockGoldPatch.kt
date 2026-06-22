@@ -34,8 +34,8 @@ val unlockGoldPatch = rawResourcePatch(
                 "$libPath not found in the APK. Use the prebuilt universal APK from " +
                     "this patch's repository releases. If the APK embeds another APK " +
                     "(e.g. a Wear OS companion at res/raw/*.apk), Morphe Manager can " +
-                    "misdetect it as a split bundle and merge away the native libraries " +
-                    "— the release APK is built to avoid this.",
+                    "misdetect it as a split bundle and merge away the native libraries. " +
+                    "The release APK is built to avoid this.",
             )
         }
 
@@ -67,7 +67,7 @@ val unlockGoldPatch = rawResourcePatch(
     }
 }
 
-// Returns the single start index of [pattern], or null if absent. Throws on more than one match —
+// Returns the single start index of [pattern], or null if absent. Throws on more than one match;
 // an ambiguous signature is too weak to apply blindly.
 private fun ByteArray.findUnique(pattern: ByteArray): Int? {
     var found: Int? = null

@@ -7,8 +7,8 @@ import app.morphe.patcher.patch.rawResourcePatch
 
 /**
  * Capacitor/Ionic app: feature logic lives in the JS bundle, not the DEX. Pro is one client-side
- * flag `proVersion.isActive`, read everywhere but written in only four places — forced truthy at
- * all four so it holds on the free-account paths (boot default and the not-entitled reset) too.
+ * flag `proVersion.isActive`, read everywhere but written in only four places. All four are forced
+ * truthy so it holds on the free-account paths (boot default and the not-entitled reset) too.
  */
 @Suppress("unused")
 val unlockPremiumPatch = rawResourcePatch(

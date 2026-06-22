@@ -10,7 +10,7 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 ## 🩹 Patches
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.25.0](https://github.com/arandomhooman/hoomans-morphe-patches/releases/tag/v1.25.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;31 patches total
+> **[v1.26.0](https://github.com/arandomhooman/hoomans-morphe-patches/releases/tag/v1.26.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;33 patches total
 <details>
 <summary>📦 Twitch&nbsp;&nbsp;•&nbsp;&nbsp;4 patches</summary>
 <br>
@@ -41,6 +41,22 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Enable Premium](#enable-premium) | Unlocks BlockerHero's premium features without a subscription or Google sign-in, like uninstall protection, focus mode, custom blocklists, daily and weekly time limits, and more. |  |
+
+</details>
+
+<details>
+<summary>📦 Tumblr&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 45.0.0.109 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Enable premium UI](#enable-premium-ui) | Turns on the cosmetic Tumblr Premium look: the premium badge and the premium settings entry. This only changes how the app looks on your device. It does not buy or unlock anything on Tumblr's side, so ad-free, the badge on your blog, and anything the server checks still need a real subscription. Use "Remove ads" for an actually ad-free feed. |  |
+| [Remove ads](#remove-ads) | Removes the ads in Tumblr: the dashboard ads from the ad networks and the Blaze posts (the paid-promoted posts other people pay to inject into the feed). It leaves your own following feed and reblogs untouched. Premium content like ad-free badges and TumblrMart items are sold by Tumblr's servers and still need a purchase. |  |
 
 </details>
 
@@ -385,18 +401,18 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 The patches apply to the official app, which you supply yourself; this repo doesn't host or redistribute any app. For each app:
 
 1. **Add the patch source** to Morphe Manager once: `https://github.com/arandomhooman/hoomans-morphe-patches`, or use the [deeplink](https://morphe.software/add-source?github=arandomhooman/hoomans-morphe-patches).
-2. **Get the app's APK** at the exact version in the table above — export it from the Play Store, or download it from APKMirror / APKCombo. Split bundles (`.apks` / `.xapk`) are fine; Morphe Manager merges them automatically (or merge with APKEditor first).
+2. **Get the app's APK** at the exact version in the table above: export it from the Play Store, or download it from APKMirror / APKCombo. Split bundles (`.apks` / `.xapk`) are fine; Morphe Manager merges them automatically (or merge with APKEditor first).
 3. **Patch and install** in Morphe Manager with the patch(es) you want. Required companion patches (PairIP / license-check / signature bypasses) are pulled in automatically.
 
 > Patching re-signs the app, so Google sign-in stops working on patched builds; log in with email or username where the app allows it. Official subscription/account status is decided server-side and often still reads "free", so the patches unlock the on-device features, not anything the app computes or streams from its servers.
 
 ### App-specific notes
 
-- **Moovit** and **Flightradar24** — re-signing invalidates the built-in Google Maps key, so the map goes blank. The *Use your own Maps API key [REQUIRED]* patch takes a key you make for free in the [Google Cloud Console](https://console.cloud.google.com/): create a project, enable **Maps SDK for Android**, turn on **billing** (the Maps SDK requires it; normal use stays in the free monthly credit, and skipping it is the most common cause of a blank map), create an API key under **Credentials**, leave it unrestricted, and paste it into the patch's option.
-- **Twitch** — *Block live ads* reroutes live streams through the `eu.luminous.dev` proxy, so it depends on that proxy staying up; if live streams stop loading, remove that patch. VOD in-stream video ads aren't covered.
-- **Collectr** — Flutter arm64 build; patch it on an arm64 device.
-- **PairIP apps** (Teach Me Anatomy, Liquid Gallery, Essence, BandLab, Photo Editor Polish, AT4K) — the license-check / signature bypass that lets the re-signed build launch is applied automatically; most let you skip making an account ("Continue without account" / "Do this later").
-- **Server-gated extras stay locked** — Acrobat's cloud tools (Export/Create/Combine/OCR), Photo Editor Polish's AI tools, Quizlet's Magic Notes, WEBTOON's locked episodes, BandLab's stem Splitter, and the like are computed or served by each app's backend, so the patches don't touch them.
+- **Moovit** and **Flightradar24**: re-signing invalidates the built-in Google Maps key, so the map goes blank. The *Use your own Maps API key [REQUIRED]* patch takes a key you make for free in the [Google Cloud Console](https://console.cloud.google.com/): create a project, enable **Maps SDK for Android**, turn on **billing** (the Maps SDK requires it; normal use stays in the free monthly credit, and skipping it is the most common cause of a blank map), create an API key under **Credentials**, leave it unrestricted, and paste it into the patch's option.
+- **Twitch**: *Block live ads* reroutes live streams through the `eu.luminous.dev` proxy, so it depends on that proxy staying up; if live streams stop loading, remove that patch. VOD in-stream video ads aren't covered.
+- **Collectr**: Flutter arm64 build; patch it on an arm64 device.
+- **PairIP apps** (Teach Me Anatomy, Liquid Gallery, Essence, BandLab, Photo Editor Polish, AT4K): the license-check / signature bypass that lets the re-signed build launch is applied automatically; most let you skip making an account ("Continue without account" / "Do this later").
+- **Server-gated extras stay locked**: Acrobat's cloud tools (Export/Create/Combine/OCR), Photo Editor Polish's AI tools, Quizlet's Magic Notes, WEBTOON's locked episodes, BandLab's stem Splitter, and the like are computed or served by each app's backend, so the patches don't touch them.
 
 ## 🛠️ Building
 
