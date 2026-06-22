@@ -1,3 +1,9 @@
+## [1.24.1](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.24.0...v1.24.1) (2026-06-22)
+
+### 🐛 Bug Fixes
+
+* clarify Block live ads scope (prerolls can slip through) ([35f8dd1](https://github.com/arandomhooman/hoomans-morphe-patches/commit/35f8dd10c2aa52ba5f4a1d1b8b6d4b8cf139ea0c))
+
 ## [1.24.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.23.0...v1.24.0) (2026-06-21)
 
 ### 🐛 Bug Fixes
