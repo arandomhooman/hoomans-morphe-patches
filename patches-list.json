@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.24.1",
+  "version": "1.25.0",
   "patches": [
     {
       "name": "Auto claim channel points",
@@ -313,6 +313,31 @@
       "options": []
     },
     {
+      "name": "Unlock PRO",
+      "description": "Unlocks Battery Guru's PRO and removes the ads. PRO is decided on the device, so the deep sleep stats, charge history, themes, and the ad-free view all open up.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.paget96.batteryguru",
+          "name": "Battery Guru",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#1B7080",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2.4.8.1",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Unlock Plus",
       "description": "Removes ads and unlocks the on-device Quizlet Plus features without a subscription. The AI tools, like Magic Notes and generation, run on Quizlet's servers and stay locked.",
       "default": true,
@@ -457,6 +482,31 @@
           "targets": [
             {
               "version": "4.11.1 GF",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
+      "description": "Turns on Rumble Premium without a subscription: removes the ad-supported playback, drops the premium upsell, and unlocks the premium-only videos. The premium flag is read from your account profile when you sign in, so it takes effect on a logged-in Rumble account.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.rumble.battles",
+          "name": "Rumble",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#85C742",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "3.14.5",
               "isExperimental": false,
               "minSdk": null,
               "description": null
