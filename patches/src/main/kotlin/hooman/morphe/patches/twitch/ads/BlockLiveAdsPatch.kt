@@ -8,9 +8,10 @@ import app.morphe.patcher.patch.bytecodePatch
 @Suppress("unused")
 val blockLiveAdsPatch = bytecodePatch(
     name = "Block live ads",
-    description = "Removes the ads baked into live streams. It works through a free third-party " +
-        "proxy, so live streams need that proxy to be up; if it ever goes down, turn this patch off. " +
-        "VOD ads aren't covered.",
+    description = "Routes live streams through a free third-party proxy that strips the ads baked " +
+        "into the stream, so the proxy has to be up for playback to work; turn this patch off if it " +
+        "goes down. Mid-stream ads get dropped reliably, but a single preroll can still slip through " +
+        "when you first open a channel and Twitch has flagged the shared proxy. VOD ads aren't covered.",
 ) {
     compatibleWith(
         Compatibility(
