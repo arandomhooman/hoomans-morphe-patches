@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.26.0",
+  "version": "1.27.0",
   "patches": [
     {
       "name": "Auto claim channel points",
@@ -389,6 +389,31 @@
     },
     {
       "name": "Unlock Plus",
+      "description": "Unlocks Finch Plus features without a subscription, including the Plus shop items, extra themes and customization, seasonal event tiers, the monthly recap, and Plus insights. It also clears the upgrade prompts. This is the arm64 build. Cloud backup and cross-device sync run on Finch's own servers and still need the real subscription. Re-signing breaks Google sign-in, so log in with email instead.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.finch.finch",
+          "name": "Finch",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#BFC2D0",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "3.73.179",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Plus",
       "description": "Removes ads and unlocks the on-device Quizlet Plus features without a subscription. The AI tools, like Magic Notes and generation, run on Quizlet's servers and stay locked.",
       "default": true,
       "dependencies": [],
@@ -543,6 +568,31 @@
     },
     {
       "name": "Unlock Premium",
+      "description": "Unlocks Replaio's premium and removes the ads, so the equalizer, sleep timer, alarm, recording, and favorites all open up. Data Replaio keeps on its servers (synced favorites past the free cap) still needs an account that paid.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.hv.replaio",
+          "name": "Replaio",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#2196F3",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "3.3.9",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
       "description": "Turns on Rumble Premium without a subscription: removes the ad-supported playback, drops the premium upsell, and unlocks the premium-only videos. The premium flag is read from your account profile when you sign in, so it takes effect on a logged-in Rumble account.",
       "default": true,
       "dependencies": [],
@@ -609,6 +659,31 @@
           "targets": [
             {
               "version": "26.5.0.45958",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Pro",
+      "description": "Unlocks Cashew's Pro features without a purchase: unlimited budgets and goals, the full past-period budget history, the complete color picker, and no more upgrade popups. Everything here is computed on-device. Google Drive cloud sync is gated separately and won't unlock, and it relies on Google sign-in, which breaks once the app is re-signed.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.budget.tracker_app",
+          "name": "Cashew",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#F6B858",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "5.3.4",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -747,6 +822,31 @@
           "targets": [
             {
               "version": "7.0.0",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Pro",
+      "description": "Unlocks Video Converter's Pro features without a subscription: 4K output, the full resolution and bitrate range, batch conversion, and watermark removal. Everything runs on the device's own FFmpeg encoder, so the unlocked settings produce real output. This is the arm64 build. The app has no ads, so there is nothing extra to remove.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "app.remux.video.converter",
+          "name": "Video Converter",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#1D414B",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "3.2.2",
               "isExperimental": false,
               "minSdk": null,
               "description": null
