@@ -1,3 +1,9 @@
+## [1.28.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.27.0...v1.28.0) (2026-06-23)
+
+### ✨ New Features
+
+* add Projectivy Launcher Unlock Premium patch ([979d671](https://github.com/arandomhooman/hoomans-morphe-patches/commit/979d6718eb7229b248dd07870f6e7e51b757be4f))
+
 ## [1.27.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.26.0...v1.27.0) (2026-06-23)
 
 ### ✨ New Features
