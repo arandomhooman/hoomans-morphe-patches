@@ -1,3 +1,12 @@
+## [1.27.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.26.0...v1.27.0) (2026-06-23)
+
+### ✨ New Features
+
+* add Cashew Unlock Pro patch ([7767afb](https://github.com/arandomhooman/hoomans-morphe-patches/commit/7767afb3c04f488cf406f66659871e172442d0f7))
+* add Finch Unlock Plus patch ([9c8559b](https://github.com/arandomhooman/hoomans-morphe-patches/commit/9c8559bf2d0c44fe4c548ec134141a68682a5548))
+* add Replaio Unlock Premium patch ([f20dcd5](https://github.com/arandomhooman/hoomans-morphe-patches/commit/f20dcd5f2128cc4a9b7a910800c47183a26eb2a4))
+* add Video Converter Unlock Pro patch ([9356720](https://github.com/arandomhooman/hoomans-morphe-patches/commit/93567200d7f4a925d147304eabaca63ae9412a82))
+
 ## [1.26.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.25.0...v1.26.0) (2026-06-22)
 
 ### ✨ New Features
