@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.29.0",
+  "version": "1.30.0",
   "patches": [
     {
       "name": "Auto claim channel points",
@@ -530,6 +530,31 @@
           "targets": [
             {
               "version": "4.9.3",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
+      "description": "Unlocks Mixel's Premium tier without a subscription: the Pro feature gates open and the premium recipe packs show as entitled. Both gates are read client-side from RevenueCat's entitlements, so this lifts them on-device. Anything Mixel actually checks server-side (if a later build moves a gate there) won't be covered.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.cfdrink",
+          "name": "Mixel",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#5065A1",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "1.19.11",
               "isExperimental": false,
               "minSdk": null,
               "description": null
