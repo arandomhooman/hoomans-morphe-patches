@@ -1,3 +1,9 @@
+## [1.29.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.28.0...v1.29.0) (2026-06-24)
+
+### ✨ New Features
+
+* add Stash Unlock Pro patch ([5a3c439](https://github.com/arandomhooman/hoomans-morphe-patches/commit/5a3c439ab56bbd6fd2c61805dde6f44496e88eb3))
+
 ## [1.28.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.27.0...v1.28.0) (2026-06-23)
 
 ### ✨ New Features
