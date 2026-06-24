@@ -1,3 +1,9 @@
+## [1.31.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.30.0...v1.31.0) (2026-06-24)
+
+### ✨ New Features
+
+* add I Am Sober Unlock Sober Plus patch ([780eee7](https://github.com/arandomhooman/hoomans-morphe-patches/commit/780eee7d5e7c09fdbb2122a7eb3553881ccda59a))
+
 ## [1.30.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.29.0...v1.30.0) (2026-06-24)
 
 ### ✨ New Features
