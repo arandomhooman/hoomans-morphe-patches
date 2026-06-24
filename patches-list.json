@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.30.0",
+  "version": "1.31.0",
   "patches": [
     {
       "name": "Auto claim channel points",
@@ -949,6 +949,31 @@
           "targets": [
             {
               "version": "2.208",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Sober Plus",
+      "description": "Unlocks the client-side Sober Plus gates backed by the app's local RevenueCat state, including locked-access settings, extra reaction types, skins, workbook and urge logging entries, and the Sober Plus dashboard. Server-hosted services can still require a real account subscription.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.thehungrywasp.iamsober",
+          "name": "I Am Sober",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#6F63D9",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "8.6.7",
               "isExperimental": false,
               "minSdk": null,
               "description": null
