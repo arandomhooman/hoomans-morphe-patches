@@ -1,3 +1,9 @@
+## [1.30.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.29.0...v1.30.0) (2026-06-24)
+
+### ✨ New Features
+
+* add Mixel Unlock Premium patch ([47fb99b](https://github.com/arandomhooman/hoomans-morphe-patches/commit/47fb99b61b07541753a4992cfaa7cf4ace28316b))
+
 ## [1.29.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.28.0...v1.29.0) (2026-06-24)
 
 ### ✨ New Features
