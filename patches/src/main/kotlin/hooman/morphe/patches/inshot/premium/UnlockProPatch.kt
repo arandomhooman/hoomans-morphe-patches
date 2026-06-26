@@ -9,6 +9,7 @@ import app.morphe.patcher.patch.bytecodePatch
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.reference.StringReference
+import hooman.morphe.patches.inshot.integrity.patchVideoEngineKillPatch
 
 @Suppress("unused")
 val unlockProPatch = bytecodePatch(
@@ -18,6 +19,8 @@ val unlockProPatch = bytecodePatch(
         "tools (background remover, AI retouch, auto captions) verify the original signing key in " +
         "native code, so those may not run on a re-signed build; the rest of Pro works offline.",
 ) {
+    dependsOn(patchVideoEngineKillPatch)
+
     compatibleWith(
         Compatibility(
             name = "InShot",

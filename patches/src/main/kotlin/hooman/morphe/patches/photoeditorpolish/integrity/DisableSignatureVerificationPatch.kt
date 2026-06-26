@@ -6,6 +6,8 @@ import app.morphe.patcher.patch.Compatibility
 import app.morphe.patcher.patch.PatchException
 import app.morphe.patcher.patch.bytecodePatch
 import com.android.tools.smali.dexlib2.AccessFlags
+import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
+import com.android.tools.smali.dexlib2.iface.reference.StringReference
 
 // The app's original signing certificate as signatures[0].toCharsString() (lowercase hex of the
 // cert DER). The verifier slices this string and compares the slices to baked-in hashes, so making
@@ -55,11 +57,13 @@ val disableSignatureVerificationPatch = bytecodePatch(
 
     execute {
         // The verifier cluster (jadx: VerifyUtils*) is duplicated across many classes. Each has a
-        // certificate reader b(Context) returning signatures[0].toCharsString(); the checks compare
-        // its substrings to hardcoded hashes and kill on mismatch. Some classes also wrap the whole
-        // read+compare+kill in a static c(Context). Every copy embeds this exact crash message, so
-        // find them by it, force b(Context) to return the original certificate (so every substring
-        // comparison passes), and no-op any c(Context) for good measure. Fail loudly if it's gone.
+        // certificate reader returning signatures[0].toCharsString(); some take Context, others take
+        // a specific Activity. The checks compare substrings to hardcoded hashes and kill on mismatch.
+        // Every copy embeds this exact crash message, so find them by it, force every one-argument
+        // String reader to return the original certificate, and no-op only the tiny kill helper that
+        // throws the sentinel exception. The full c(Context) verifier methods are left intact; once
+        // b(Context) returns the original cert, they naturally pass, and keeping them avoids wiping
+        // unrelated side effects if a verifier copy grows extra setup logic.
         val sentinel = "System.exit returned normally, while it was supposed to halt JVM."
         val verifierClasses = classDefByStrings(sentinel)
         if (verifierClasses.isEmpty()) {
@@ -70,15 +74,16 @@ val disableSignatureVerificationPatch = bytecodePatch(
         }
 
         var spoofedReaders = 0
+        var neutralizedKillHelpers = 0
         verifierClasses.forEach { classDef ->
             val mutableClass = mutableClassDefBy(classDef)
 
             mutableClass.methods
                 .filter { method ->
                     AccessFlags.STATIC.isSet(method.accessFlags) &&
+                        method.name != "<clinit>" &&
                         method.returnType == "Ljava/lang/String;" &&
-                        method.parameterTypes.size == 1 &&
-                        method.parameterTypes.first().toString() == "Landroid/content/Context;"
+                        method.parameterTypes.size == 1
                 }
                 .forEach { reader ->
                     reader.addInstructions(
@@ -94,17 +99,28 @@ val disableSignatureVerificationPatch = bytecodePatch(
             mutableClass.methods
                 .filter { method ->
                     AccessFlags.STATIC.isSet(method.accessFlags) &&
+                        method.name != "<clinit>" &&
                         method.returnType == "V" &&
-                        method.parameterTypes.size == 1 &&
-                        method.parameterTypes.first().toString() == "Landroid/content/Context;"
+                        method.implementation?.instructions?.any { instruction ->
+                            ((instruction as? ReferenceInstruction)?.reference as? StringReference)?.string == sentinel
+                        } == true
                 }
-                .forEach { check -> check.addInstructions(0, "return-void") }
+                .forEach { killHelper ->
+                    killHelper.addInstructions(0, "return-void")
+                    neutralizedKillHelpers++
+                }
         }
 
         if (spoofedReaders == 0) {
             throw PatchException(
                 "Photo Editor Polish: verifier cluster found but no certificate reader " +
                     "b(Context) to spoof. The check shape has changed.",
+            )
+        }
+        if (neutralizedKillHelpers == 0) {
+            throw PatchException(
+                "Photo Editor Polish: verifier cluster found but no sentinel kill helper to " +
+                    "neutralize. The check shape has changed.",
             )
         }
     }
