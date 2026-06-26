@@ -1,3 +1,9 @@
+## [1.31.1](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.31.0...v1.31.1) (2026-06-26)
+
+### 🐛 Bug Fixes
+
+* stabilize InShot and PhotoPolish anti-tamper ([b7e24b4](https://github.com/arandomhooman/hoomans-morphe-patches/commit/b7e24b48e97419c23a4486b267393134774fa764))
+
 ## [1.31.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.30.0...v1.31.0) (2026-06-24)
 
 ### ✨ New Features
