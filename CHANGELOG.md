@@ -1,3 +1,9 @@
+## [1.31.3](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.31.2...v1.31.3) (2026-06-27)
+
+### 🐛 Bug Fixes
+
+* neutralize InShot video engine kill on arm64 ([799a316](https://github.com/arandomhooman/hoomans-morphe-patches/commit/799a3161a237058b9f2d82b5f564d974265e404b))
+
 ## [1.31.2](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.31.1...v1.31.2) (2026-06-27)
 
 ### 🐛 Bug Fixes
