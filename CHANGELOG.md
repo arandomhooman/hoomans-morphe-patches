@@ -1,3 +1,9 @@
+## [1.31.2](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.31.1...v1.31.2) (2026-06-27)
+
+### 🐛 Bug Fixes
+
+* remove Photo Editor Polish patch ([fb576c0](https://github.com/arandomhooman/hoomans-morphe-patches/commit/fb576c00160cd8da11d3ecbf173fc1bae78e3cc5))
+
 ## [1.31.1](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.31.0...v1.31.1) (2026-06-26)
 
 ### 🐛 Bug Fixes
