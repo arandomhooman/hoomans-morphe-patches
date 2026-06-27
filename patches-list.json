@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.31.1",
+  "version": "1.31.2",
   "patches": [
     {
       "name": "Auto claim channel points",
@@ -821,34 +821,6 @@
             },
             {
               "version": "2.1.11",
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Unlock Pro",
-      "description": "Unlocks the Pro features in Photo Editor Polish without a subscription and drops the ads and upgrade prompts. The AI tools and cloud assets, which the developer runs on its servers, stay locked.",
-      "default": true,
-      "dependencies": [
-        "BytecodePatch",
-        "RawResourcePatch"
-      ],
-      "compatiblePackages": [
-        {
-          "packageName": "photo.editor.photoeditor.photoeditorpro",
-          "name": "Photo Editor Polish",
-          "description": null,
-          "apkFileType": null,
-          "appIconColor": "#F82888",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "1.763.262",
               "isExperimental": false,
               "minSdk": null,
               "description": null
