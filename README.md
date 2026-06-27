@@ -10,7 +10,7 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 ## 🩹 Patches
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.31.1](https://github.com/arandomhooman/hoomans-morphe-patches/releases/tag/v1.31.1)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;41 patches total
+> **[v1.31.2](https://github.com/arandomhooman/hoomans-morphe-patches/releases/tag/v1.31.2)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;40 patches total
 <details>
 <summary>📦 Twitch&nbsp;&nbsp;•&nbsp;&nbsp;4 patches</summary>
 <br>
@@ -425,21 +425,6 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 </details>
 
 <details>
-<summary>📦 Photo Editor Polish&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
-<br>
-
-**🎯 Supported versions:**
-
-| 1.763.262 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Pro](#unlock-pro) | Unlocks the Pro features in Photo Editor Polish without a subscription and drops the ads and upgrade prompts. The AI tools and cloud assets, which the developer runs on its servers, stay locked. |  |
-
-</details>
-
-<details>
 <summary>📦 Stash&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
 <br>
 
@@ -531,8 +516,8 @@ The patches apply to the official app, which you supply yourself; this repo does
 - **Moovit** and **Flightradar24**: re-signing invalidates the built-in Google Maps key, so the map goes blank. The *Use your own Maps API key [REQUIRED]* patch takes a key you make for free in the [Google Cloud Console](https://console.cloud.google.com/): create a project, enable **Maps SDK for Android**, turn on **billing** (the Maps SDK requires it; normal use stays in the free monthly credit, and skipping it is the most common cause of a blank map), create an API key under **Credentials**, leave it unrestricted, and paste it into the patch's option.
 - **Twitch**: *Block live ads* reroutes live streams through the `eu.luminous.dev` proxy, so it depends on that proxy staying up; if live streams stop loading, remove that patch. VOD in-stream video ads aren't covered.
 - **Collectr**: Flutter arm64 build; patch it on an arm64 device.
-- **PairIP apps** (Teach Me Anatomy, Liquid Gallery, Essence, BandLab, Photo Editor Polish, AT4K): the license-check / signature bypass that lets the re-signed build launch is applied automatically; most let you skip making an account ("Continue without account" / "Do this later").
-- **Server-gated extras stay locked**: Acrobat's cloud tools (Export/Create/Combine/OCR), Photo Editor Polish's AI tools, Quizlet's Magic Notes, WEBTOON's locked episodes, BandLab's stem Splitter, and the like are computed or served by each app's backend, so the patches don't touch them.
+- **PairIP apps** (Teach Me Anatomy, Liquid Gallery, Essence, BandLab, AT4K): the license-check / signature bypass that lets the re-signed build launch is applied automatically; most let you skip making an account ("Continue without account" / "Do this later").
+- **Server-gated extras stay locked**: Acrobat's cloud tools (Export/Create/Combine/OCR), Quizlet's Magic Notes, WEBTOON's locked episodes, BandLab's stem Splitter, and the like are computed or served by each app's backend, so the patches don't touch them.
 
 ## 🛠️ Building
 
