@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.32.0",
+  "version": "1.33.0",
   "patches": [
     {
       "name": "Auto claim channel points",
@@ -43,6 +43,137 @@
           "targets": [
             {
               "version": "29.9.1",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Disable Tumblr TV",
+      "description": "Removes the Tumblr TV tab from the bottom navigation bar.",
+      "default": true,
+      "dependencies": [
+        "BytecodePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.tumblr",
+          "name": "Tumblr",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#001935",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "45.0.0.109",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Disable ad-free banner",
+      "description": "Hides the banner with the frog that prompts you to buy Tumblr Ad-Free.",
+      "default": true,
+      "dependencies": [
+        "BytecodePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.tumblr",
+          "name": "Tumblr",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#001935",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "45.0.0.109",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Disable blog notification reminder",
+      "description": "Stops the reminder asking you to enable notifications for blogs you visit.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.tumblr",
+          "name": "Tumblr",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#001935",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "45.0.0.109",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Disable gift message popup",
+      "description": "Stops the popup that suggests buying TumblrMart items for other people.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.tumblr",
+          "name": "Tumblr",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#001935",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "45.0.0.109",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Disable in-app update",
+      "description": "Turns off the in-app update check and the update prompt.",
+      "default": true,
+      "dependencies": [
+        "BytecodePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.tumblr",
+          "name": "Tumblr",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#001935",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "45.0.0.109",
               "isExperimental": false,
               "minSdk": null,
               "description": null
