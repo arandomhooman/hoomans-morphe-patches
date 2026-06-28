@@ -57,11 +57,15 @@ val removeAdsPatch = bytecodePatch(
             """,
         )
 
-        // Part 2 -- Blaze posts: regular dashboard Posts someone paid to promote (isBlazed=true, or
-        // isTumblrSponsoredPost=true for Tumblr's own), so the ad gate above doesn't catch them. Every
-        // item runs through the timeline-object factory nf0.c0.b(); returning null there drops it before
-        // the feed builder collects it. Here Post.p1()=getIsBlazed and I1()=getIsTumblrSponsoredPost
-        // (both R8-renamed) -- drop the item when either is set, else fall through to the original factory.
+        // Part 2 -- Blaze posts: dashboard items someone paid to promote, which the ad gate above does
+        // not catch. They arrive two ways. A promoted regular Post carries isBlazed=true (or
+        // isTumblrSponsoredPost=true for Tumblr's own). The newer "blazed_post" timeline type instead
+        // wraps the Post in a BlazedPost (BlazedPost implements Timelineable directly, it does NOT
+        // extend Post), so an instance-of Post test alone misses it and the promo slips through.
+        // Every item runs through the timeline-object factory nf0.c0.b(); returning null there drops it
+        // before the feed builder collects it. Drop any BlazedPost outright, and drop a Post when either
+        // blaze flag is set (Post.p1()=getIsBlazed, I1()=getIsTumblrSponsoredPost, both R8-renamed),
+        // else fall through to the original factory.
         val factory = TimelineObjectFactoryFingerprint.method
         factory.addInstructionsWithLabels(
             0,
@@ -69,6 +73,8 @@ val removeAdsPatch = bytecodePatch(
                 if-eqz p1, :original
                 invoke-virtual {p1}, Lcom/tumblr/rumblr/model/TimelineObject;->getData()Lcom/tumblr/rumblr/model/Timelineable;
                 move-result-object v0
+                instance-of v1, v0, Lcom/tumblr/rumblr/model/BlazedPost;
+                if-nez v1, :drop
                 instance-of v1, v0, Lcom/tumblr/rumblr/model/post/Post;
                 if-eqz v1, :original
                 check-cast v0, Lcom/tumblr/rumblr/model/post/Post;
@@ -81,6 +87,7 @@ val removeAdsPatch = bytecodePatch(
                 move-result v0
                 or-int v0, v1, v0
                 if-eqz v0, :original
+                :drop
                 const/4 v0, 0x0
                 return-object v0
             """,
