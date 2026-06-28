@@ -1,3 +1,13 @@
+## [1.33.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.32.0...v1.33.0) (2026-06-28)
+
+### 🐛 Bug Fixes
+
+* stop blazed sponsored posts slipping past Tumblr Remove ads ([a3ceef9](https://github.com/arandomhooman/hoomans-morphe-patches/commit/a3ceef924eb5472c55ab50310355a4298c4e7d92))
+
+### ✨ New Features
+
+* add Tumblr annoyance toggles ([570bf9f](https://github.com/arandomhooman/hoomans-morphe-patches/commit/570bf9fc296a4429b81dd54b5f88e68a14ced455))
+
 ## [1.32.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.31.3...v1.32.0) (2026-06-28)
 
 ### ✨ New Features
