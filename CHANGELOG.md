@@ -1,3 +1,9 @@
+## [1.35.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.34.1...v1.35.0) (2026-06-29)
+
+### ✨ New Features
+
+* add Smart AudioBook Player full unlock ([e212cf5](https://github.com/arandomhooman/hoomans-morphe-patches/commit/e212cf500597d53fb13b9e384a06f09248a7b05f))
+
 ## [1.34.1](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.34.0...v1.34.1) (2026-06-29)
 
 ### 🐛 Bug Fixes
