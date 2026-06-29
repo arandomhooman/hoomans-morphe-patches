@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.33.0",
+  "version": "1.34.0",
   "patches": [
     {
       "name": "Auto claim channel points",
@@ -713,6 +713,33 @@
           "targets": [
             {
               "version": "4.11.1 GF",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
+      "description": "Unlocks Poweramp's full version state and Feature Package #1.",
+      "default": true,
+      "dependencies": [
+        "RawResourcePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.maxmpz.audioplayer",
+          "name": "Poweramp",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#FF6A00",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "build-1025-bundle-play",
               "isExperimental": false,
               "minSdk": null,
               "description": null

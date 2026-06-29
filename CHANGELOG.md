@@ -1,3 +1,9 @@
+## [1.34.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.33.0...v1.34.0) (2026-06-29)
+
+### ✨ New Features
+
+* add Poweramp unlock premium ([c04cd02](https://github.com/arandomhooman/hoomans-morphe-patches/commit/c04cd02a25d6d2fe42e692913bbdbfc42d23e3c3))
+
 ## [1.33.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.32.0...v1.33.0) (2026-06-28)
 
 ### 🐛 Bug Fixes
