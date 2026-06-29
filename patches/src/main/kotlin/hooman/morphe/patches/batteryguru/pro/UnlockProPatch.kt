@@ -21,7 +21,10 @@ val unlockProPatch = bytecodePatch(
             name = "Battery Guru",
             packageName = "com.paget96.batteryguru",
             appIconColor = 0x1B7080,
-            targets = listOf(AppTarget("2.4.8.1")),
+            targets = listOf(
+                AppTarget("2.4.8.1"),
+                AppTarget("2.5.0.2-beta1"),
+            ),
         ),
     )
 
