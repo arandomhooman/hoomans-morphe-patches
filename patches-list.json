@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.35.0",
+  "version": "1.36.0",
   "patches": [
     {
       "name": "Auto claim channel points",
@@ -846,6 +846,31 @@
           "targets": [
             {
               "version": "3.14.5",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
+      "description": "Turns on Symfonium's paid features. The build ships as a public beta with a built-in trial: a license value the app keeps locally decides whether the paid UI is open, and two timers (the beta cutoff and the trial countdown) lock the app once they pass. This forces the license read to \"licensed\" so the paid screens open, drops the \"trial expires on ...\" line from settings, and stops the cutoff from triggering by cutting off the trusted-time lookup the timers rely on, which leaves the app in its offline state where neither timer fires. The license is checked on the client (a local Play purchase verify), so the unlock holds without an account. Connecting Plex, Jellyfin and other media servers is untouched.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "app.symfonik.music.player",
+          "name": "Symfonium",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#E53935",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "14.1.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
