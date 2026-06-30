@@ -1,3 +1,9 @@
+## [1.36.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.35.0...v1.36.0) (2026-06-30)
+
+### ✨ New Features
+
+* add Symfonium unlock premium ([0ab2ecb](https://github.com/arandomhooman/hoomans-morphe-patches/commit/0ab2ecba425a3e2728783be994170515a61a566d))
+
 ## [1.35.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.34.1...v1.35.0) (2026-06-29)
 
 ### ✨ New Features
