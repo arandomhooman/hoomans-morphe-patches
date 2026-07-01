@@ -1,3 +1,9 @@
+## [1.39.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.38.0...v1.39.0) (2026-07-01)
+
+### ✨ New Features
+
+* add Todoist unlock pro ([cd547ac](https://github.com/arandomhooman/hoomans-morphe-patches/commit/cd547ac6a2869c66f563470707b5275737613fa5))
+
 ## [1.38.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.37.0...v1.38.0) (2026-07-01)
 
 ### ✨ New Features
