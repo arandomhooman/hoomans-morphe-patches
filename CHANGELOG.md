@@ -1,3 +1,9 @@
+## [1.38.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.37.0...v1.38.0) (2026-07-01)
+
+### ✨ New Features
+
+* add ADM remove ads patch ([78dd9f3](https://github.com/arandomhooman/hoomans-morphe-patches/commit/78dd9f35bdecbac34d5a5ed5617349b9c4e57f81))
+
 ## [1.37.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.36.0...v1.37.0) (2026-07-01)
 
 ### ✨ New Features
