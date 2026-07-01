@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.36.0",
+  "version": "1.37.0",
   "patches": [
     {
       "name": "Auto claim channel points",
@@ -975,6 +975,31 @@
           "targets": [
             {
               "version": "4.2.8",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Pro",
+      "description": "Unlocks Hevy's Pro features without a subscription, like unlimited routines and advanced workout analytics. They run on the workout data on your device. Anything Hevy serves only to subscribed accounts can still stay locked.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.hevy",
+          "name": "Hevy",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#101012",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "3.1.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null

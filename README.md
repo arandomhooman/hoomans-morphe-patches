@@ -10,7 +10,7 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 ## 🩹 Patches
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.36.0](https://github.com/arandomhooman/hoomans-morphe-patches/releases/tag/v1.36.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;48 patches total
+> **[v1.37.0](https://github.com/arandomhooman/hoomans-morphe-patches/releases/tag/v1.37.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;49 patches total
 <details>
 <summary>📦 Twitch&nbsp;&nbsp;•&nbsp;&nbsp;4 patches</summary>
 <br>
@@ -441,6 +441,21 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Unlock Pro](#unlock-pro) | Unlocks Essence's premium tools without a subscription, like the detailed statistics and insights, custom themes, app lock, data export, and more. They run on your device, so they work offline. The AI recovery coach and anything else Essence makes on its servers still needs the real subscription. |  |
+
+</details>
+
+<details>
+<summary>📦 Hevy&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 3.1.0 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Pro](#unlock-pro) | Unlocks Hevy's Pro features without a subscription, like unlimited routines and advanced workout analytics. They run on the workout data on your device. Anything Hevy serves only to subscribed accounts can still stay locked. |  |
 
 </details>
 
