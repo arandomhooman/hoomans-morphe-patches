@@ -1,3 +1,9 @@
+## [1.37.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.36.0...v1.37.0) (2026-07-01)
+
+### ✨ New Features
+
+* add Hevy unlock pro ([30ac2ab](https://github.com/arandomhooman/hoomans-morphe-patches/commit/30ac2ab5328ba5c717b9904d57b2094a43d9a740))
+
 ## [1.36.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.35.0...v1.36.0) (2026-06-30)
 
 ### ✨ New Features
