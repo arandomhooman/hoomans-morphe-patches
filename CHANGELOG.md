@@ -1,3 +1,9 @@
+## [1.40.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.39.0...v1.40.0) (2026-07-02)
+
+### ✨ New Features
+
+* restore Projectivy Launcher 4.68 support alongside 4.70 ([b4fbf96](https://github.com/arandomhooman/hoomans-morphe-patches/commit/b4fbf96513e5c7764394dc500e7c5c589ec60ec3))
+
 ## [1.39.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.38.0...v1.39.0) (2026-07-01)
 
 ### ✨ New Features
