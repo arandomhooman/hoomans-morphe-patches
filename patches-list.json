@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.40.0",
+  "version": "1.41.0",
   "patches": [
     {
       "name": "Auto claim channel points",
@@ -249,6 +249,31 @@
           "targets": [
             {
               "version": "29.9.1",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Remove Ads",
+      "description": "Stops the banner and interstitial ads SofaScore shows around scores and between screens. Every ad site reads one decision method off the cached account, and the app's own ad master switch caches that method's result, so forcing it to \"no ads\" turns them all off with no login needed. The result holds across a sync because the switch re-reads the same method. Ads that are served by the video/story SDK inside embedded content are not affected.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.sofascore.results",
+          "name": "SofaScore",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#374DF5",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "26.06.23",
               "isExperimental": false,
               "minSdk": null,
               "description": null
