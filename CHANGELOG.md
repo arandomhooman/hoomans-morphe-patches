@@ -1,3 +1,9 @@
+## [1.41.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.40.0...v1.41.0) (2026-07-03)
+
+### ✨ New Features
+
+* add SofaScore remove ads patch ([58f3eaa](https://github.com/arandomhooman/hoomans-morphe-patches/commit/58f3eaa9ff7bdba36e3b97961a46492b93805593))
+
 ## [1.40.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.39.0...v1.40.0) (2026-07-02)
 
 ### ✨ New Features
