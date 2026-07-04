@@ -8,17 +8,18 @@ import app.morphe.patcher.patch.PatchException
 import app.morphe.patcher.patch.bytecodePatch
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
+import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.reference.FieldReference
+import com.android.tools.smali.dexlib2.iface.reference.StringReference
 
 @Suppress("unused")
 val unlockPremiumPatch = bytecodePatch(
     name = "Unlock Premium",
     description = "Unlocks DirectChat's premium without the in-app purchase, so the chat-head styles and " +
-        "themes, extra bubble options and the other paid settings all open. Premium is a local flag the " +
-        "app seeds from its own purchase, so the unlock holds across restarts on a free account. A few " +
-        "spots read the stored purchase flag straight from preferences, so a chat-head banner ad can still " +
-        "show on a fresh install until premium has been set once.",
+        "themes, extra bubble options and the other paid settings all open, and the ad inside the message " +
+        "bubble is hidden too. Premium is a local flag the app seeds from its own purchase, so the unlock " +
+        "holds across restarts on a free account.",
 ) {
     compatibleWith(
         Compatibility(
@@ -65,5 +66,47 @@ val unlockPremiumPatch = bytecodePatch(
                 return v0
             """,
         )
+
+        // The chat-head bubble's own ad is gated inside ChatHeadService.initializeLayout, which reads the
+        // "premiumCheck" and "unlockAds" prefs straight from SharedPreferences instead of going through
+        // isApplicationPremium(), so forcing the getter above does not hide it. The method branches to its
+        // ad-hidden path when premiumCheck, unlockAds or the "dc#" tag is set; the first of those tests is
+        // premiumCheck. Force that first branch's register nonzero so the bubble always takes the ad-hidden
+        // path. Pin the method structurally by the two string literals it alone carries (the "premiumCheck"
+        // gate plus the "dc#" chat tag) rather than by its private name.
+        val chatHeadService = mutableClassDefByOrNull("Lnet/uniquegem/directchat/ChatHeadService;")
+            ?: throw PatchException(
+                "DirectChat: net.uniquegem.directchat.ChatHeadService not found — package layout changed; " +
+                    "re-derive the bubble ad gate.",
+            )
+
+        val bubbleAdGate = chatHeadService.methods.firstOrNull { method ->
+            val strings = method.implementation?.instructions
+                ?.mapNotNull { ((it as? ReferenceInstruction)?.reference as? StringReference)?.string }
+                ?.toSet()
+                ?: return@firstOrNull false
+            "premiumCheck" in strings && "dc#" in strings
+        }
+            ?: throw PatchException(
+                "DirectChat: the chat-head bubble ad method (reads \"premiumCheck\" and the \"dc#\" tag) " +
+                    "was not found on ChatHeadService — re-derive the bubble ad gate.",
+            )
+
+        val branchIndex = bubbleAdGate.instructions.indexOfFirst { it.opcode == Opcode.IF_NEZ }
+        if (branchIndex < 0) {
+            throw PatchException(
+                "DirectChat: no if-nez ad-hidden branch found in the bubble ad method; re-derive.",
+            )
+        }
+        val branchRegister = (bubbleAdGate.instructions.elementAt(branchIndex) as OneRegisterInstruction)
+            .registerA
+        if (branchRegister > 15) {
+            throw PatchException(
+                "DirectChat: the bubble ad branch uses register v$branchRegister, out of const/4 range; " +
+                    "re-derive.",
+            )
+        }
+
+        bubbleAdGate.addInstructions(branchIndex, "const/4 v$branchRegister, 0x1")
     }
 }
