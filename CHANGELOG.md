@@ -1,3 +1,9 @@
+## [1.41.1](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.41.0...v1.41.1) (2026-07-04)
+
+### 🐛 Bug Fixes
+
+* note that patching SofaScore breaks login in Remove Ads ([31b02aa](https://github.com/arandomhooman/hoomans-morphe-patches/commit/31b02aa215061fa66cca79c25b86024302aa2def))
+
 ## [1.41.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.40.0...v1.41.0) (2026-07-03)
 
 ### ✨ New Features
