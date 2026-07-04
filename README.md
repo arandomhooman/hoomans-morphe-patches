@@ -10,7 +10,7 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 ## 🩹 Patches
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.41.0](https://github.com/arandomhooman/hoomans-morphe-patches/releases/tag/v1.41.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;52 patches total
+> **[v1.41.1](https://github.com/arandomhooman/hoomans-morphe-patches/releases/tag/v1.41.1)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;52 patches total
 <details>
 <summary>📦 Twitch&nbsp;&nbsp;•&nbsp;&nbsp;4 patches</summary>
 <br>
@@ -76,7 +76,7 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
-| [Remove Ads](#remove-ads) | Stops the banner and interstitial ads SofaScore shows around scores and between screens. Every ad site reads one decision method off the cached account, and the app's own ad master switch caches that method's result, so forcing it to "no ads" turns them all off with no login needed. The result holds across a sync because the switch re-reads the same method. Ads that are served by the video/story SDK inside embedded content are not affected. |  |
+| [Remove Ads](#remove-ads) | Stops the banner and interstitial ads SofaScore shows around scores and between screens. Every ad site reads one decision method off the cached account, and the app's own ad master switch caches that method's result, so forcing it to "no ads" turns them all off with no login needed. The result holds across a sync because the switch re-reads the same method. Ads that are served by the video/story SDK inside embedded content are not affected. Re-signing breaks SofaScore's login (it only offers Google and Facebook sign-in, both of which reject the new signature), but removing ads does not need an account so the patch still works. |  |
 
 </details>
 
