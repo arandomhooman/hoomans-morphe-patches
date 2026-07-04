@@ -1,3 +1,9 @@
+## [1.42.0-dev.1](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.41.0...v1.42.0-dev.1) (2026-07-04)
+
+### ✨ New Features
+
+* add DirectChat unlock premium patch ([5c670b0](https://github.com/arandomhooman/hoomans-morphe-patches/commit/5c670b05587cd2f24fc8086c397cf2287f6014d6))
+
 ## [1.41.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.40.0...v1.41.0) (2026-07-03)
 
 ### ✨ New Features
