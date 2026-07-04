@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.41.0",
+  "version": "1.42.0-dev.1",
   "patches": [
     {
       "name": "Auto claim channel points",
@@ -717,6 +717,31 @@
           "targets": [
             {
               "version": "2.5.0",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
+      "description": "Unlocks DirectChat's premium without the in-app purchase, so the chat-head styles and themes, extra bubble options and the other paid settings all open. Premium is a local flag the app seeds from its own purchase, so the unlock holds across restarts on a free account. A few spots read the stored purchase flag straight from preferences, so a chat-head banner ad can still show on a fresh install until premium has been set once.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "net.uniquegem.directchat",
+          "name": "DirectChat",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#2196F3",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "1.9.8",
               "isExperimental": false,
               "minSdk": null,
               "description": null
