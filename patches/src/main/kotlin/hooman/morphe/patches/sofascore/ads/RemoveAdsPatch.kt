@@ -12,7 +12,9 @@ val removeAdsPatch = bytecodePatch(
         "screens. Every ad site reads one decision method off the cached account, and the app's own " +
         "ad master switch caches that method's result, so forcing it to \"no ads\" turns them all off " +
         "with no login needed. The result holds across a sync because the switch re-reads the same " +
-        "method. Ads that are served by the video/story SDK inside embedded content are not affected.",
+        "method. Ads that are served by the video/story SDK inside embedded content are not affected. " +
+        "Re-signing breaks SofaScore's login (it only offers Google and Facebook sign-in, both of which " +
+        "reject the new signature), but removing ads does not need an account so the patch still works.",
 ) {
     compatibleWith(
         Compatibility(
