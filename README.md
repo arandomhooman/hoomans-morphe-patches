@@ -10,7 +10,7 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 ## 🩹 Patches
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.41.1](https://github.com/arandomhooman/hoomans-morphe-patches/releases/tag/v1.41.1)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;52 patches total
+> **[v1.42.0](https://github.com/arandomhooman/hoomans-morphe-patches/releases/tag/v1.42.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;53 patches total
 <details>
 <summary>📦 Twitch&nbsp;&nbsp;•&nbsp;&nbsp;4 patches</summary>
 <br>
@@ -276,6 +276,21 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Unlock Premium](#unlock-premium) | Unlocks AT4K Launcher's premium features without paying, like more apps per row and the premium wallpaper options. It all runs on the device, so nothing stays locked. |  |
+
+</details>
+
+<details>
+<summary>📦 ChatBoost&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 3.23.0 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Premium](#unlock-premium) | Turns on ChatBoost premium so the app's paid features and UI open up. Premium is decided by a single internal flag holder whose two flags both ship hardcoded off, so forcing them on makes the entitlement flow report premium no matter what Google Play Billing says, and every gate reads that one flow. One thing to know: ChatBoost is bring your own key, so the AI runs on your own provider API keys and was never part of the subscription. This unlocks the client-side paid features and UX, not free AI usage. The AI already runs on your keys. |  |
 
 </details>
 
