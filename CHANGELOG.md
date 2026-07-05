@@ -1,3 +1,9 @@
+## [1.42.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.41.1...v1.42.0) (2026-07-05)
+
+### ✨ New Features
+
+* add ChatBoost unlock premium ([1d8d23e](https://github.com/arandomhooman/hoomans-morphe-patches/commit/1d8d23e524bfaa57310dbc53ca4a02c559c4e530))
+
 ## [1.42.0-dev.2](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.42.0-dev.1...v1.42.0-dev.2) (2026-07-04)
 
 ### 🐛 Bug Fixes
@@ -9,6 +15,12 @@
 ### ✨ New Features
 
 * add DirectChat unlock premium patch ([5c670b0](https://github.com/arandomhooman/hoomans-morphe-patches/commit/5c670b05587cd2f24fc8086c397cf2287f6014d6))
+
+## [1.41.1](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.41.0...v1.41.1) (2026-07-04)
+
+### 🐛 Bug Fixes
+
+* note that patching SofaScore breaks login in Remove Ads ([31b02aa](https://github.com/arandomhooman/hoomans-morphe-patches/commit/31b02aa215061fa66cca79c25b86024302aa2def))
 
 ## [1.41.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.40.0...v1.41.0) (2026-07-03)
 
