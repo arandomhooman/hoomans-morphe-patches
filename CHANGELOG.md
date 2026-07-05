@@ -1,3 +1,9 @@
+## [1.42.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.41.1...v1.42.0) (2026-07-05)
+
+### ✨ New Features
+
+* add ChatBoost unlock premium ([1d8d23e](https://github.com/arandomhooman/hoomans-morphe-patches/commit/1d8d23e524bfaa57310dbc53ca4a02c559c4e530))
+
 ## [1.41.1](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.41.0...v1.41.1) (2026-07-04)
 
 ### 🐛 Bug Fixes
