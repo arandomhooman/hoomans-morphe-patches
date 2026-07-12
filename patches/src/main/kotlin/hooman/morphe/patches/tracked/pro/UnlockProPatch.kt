@@ -73,30 +73,47 @@ val unlockProPatch = rawResourcePatch(
         val patchAt = match + 8
         forceTrue.forEachIndexed { i, b -> bytes[patchAt + i] = b }
 
-        // Gate 2a: CustomizeDashboardRoute. Compares useSubscriptionTier.data === "free" and
-        // redirects free users to the paywall. Forcing the tier at its useQuery source is not a
-        // clean length-preserving edit, so flip the local StrictEq result to false.
-        // Anchor on GetByIdShort .data + LoadConstString "free"(42004) + StrictEq (unique).
-        val dashboardSignature = intArrayOf(
-            0x44, 0x07, 0x04, 0x04, 0x67,       // GetByIdShort r7, r4, 4, "data"
-            0x90, 0x04, 0x14, 0xA4,             // LoadConstString r4, 42004 ("free")
-            0x17, 0x03, 0x07, 0x04,             // StrictEq r3, r7, r4        <- patch target (offset 9)
-        ).map { it.toByte() }.toByteArray()
-
-        val dashboardMatch = bytes.findUnique(dashboardSignature)
-            ?: throw PatchException(
-                "Customize-dashboard gate signature not found in $bundlePath. This patch targets " +
-                    "Tracked 7.0.0 (Hermes bytecode v98); the bundle likely changed in a newer build " +
-                    "and the signature must be re-derived.",
+        // Gate 2a: useSubscriptionTier.data === "free" StrictEq sites. CustomizeDashboardRoute is
+        // one; CustomizeDashboardButton / related UI uses a second GetByIdShort+.data+free run with
+        // different registers. Force every unique GetByIdShort + free(42004) + StrictEq so isFree
+        // never redirects to the paywall. Each StrictEq is 4 bytes: LoadConstFalse dest + Jmp +2.
+        // Pattern is the 4-byte StrictEq after free, not the whole GetById (regs vary).
+        // free string id 42004 = 0xA414 little-endian after LoadConstString (0x90).
+        val freeStrictEqSites = mutableListOf<Int>()
+        var scan = 0
+        while (scan < bytes.size - 8) {
+            // LoadConstString rX, 42004  => 90 rX 14 A4
+            if (bytes[scan] == 0x90.toByte() &&
+                bytes[scan + 2] == 0x14.toByte() &&
+                bytes[scan + 3] == 0xA4.toByte() &&
+                bytes[scan + 4] == 0x17.toByte()
+            ) {
+                // StrictEq rD, rA, rB at scan+4. Require a nearby GetByIdShort (0x44) before free.
+                val lookback = bytes.copyOfRange((scan - 12).coerceAtLeast(0), scan)
+                if (lookback.any { it == 0x44.toByte() }) {
+                    freeStrictEqSites.add(scan + 4)
+                }
+            }
+            scan++
+        }
+        if (freeStrictEqSites.isEmpty()) {
+            throw PatchException(
+                "No useSubscriptionTier free StrictEq sites found in $bundlePath. This patch " +
+                    "targets Tracked 7.0.0 (Hermes bytecode v98); re-derive free-tier pins.",
             )
-
-        // Replace `StrictEq r3, r7, r4` (4 bytes) with `LoadConstFalse r3` + `Jmp +2`: r3 (the isFree
-        // flag) is always false, so the JmpTrue that redirects free users to the paywall never fires.
-        //   96 03  LoadConstFalse r3
-        //   AE 02  Jmp +2  (falls through to the original StoreNPToEnvironment)
-        val forceFalse = intArrayOf(0x96, 0x03, 0xAE, 0x02).map { it.toByte() }
-        val dashboardPatchAt = dashboardMatch + 9
-        forceFalse.forEachIndexed { i, b -> bytes[dashboardPatchAt + i] = b }
+        }
+        for (strictEqAt in freeStrictEqSites) {
+            // StrictEq encoding: 17 dest left right — force dest false.
+            val destReg = bytes[strictEqAt + 1].toInt() and 0xFF
+            // LoadConstFalse rDest (0x96 r) is 2 bytes; Jmp +2 (0xAE 0x02) is 2 bytes.
+            if (destReg > 0xFF) {
+                throw PatchException("Tracked free StrictEq dest register out of range at $strictEqAt")
+            }
+            bytes[strictEqAt] = 0x96.toByte()
+            bytes[strictEqAt + 1] = destReg.toByte()
+            bytes[strictEqAt + 2] = 0xAE.toByte()
+            bytes[strictEqAt + 3] = 0x02.toByte()
+        }
 
         // Gate 2b: SessionEndStats isPro. Density and Net Progression on the workout summary both
         // read env slot isPro = (tier==="pro" || tier==="pro_plus") from useSubscriptionTier; free
