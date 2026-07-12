@@ -10,6 +10,7 @@ import app.morphe.patcher.patch.PatchException
 import app.morphe.patcher.patch.bytecodePatch
 import app.morphe.patcher.patch.rawResourcePatch
 import app.morphe.patcher.util.smali.ExternalLabel
+import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.iface.Method
 import com.android.tools.smali.dexlib2.iface.instruction.NarrowLiteralInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -184,6 +185,82 @@ private val arm64NativeProbePatches = listOf(
         ),
         offset = 8,
         replacement = movW(register = 8, value = 0),
+    ),
+    // Settings export/import (issue #94). Re-sign: JNI cert read fails, buildstamp writer at
+    // 0x26d344 stores null to *0x888060 then cbz-skips the rest of init (and the follow-up bl
+    // 0x35bce0 that arms export crypto). Downstream either SIGSEGVs on hash-insert or writes a
+    // 0-byte export. Force the writer to plant in-binary C string "unknown" @ VA 0x4a91f with
+    // length 7 into both globals AND x27 (the bl's length arg), then fall through into the
+    // original mov x2,x27 / bl 0x35bce0. 32 bytes @ 0x26d344.
+    NativeProbePatch(
+        label = "buildstamp-writer-force",
+        signature = ints(
+            0xE0, 0x03, 0x1B, 0xAA, 0x8E, 0xB9, 0x03, 0x94,
+            0xC8, 0x30, 0x00, 0xF0, 0x00, 0x31, 0x00, 0xF9,
+            0x28, 0x08, 0x00, 0xB0, 0x1B, 0x19, 0x05, 0xF9,
+            0x40, 0x1F, 0x00, 0xB4, 0xE1, 0x03, 0x1A, 0xAA,
+        ),
+        offset = 0,
+        replacement = ints(
+            0xE0, 0xEE, 0xFF, 0xB0, // adrp x0, #0x4a000
+            0x00, 0x7C, 0x24, 0x91, // add  x0, x0, #0x91f  -> &"unknown"
+            0xC8, 0x30, 0x00, 0xF0, // adrp x8, #0x888000
+            0x00, 0x31, 0x00, 0xF9, // str  x0, [x8, #0x60]
+            0x28, 0x08, 0x00, 0xB0, // adrp x8, #0x372000
+            0xFB, 0x00, 0x80, 0xD2, // movz x27, #7
+            0x1B, 0x19, 0x05, 0xF9, // str  x27, [x8, #0xa30]
+            0xE1, 0x03, 0x1A, 0xAA, // mov  x1, x26
+        ),
+    ),
+    // Export-path hash insert still loads the globals; keep a consumer-side pin so a missed writer
+    // call cannot re-null-deref. Points x1/w2 at the same "unknown"/7 pair before the bl.
+    NativeProbePatch(
+        label = "buildstamp-hash-export",
+        signature = ints(
+            0xE8, 0x30, 0x00, 0xF0, 0x01, 0x31, 0x40, 0xF9,
+            0x48, 0x08, 0x00, 0xB0, 0x02, 0x31, 0x4A, 0xB9,
+            0x85, 0x80, 0xFE, 0x97,
+        ),
+        offset = 0,
+        replacement = ints(
+            0x01, 0xEF, 0xFF, 0xB0, // adrp x1, #0x4a000
+            0x21, 0x7C, 0x24, 0x91, // add  x1, x1, #0x91f
+            0xE2, 0x00, 0x80, 0x52, // movz w2, #7
+            0x1F, 0x20, 0x03, 0xD5, // nop
+        ),
+    ),
+    // Remaining *0x888060 byte-table loads not covered by the original probes (issue #114). Same
+    // null pointer as above; these sites still do ldrb off it. 0x328 is a guard (cbnz into a fail
+    // path) hit from the audio/settings config path; 0x263 is a size multiplier. Force guard=0 and
+    // size=1 so the null is never dereferenced.
+    NativeProbePatch(
+        label = "guard-328-a",
+        signature = ints(
+            0x89, 0x33, 0x00, 0xF0, 0x29, 0x31, 0x40, 0xF9,
+            0x29, 0xA1, 0x4C, 0x39, 0x49, 0xF3, 0x00, 0x35,
+        ),
+        offset = 8,
+        replacement = movW(register = 9, value = 0),
+    ),
+    NativeProbePatch(
+        label = "guard-328-b",
+        signature = ints(
+            0x29, 0x31, 0x40, 0xF9, 0x08, 0x05, 0x00, 0x32,
+            0x29, 0xA1, 0x4C, 0x39, 0x88, 0x92, 0x0A, 0xB9,
+        ),
+        offset = 8,
+        replacement = movW(register = 9, value = 0),
+    ),
+    NativeProbePatch(
+        label = "size-263",
+        signature = ints(
+            0xC9, 0x30, 0x00, 0x90, 0x88, 0x02, 0x40, 0xF9,
+            0xE0, 0x03, 0x14, 0xAA, 0x29, 0x31, 0x40, 0xF9,
+            0x08, 0xAD, 0x42, 0xF9, 0x29, 0x8D, 0x49, 0x39,
+            0x21, 0x7D, 0x13, 0x9B,
+        ),
+        offset = 20,
+        replacement = movW(register = 9, value = 1),
     ),
 )
 
@@ -512,5 +589,26 @@ val unlockPremiumPatch = bytecodePatch(
             purchasedFlagStoreIndex,
             "const/4 v3, $FEATURE_PACKAGE_PURCHASED",
         )
+
+        // Settings export (issue #94). Export zips the temp SQLite dump then calls a static
+        // y([B)[B that Base64-encodes and hands the string to Sync.native_lock. After re-sign,
+        // native_lock returns null, y returns null, and the zip writer returns without writing
+        // so the SAF file stays 0 bytes. Pin is the unique "eS" acquire token used only here.
+        // Return the raw zip bytes so export is non-empty; import of that file still needs a
+        // matching native path if you re-import into stock Poweramp.
+        val exportCryptoHost = classDefByStrings("eS").singleOrNull()
+            ?: throw PatchException(
+                "Poweramp: export crypto host (string eS) not found. Re-derive the settings-export " +
+                    "pin for this build.",
+            )
+        val exportSeal = mutableClassDefBy(exportCryptoHost).methods.singleOrNull { method ->
+            AccessFlags.STATIC.isSet(method.accessFlags) &&
+                method.returnType == "[B" &&
+                method.parameterTypes == listOf("[B") &&
+                method.stringLiterals().contains("eS")
+        } ?: throw PatchException(
+            "Poweramp: export seal y([B)[B with eS not found. Re-derive the settings-export pin.",
+        )
+        exportSeal.addInstructions(0, "return-object p0")
     }
 }

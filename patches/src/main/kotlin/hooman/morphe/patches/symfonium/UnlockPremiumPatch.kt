@@ -14,10 +14,10 @@ val unlockPremiumPatch = bytecodePatch(
         "trial: a license value the app keeps locally decides whether the paid UI is open, and two " +
         "timers (the beta cutoff and the trial countdown) lock the app once they pass. This forces the " +
         "license read to \"licensed\" so the paid screens open, drops the \"trial expires on ...\" line " +
-        "from settings, and stops the cutoff from triggering by cutting off the trusted-time lookup the " +
-        "timers rely on, which leaves the app in its offline state where neither timer fires. The " +
-        "license is checked on the client (a local Play purchase verify), so the unlock holds without " +
-        "an account. Connecting Plex, Jellyfin and other media servers is untouched.",
+        "from settings, and freezes the trusted-time lookup the timers read at a fixed pre-cutoff " +
+        "instant so neither timer can fire. The license is checked on the client (a local Play " +
+        "purchase verify), so the unlock holds without an account. Connecting Plex, Jellyfin and " +
+        "other media servers is untouched.",
 ) {
     compatibleWith(
         Compatibility(
@@ -70,16 +70,18 @@ val unlockPremiumPatch = bytecodePatch(
             """,
         )
 
-        // The SNTP fetch (er2.d). It is the sole source of the trusted wall-clock time that the beta
-        // cutoff and the trial countdown compare against, and its one caller swallows any failure and
-        // leaves the app on its "no trusted time" path, which never reports the build as expired. Make
-        // the fetch throw so that path is permanent; the timers can no longer fire.
+        // The SNTP fetch (er2.d), the sole source of the trusted wall-clock time the beta cutoff and
+        // trial countdown compare against. Stock 14.1.0 bakes a beta cutoff at 0x19b76a3b980
+        // (2025-12-31 23:00 UTC). An earlier ship returned 0x19eef33a600 (2026-06-22), which is PAST
+        // that cutoff, so the beta wall still fired after provider setup. Return a fixed pre-cutoff
+        // instant (0x1972b5cee00 = 2025-06-01 12:00 UTC) so both timers always read "before expiry".
+        // Do not throw: the same trusted time feeds media-resolution URL building, and an exception
+        // there collapses the stream host to "1" and breaks playback.
         NetworkTimeFingerprint.method.addInstructions(
             0,
             """
-                new-instance v0, Ljava/lang/RuntimeException;
-                invoke-direct {v0}, Ljava/lang/RuntimeException;-><init>()V
-                throw v0
+                const-wide v0, 0x1972b5cee00L
+                return-wide v0
             """,
         )
     }
