@@ -185,6 +185,58 @@ private val arm64NativeProbePatches = listOf(
         offset = 8,
         replacement = movW(register = 8, value = 0),
     ),
+    // Settings export/import buildstamp deref (issue #94). On a re-signed build the native
+    // buildstamp string derivation returns null (the JNI signature read can't match the original
+    // cert in the re-signed apk), leaving the global pointer at 0x888060 null while its length at
+    // 0x372a30 stays nonzero. This thunk feeds both into a string-hash keyed map insert, so the
+    // hash loop reads the null pointer and SIGSEGVs. It runs on the export/import path (crash lands
+    // right after ExporterImpl serializes the presets), which is why export writes a 0-byte file,
+    // import fails with "Error loading: settings-export", and the settings screen "closes" (the
+    // process dies). Force the length load to 0: the hash loop guard then skips the read entirely,
+    // so the null pointer is never dereferenced and the insert proceeds with an empty key.
+    NativeProbePatch(
+        label = "buildstamp-hash-export",
+        signature = ints(
+            0xE8, 0x30, 0x00, 0xF0, 0x01, 0x31, 0x40, 0xF9,
+            0x48, 0x08, 0x00, 0xB0, 0x02, 0x31, 0x4A, 0xB9,
+            0x85, 0x80, 0xFE, 0x97,
+        ),
+        offset = 12,
+        replacement = movW(register = 2, value = 0),
+    ),
+    // Remaining *0x888060 byte-table loads not covered by the original probes (issue #114). Same
+    // null pointer as above; these sites still do ldrb off it. 0x328 is a guard (cbnz into a fail
+    // path) hit from the audio/settings config path; 0x263 is a size multiplier. Force guard=0 and
+    // size=1 so the null is never dereferenced.
+    NativeProbePatch(
+        label = "guard-328-a",
+        signature = ints(
+            0x89, 0x33, 0x00, 0xF0, 0x29, 0x31, 0x40, 0xF9,
+            0x29, 0xA1, 0x4C, 0x39, 0x49, 0xF3, 0x00, 0x35,
+        ),
+        offset = 8,
+        replacement = movW(register = 9, value = 0),
+    ),
+    NativeProbePatch(
+        label = "guard-328-b",
+        signature = ints(
+            0x29, 0x31, 0x40, 0xF9, 0x08, 0x05, 0x00, 0x32,
+            0x29, 0xA1, 0x4C, 0x39, 0x88, 0x92, 0x0A, 0xB9,
+        ),
+        offset = 8,
+        replacement = movW(register = 9, value = 0),
+    ),
+    NativeProbePatch(
+        label = "size-263",
+        signature = ints(
+            0xC9, 0x30, 0x00, 0x90, 0x88, 0x02, 0x40, 0xF9,
+            0xE0, 0x03, 0x14, 0xAA, 0x29, 0x31, 0x40, 0xF9,
+            0x08, 0xAD, 0x42, 0xF9, 0x29, 0x8D, 0x49, 0x39,
+            0x21, 0x7D, 0x13, 0x9B,
+        ),
+        offset = 20,
+        replacement = movW(register = 9, value = 1),
+    ),
 )
 
 @Suppress("unused")
