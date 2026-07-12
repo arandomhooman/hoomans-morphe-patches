@@ -1,30 +1,28 @@
-## [1.43.0-dev.1](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.42.0...v1.43.0-dev.1) (2026-07-05)
+## [1.43.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.42.1...v1.43.0) (2026-07-12)
 
 ### 🐛 Bug Fixes
 
-* hide DirectChat message-bubble ad in Unlock Premium ([c5b42c4](https://github.com/arandomhooman/hoomans-morphe-patches/commit/c5b42c4c86c4c9ed02d2adeed1738c1bbf17ff3a))
+* unlock Quizlet Learn/Test meters and Tracked free-tier StrictEq sites ([bf81012](https://github.com/arandomhooman/hoomans-morphe-patches/commit/bf81012c023f16cf8d3ac633dc15054113202b6b))
+* unlock Quizlet mid-quiz Plus gates ([37e9290](https://github.com/arandomhooman/hoomans-morphe-patches/commit/37e929084c1ec4d8db9776c4a3867a5f117e0386))
+* unlock Tracked customize-dashboard pro gate ([8dd606f](https://github.com/arandomhooman/hoomans-morphe-patches/commit/8dd606f857860267a938f60fdd509909c5f9e4e6))
 
 ### ✨ New Features
 
-* add DirectChat unlock premium patch ([5c670b0](https://github.com/arandomhooman/hoomans-morphe-patches/commit/5c670b05587cd2f24fc8086c397cf2287f6014d6))
+* support Alpha Progression 7.0 Unlock Premium ([db931b4](https://github.com/arandomhooman/hoomans-morphe-patches/commit/db931b4406e93bed5aa90bc3bb910fc3e0fca41f))
+
+## [1.42.1](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.42.0...v1.42.1) (2026-07-12)
+
+### 🐛 Bug Fixes
+
+* neutralize Poweramp settings export/import crash on re-sign ([7f263ed](https://github.com/arandomhooman/hoomans-morphe-patches/commit/7f263ed3bdd2c865a7bc95c52bda3874cb930293))
+* return fixed SNTP time for Symfonium beta cutoff ([a184ae4](https://github.com/arandomhooman/hoomans-morphe-patches/commit/a184ae4efe4b3b11e2461fa75e0dece14eb28a40))
+* stop Poweramp 0-byte settings export and Symfonium post-cutoff SNTP ([11a9e9a](https://github.com/arandomhooman/hoomans-morphe-patches/commit/11a9e9a2c4768284a40d000fe2f00ec6ec406462))
 
 ## [1.42.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.41.1...v1.42.0) (2026-07-05)
 
 ### ✨ New Features
 
 * add ChatBoost unlock premium ([1d8d23e](https://github.com/arandomhooman/hoomans-morphe-patches/commit/1d8d23e524bfaa57310dbc53ca4a02c559c4e530))
-
-## [1.42.0-dev.2](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.42.0-dev.1...v1.42.0-dev.2) (2026-07-04)
-
-### 🐛 Bug Fixes
-
-* hide DirectChat message-bubble ad in Unlock Premium ([c5b42c4](https://github.com/arandomhooman/hoomans-morphe-patches/commit/c5b42c4c86c4c9ed02d2adeed1738c1bbf17ff3a))
-
-## [1.42.0-dev.1](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.41.0...v1.42.0-dev.1) (2026-07-04)
-
-### ✨ New Features
-
-* add DirectChat unlock premium patch ([5c670b0](https://github.com/arandomhooman/hoomans-morphe-patches/commit/5c670b05587cd2f24fc8086c397cf2287f6014d6))
 
 ## [1.41.1](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.41.0...v1.41.1) (2026-07-04)
 
