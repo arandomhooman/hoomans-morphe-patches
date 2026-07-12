@@ -1,3 +1,11 @@
+## [1.42.1](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.42.0...v1.42.1) (2026-07-12)
+
+### 🐛 Bug Fixes
+
+* neutralize Poweramp settings export/import crash on re-sign ([7f263ed](https://github.com/arandomhooman/hoomans-morphe-patches/commit/7f263ed3bdd2c865a7bc95c52bda3874cb930293))
+* return fixed SNTP time for Symfonium beta cutoff ([a184ae4](https://github.com/arandomhooman/hoomans-morphe-patches/commit/a184ae4efe4b3b11e2461fa75e0dece14eb28a40))
+* stop Poweramp 0-byte settings export and Symfonium post-cutoff SNTP ([11a9e9a](https://github.com/arandomhooman/hoomans-morphe-patches/commit/11a9e9a2c4768284a40d000fe2f00ec6ec406462))
+
 ## [1.42.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.41.1...v1.42.0) (2026-07-05)
 
 ### ✨ New Features
