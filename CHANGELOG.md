@@ -1,3 +1,13 @@
+## [1.44.0-dev.1](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.43.0...v1.44.0-dev.1) (2026-07-12)
+
+### 🐛 Bug Fixes
+
+* hide DirectChat message-bubble ad in Unlock Premium ([c5b42c4](https://github.com/arandomhooman/hoomans-morphe-patches/commit/c5b42c4c86c4c9ed02d2adeed1738c1bbf17ff3a))
+
+### ✨ New Features
+
+* add DirectChat unlock premium patch ([5c670b0](https://github.com/arandomhooman/hoomans-morphe-patches/commit/5c670b05587cd2f24fc8086c397cf2287f6014d6))
+
 ## [1.43.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.42.1...v1.43.0) (2026-07-12)
 
 ### 🐛 Bug Fixes
