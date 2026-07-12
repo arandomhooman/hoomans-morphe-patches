@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.42.1",
+  "version": "1.43.0",
   "patches": [
     {
       "name": "Auto claim channel points",
@@ -626,7 +626,7 @@
     },
     {
       "name": "Unlock Plus",
-      "description": "Removes ads and unlocks the on-device Quizlet Plus features without a subscription. The AI tools, like Magic Notes and generation, run on Quizlet's servers and stay locked.",
+      "description": "Removes ads and unlocks the on-device Quizlet Plus features without a subscription, including unlimited Learn and Test rounds and textbook explanation views that free accounts meter. The AI tools, like Magic Notes and generation, run on Quizlet's servers and stay locked.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
@@ -665,6 +665,12 @@
           "targets": [
             {
               "version": "6.8.1",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            },
+            {
+              "version": "7.1.1",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1202,7 +1208,7 @@
     },
     {
       "name": "Unlock Pro",
-      "description": "Unlocks Tracked's premium training tools without a subscription, like muscle analytics and training programs. They run on the workout data already on your device, so they keep working offline. The separate human-coaching marketplace still needs its own subscription.",
+      "description": "Unlocks Tracked's premium training tools without a subscription, like muscle analytics, training programs, dashboard customization, and session density/net progression. They run on the workout data already on your device, so they keep working offline. The separate human-coaching marketplace still needs its own subscription.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [

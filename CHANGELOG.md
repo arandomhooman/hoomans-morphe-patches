@@ -1,3 +1,15 @@
+## [1.43.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.42.1...v1.43.0) (2026-07-12)
+
+### 🐛 Bug Fixes
+
+* unlock Quizlet Learn/Test meters and Tracked free-tier StrictEq sites ([bf81012](https://github.com/arandomhooman/hoomans-morphe-patches/commit/bf81012c023f16cf8d3ac633dc15054113202b6b))
+* unlock Quizlet mid-quiz Plus gates ([37e9290](https://github.com/arandomhooman/hoomans-morphe-patches/commit/37e929084c1ec4d8db9776c4a3867a5f117e0386))
+* unlock Tracked customize-dashboard pro gate ([8dd606f](https://github.com/arandomhooman/hoomans-morphe-patches/commit/8dd606f857860267a938f60fdd509909c5f9e4e6))
+
+### ✨ New Features
+
+* support Alpha Progression 7.0 Unlock Premium ([db931b4](https://github.com/arandomhooman/hoomans-morphe-patches/commit/db931b4406e93bed5aa90bc3bb910fc3e0fca41f))
+
 ## [1.42.1](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.42.0...v1.42.1) (2026-07-12)
 
 ### 🐛 Bug Fixes
