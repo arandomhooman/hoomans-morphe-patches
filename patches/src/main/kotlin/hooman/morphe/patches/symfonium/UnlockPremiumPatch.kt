@@ -71,15 +71,16 @@ val unlockPremiumPatch = bytecodePatch(
         )
 
         // The SNTP fetch (er2.d), the sole source of the trusted wall-clock time the beta cutoff and
-        // trial countdown compare against. Return a fixed instant from before the build expiry
-        // (0x19eef33a600 = 2026-06-22 12:00 UTC) so both timers always read a pre-cutoff time and never
-        // fire. Do not throw here: the fetched time also feeds the media-resolution path, and an
-        // exception there corrupts stream-URL building (the provider host collapses to "1") and breaks
-        // playback. The method returns J, so return the constant wide.
+        // trial countdown compare against. Stock 14.1.0 bakes a beta cutoff at 0x19b76a3b980
+        // (2025-12-31 23:00 UTC). An earlier ship returned 0x19eef33a600 (2026-06-22), which is PAST
+        // that cutoff, so the beta wall still fired after provider setup. Return a fixed pre-cutoff
+        // instant (0x1972b5cee00 = 2025-06-01 12:00 UTC) so both timers always read "before expiry".
+        // Do not throw: the same trusted time feeds media-resolution URL building, and an exception
+        // there collapses the stream host to "1" and breaks playback.
         NetworkTimeFingerprint.method.addInstructions(
             0,
             """
-                const-wide v0, 0x19eef33a600L
+                const-wide v0, 0x1972b5cee00L
                 return-wide v0
             """,
         )
