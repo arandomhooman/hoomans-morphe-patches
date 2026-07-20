@@ -5,6 +5,15 @@ import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 
+// Firebase Installations builds the X-Android-Cert header from the installed signing certificate.
+// Morphe re-signing changes that value, so pin the stock SofaScore certificate at this one request
+// builder. The three Firebase header/API-key strings make this method unique among URL builders.
+internal object FirebaseInstallationsConnectionFingerprint : Fingerprint(
+    returnType = "Ljava/net/HttpURLConnection;",
+    parameters = listOf("Ljava/net/URL;", "Ljava/lang/String;"),
+    strings = listOf("X-Android-Package", "X-Android-Cert", "x-goog-api-key"),
+)
+
 // The account name of the UserAccount model survives R8 (it lives in com.sofascore.local_persistance),
 // so its getters are the stable anchor here.
 private const val USER_ACCOUNT = "Lcom/sofascore/local_persistance/UserAccount;"

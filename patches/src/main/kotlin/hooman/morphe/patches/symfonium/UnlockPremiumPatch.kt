@@ -11,13 +11,9 @@ import com.android.tools.smali.dexlib2.iface.instruction.WideLiteralInstruction
 val unlockPremiumPatch = bytecodePatch(
     name = "Unlock Premium",
     description = "Turns on Symfonium's paid features. The build ships as a public beta with a built-in " +
-        "trial: a license value the app keeps locally decides whether the paid UI is open, and two " +
-        "timers (the beta cutoff and the trial countdown) lock the app once they pass. This forces the " +
-        "license read to \"licensed\" so the paid screens open, drops the \"trial expires on ...\" line " +
-        "from settings, and freezes the trusted-time lookup the timers read at a fixed pre-cutoff " +
-        "instant so neither timer can fire. The license is checked on the client (a local Play " +
-        "purchase verify), so the unlock holds without an account. Connecting Plex, Jellyfin and " +
-        "other media servers is untouched.",
+        "trial, so this also prevents the expired-beta screen. The license is checked locally and the " +
+        "unlock does not require an account. Connecting Plex, " +
+        "Jellyfin and other media servers is untouched.",
 ) {
     compatibleWith(
         Compatibility(
@@ -31,7 +27,7 @@ val unlockPremiumPatch = bytecodePatch(
 
     execute {
         // The license manager (nh3). Pinned through the status method that carries the unique "Probably
-        // soon" string; its defining class holds both the premium gate and the trial-status builder.
+        // soon" string; its defining class holds both the premium gate and the beta-expiry status.
         val licenseManager = LicenseStatusFingerprint.classDef
 
         // The premium gate. Features read this boolean at ~25 sites; it returns true when the manager's
@@ -59,29 +55,14 @@ val unlockPremiumPatch = bytecodePatch(
             """,
         )
 
-        // The settings trial-status builder (nh3.r). It returns the formatted "trial expires on ..."
-        // string, or null when the account is licensed. Return null so the trial row is hidden and the
-        // app presents as licensed.
-        LicenseStatusFingerprint.method.addInstructions(
+        // Native startup also writes a beta status into the license manager. Zero is the normal
+        // status; a nonzero value can replace the requested screen with ExpiredBeta or reject an
+        // otherwise ready provider. Clear only that live status read.
+        BetaExpiryStatusFingerprint.method.addInstructions(
             0,
             """
                 const/4 v0, 0x0
-                return-object v0
-            """,
-        )
-
-        // The SNTP fetch (er2.d), the sole source of the trusted wall-clock time the beta cutoff and
-        // trial countdown compare against. Stock 14.1.0 bakes a beta cutoff at 0x19b76a3b980
-        // (2025-12-31 23:00 UTC). An earlier ship returned 0x19eef33a600 (2026-06-22), which is PAST
-        // that cutoff, so the beta wall still fired after provider setup. Return a fixed pre-cutoff
-        // instant (0x1972b5cee00 = 2025-06-01 12:00 UTC) so both timers always read "before expiry".
-        // Do not throw: the same trusted time feeds media-resolution URL building, and an exception
-        // there collapses the stream host to "1" and breaks playback.
-        NetworkTimeFingerprint.method.addInstructions(
-            0,
-            """
-                const-wide v0, 0x1972b5cee00L
-                return-wide v0
+                return v0
             """,
         )
     }
