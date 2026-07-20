@@ -1,3 +1,9 @@
+## [1.43.1](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.43.0...v1.43.1) (2026-07-20)
+
+### 🐛 Bug Fixes
+
+* resolve reported patch regressions ([d99af82](https://github.com/arandomhooman/hoomans-morphe-patches/commit/d99af82f4dd1babdf11bd14fdffee0880cce5ad0))
+
 ## [1.43.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.42.1...v1.43.0) (2026-07-12)
 
 ### 🐛 Bug Fixes
