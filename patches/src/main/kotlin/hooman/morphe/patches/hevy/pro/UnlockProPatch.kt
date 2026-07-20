@@ -6,11 +6,10 @@ import app.morphe.patcher.patch.PatchException
 import app.morphe.patcher.patch.rawResourcePatch
 
 // Hevy is React Native: the Pro logic is Hermes bytecode in assets/index.android.bundle, not the
-// DEX. The central isPro getter on HevyProStore (Function #22123 in 3.1.0) returns
-// `this.subscription.is_pro || this.isWithinProOfflineGracePeriod` on the production path, and it is
-// the single read site for is_pro, so forcing it true unlocks every client-side Pro gate. Offsets
-// and string ids shift between releases, so anchor on the function's byte prologue and refuse to
-// patch unless it matches exactly once.
+// DEX. HevyProStore's isPro getter accepts either a paid subscription or its offline grace-period
+// flag. Force that flag so the store stays in Hevy's supported offline-Pro state instead of making a
+// free subscription look paid. Offsets and string ids shift between releases, so anchor on the
+// grace-period getter's byte prologue and refuse to patch unless it matches exactly once.
 @Suppress("unused")
 val unlockProPatch = rawResourcePatch(
     name = "Unlock Pro",
@@ -37,34 +36,30 @@ val unlockProPatch = rawResourcePatch(
             )
         }
 
-        // Prologue of the isPro getter (#22123). It starts `LoadThisNS r0` (7c 00) and runs the dev
-        // override check before the production `subscription.is_pro` read. 16 bytes is already unique
-        // in the 16.5 MB bundle; 32 is used for margin.
-        //   7c 00          LoadThisNS r0
-        //   29 01 01       GetEnvironment r1, 1
-        //   2e 05 01 00    LoadFromEnvironment r5, r1, 0
-        //   2e 02 01 01    LoadFromEnvironment r2, r1, 1
-        //   6e 04 0b       LoadConstUInt8 r4, 11
-        //   49 03 02 04    GetByVal r3, r2, r4
-        //   76 02          LoadConstUndefined r2
-        //   53 03 05 02 03 Call2 r3, r5, r2, r3
-        //   37 03 03 01 d1 GetById r3, r3, 1, 'isProStatusOverrideEnabled'
+        // Prologue of HevyProStore.isWithinProOfflineGracePeriod (#22128). This path is already
+        // treated as Pro by the central isPro getter and is separately exposed as
+        // isProFromGracePeriod, keeping consumers on a state the app was designed to handle.
+        //   7c 03             LoadThisNS r3
+        //   37 00 03 01 6699 GetById r0, r3, 1, 'subscription'
+        //   37 00 00 02 e5be GetById r0, r0, 2, 'active_subscription'
+        //   77 01             LoadConstNull r1
+        //   0e 01 00 01       Eq r1, r0, r1
         val signature = intArrayOf(
-            0x7C, 0x00, 0x29, 0x01, 0x01, 0x2E, 0x05, 0x01, 0x00, 0x2E, 0x02, 0x01,
-            0x01, 0x6E, 0x04, 0x0B, 0x49, 0x03, 0x02, 0x04, 0x76, 0x02, 0x53, 0x03,
-            0x05, 0x02, 0x03, 0x37, 0x03, 0x03, 0x01, 0xD1,
+            0x7C, 0x03, 0x37, 0x00, 0x03, 0x01, 0x66, 0x99, 0x37, 0x00, 0x00, 0x02,
+            0xE5, 0xBE, 0x77, 0x01, 0x0E, 0x01, 0x00, 0x01, 0x76, 0x02, 0x76, 0x04,
+            0x90, 0x09, 0x01, 0x37, 0x04, 0x00, 0x03, 0x3A,
         ).map { it.toByte() }.toByteArray()
 
         val bytes = bundle.readBytes()
         val match = bytes.findUnique(signature)
             ?: throw PatchException(
-                "Pro-gate prologue not found in $bundlePath. This patch targets Hevy 3.1.0 (Hermes " +
+                "Offline-Pro grace getter not found in $bundlePath. This patch targets Hevy 3.1.0 (Hermes " +
                     "bytecode HBC96); the bundle likely changed in a newer build and the signature " +
                     "must be re-derived.",
             )
 
-        // Overwrite the first 4 bytes with `LoadConstTrue r0; Ret r0`. The rest of the getter body is
-        // unreachable, so the bundle stays the same length and every consumer sees Pro active.
+        // Keep subscription.is_pro untouched and force the supported offline grace-period source.
+        // The bundle remains the same length.
         //   78 00  LoadConstTrue r0
         //   5C 00  Ret r0
         val forceTrue = intArrayOf(0x78, 0x00, 0x5C, 0x00).map { it.toByte() }
@@ -84,7 +79,7 @@ private fun ByteArray.findUnique(pattern: ByteArray): Int? {
             if (this[i + j] != pattern[j]) continue@outer
         }
         if (found != null) {
-            throw PatchException("Pro-gate prologue is ambiguous (matched more than once).")
+            throw PatchException("Offline-Pro grace getter is ambiguous (matched more than once).")
         }
         found = i
     }
