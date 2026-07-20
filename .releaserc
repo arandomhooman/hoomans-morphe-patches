@@ -75,12 +75,8 @@
       }
     ],
     [
-      "@cleyrop-org/semantic-release-backmerge",
-      {
-        "backmergeBranches": [{"from": "main", "to": "dev"}],
-        "backmergeStrategy": "merge",
-        "clearWorkspace": true
-      }
+      "./.github/scripts/semantic-release-backmerge.cjs",
+      {}
     ]
   ]
 }
