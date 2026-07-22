@@ -1,11 +1,18 @@
 package hooman.morphe.patches.symfonium
 
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.instructions
+import app.morphe.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.morphe.patcher.patch.AppTarget
 import app.morphe.patcher.patch.Compatibility
 import app.morphe.patcher.patch.PatchException
 import app.morphe.patcher.patch.bytecodePatch
+import com.android.tools.smali.dexlib2.Opcode
+import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
+import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.WideLiteralInstruction
+import com.android.tools.smali.dexlib2.iface.reference.FieldReference
+import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 
 @Suppress("unused")
 val unlockPremiumPatch = bytecodePatch(
@@ -47,22 +54,74 @@ val unlockPremiumPatch = bytecodePatch(
                     "42) on the manager, found ${gate.size}. The gate shape changed; re-derive.",
             )
         }
-        gate.single().addInstructions(
+        val gateMethod = gate.single()
+
+        // Playback resolution reads the backing license state directly instead of calling the gate.
+        // Seed it as licensed and force every later write to keep the same value.
+        val licenseStateSetter = licenseManager.methods.singleOrNull { method ->
+            method.returnType == "V" &&
+                method.parameterTypes == listOf("J") &&
+                method.instructions.any { instruction ->
+                    ((instruction as? ReferenceInstruction)?.reference as? MethodReference)?.let { reference ->
+                        reference.definingClass == "Ljava/lang/Long;" &&
+                            reference.name == "valueOf" &&
+                            reference.parameterTypes == listOf("J")
+                    } == true
+                }
+        } ?: throw PatchException("Symfonium: license-state setter (J)V not found uniquely.")
+        val mutableStateField = licenseStateSetter.instructions.mapNotNull { instruction ->
+            ((instruction as? ReferenceInstruction)?.reference as? FieldReference)?.takeIf { field ->
+                instruction.opcode == Opcode.IGET_OBJECT && field.definingClass == licenseManager.type
+            }
+        }.singleOrNull() ?: throw PatchException(
+            "Symfonium: mutable license-state field not found uniquely in the setter.",
+        )
+        if (gateMethod.instructions.none { instruction ->
+                (instruction as? ReferenceInstruction)?.reference == mutableStateField
+            }
+        ) {
+            throw PatchException("Symfonium: premium gate no longer reads the derived license-state field.")
+        }
+        licenseStateSetter.addInstructions(0, "const-wide/16 p1, 0x2a")
+
+        val constructor = licenseManager.methods.singleOrNull { method -> method.name == "<init>" }
+            ?: throw PatchException("Symfonium: license-manager constructor not found uniquely.")
+        val stateStoreIndex = constructor.instructions.withIndex().singleOrNull { (_, instruction) ->
+            instruction.opcode == Opcode.IPUT_OBJECT &&
+                ((instruction as? ReferenceInstruction)?.reference as? FieldReference) == mutableStateField
+        }?.index ?: throw PatchException("Symfonium: initial license-state store not found uniquely.")
+        val seedWindowStart = maxOf(0, stateStoreIndex - 12)
+        val initialState = constructor.instructions.withIndex()
+            .filter { (index, instruction) ->
+                index in seedWindowStart until stateStoreIndex &&
+                    (instruction as? WideLiteralInstruction)?.wideLiteral == -1L
+            }
+            .singleOrNull() ?: throw PatchException(
+            "Symfonium: initial -1 license-state sentinel not found uniquely before its store.",
+        )
+        val stateRegister = (initialState.value as? OneRegisterInstruction)?.registerA
+            ?: throw PatchException("Symfonium: initial license-state register shape changed.")
+        constructor.replaceInstruction(initialState.index, "const-wide/16 v$stateRegister, 0x2a")
+
+        // Re-signing disables the stock Firebase app identity, so its KeyCheck cannot load. Media
+        // resolution treats that missing value as a rejection even when the license state is 42.
+        MediaKeyCheckFingerprint.method.addInstructions(
             0,
             """
-                const/4 v0, 0x1
-                return v0
+                sget-object v0, Ljava/lang/Boolean;->TRUE:Ljava/lang/Boolean;
+                return-object v0
             """,
         )
 
-        // Native startup also writes a beta status into the license manager. Zero is the normal
-        // status; a nonzero value can replace the requested screen with ExpiredBeta or reject an
-        // otherwise ready provider. Clear only that live status read.
+        // The async cutoff check can substitute the ExpiredBeta route after six days. Keep its
+        // boxed status at zero while leaving unrelated status consumers untouched.
         BetaExpiryStatusFingerprint.method.addInstructions(
             0,
             """
                 const/4 v0, 0x0
-                return v0
+                invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+                move-result-object v0
+                return-object v0
             """,
         )
     }
