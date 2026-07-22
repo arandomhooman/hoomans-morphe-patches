@@ -1,3 +1,9 @@
+## [1.43.3](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.43.2...v1.43.3) (2026-07-22)
+
+### 🐛 Bug Fixes
+
+* harden release back-merge against generated metadata ([e4fe869](https://github.com/arandomhooman/hoomans-morphe-patches/commit/e4fe86979e5a1d91e8e936a6f94e6ddb2420de97))
+
 ## [1.43.2](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.43.1...v1.43.2) (2026-07-22)
 
 ### 🐛 Bug Fixes
