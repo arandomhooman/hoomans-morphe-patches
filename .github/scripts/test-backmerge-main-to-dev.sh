@@ -32,6 +32,7 @@ git -C "$seed" config user.email "backmerge-test@example.invalid"
 for path in "${generated_files[@]}"; do
   printf 'dev metadata\n' > "$seed/$path"
 done
+printf 'dev lockfile\n' > "$seed/package-lock.json"
 printf 'shared\n' > "$seed/source.txt"
 git -C "$seed" add .
 git -C "$seed" commit --quiet -m "initial dev"
@@ -44,12 +45,14 @@ printf 'main source change\n' >> "$seed/source.txt"
 for path in "${generated_files[@]}"; do
   printf 'main metadata\n' > "$seed/$path"
 done
+printf 'main lockfile\n' > "$seed/package-lock.json"
 git -C "$seed" add .
 git -C "$seed" commit --quiet -m "main release"
 git -C "$seed" push --quiet --set-upstream origin main
 
 git clone --quiet --branch main "$remote" "$worker"
 printf 'post-release regeneration\n' > "$worker/patches-list.json"
+printf 'npm install residue\n' > "$worker/package-lock.json"
 (
   cd "$worker"
   BACKMERGE_REMOTE=origin bash "$backmerge_script"
@@ -58,6 +61,7 @@ printf 'post-release regeneration\n' > "$worker/patches-list.json"
 git -C "$worker" fetch --quiet origin main dev
 git -C "$worker" merge-base --is-ancestor origin/main origin/dev
 test "$(git -C "$worker" show origin/dev:patches-list.json)" = "dev metadata"
+test "$(git -C "$worker" show origin/dev:package-lock.json)" = "main lockfile"
 test "$(git -C "$worker" show origin/dev:source.txt | tail -n 1)" = "main source change"
 
 git clone --quiet --branch main "$remote" "$dirty_worker"
