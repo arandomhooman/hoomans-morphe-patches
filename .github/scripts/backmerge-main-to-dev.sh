@@ -16,6 +16,16 @@ readonly -a generated_files=(
 git config user.name "github-actions[bot]"
 git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 git fetch "$remote" "$source_branch" "$target_branch"
+
+# The publish phase can regenerate release metadata after semantic-release commits it. Clear only
+# those known generated files before switching branches, and refuse to discard source changes.
+git restore --source=HEAD --staged --worktree -- "${generated_files[@]}"
+if ! git diff --quiet || ! git diff --cached --quiet; then
+  echo "Back-merge worktree has unexpected tracked changes:" >&2
+  git status --short --untracked-files=no >&2
+  exit 1
+fi
+
 git switch --force-create "$target_branch" "$remote/$target_branch"
 
 merge_status=0
