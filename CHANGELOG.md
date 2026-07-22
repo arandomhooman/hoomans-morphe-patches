@@ -1,3 +1,9 @@
+## [1.43.2](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.43.1...v1.43.2) (2026-07-22)
+
+### 🐛 Bug Fixes
+
+* resolve Symfonium playback and Poweramp settings crashes ([caa0bbc](https://github.com/arandomhooman/hoomans-morphe-patches/commit/caa0bbc8f11a6b81df5c1427874576ba597016f2))
+
 ## [1.43.1](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.43.0...v1.43.1) (2026-07-20)
 
 ### 🐛 Bug Fixes
