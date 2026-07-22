@@ -12,10 +12,25 @@ readonly -a generated_files=(
   "patches-bundle.json"
   "patches-list.json"
 )
+readonly -a pre_switch_files=(
+  "${generated_files[@]}"
+  "package-lock.json"
+)
 
 git config user.name "github-actions[bot]"
 git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 git fetch "$remote" "$source_branch" "$target_branch"
+
+# The workflow can rewrite release metadata and package-lock.json after semantic-release commits.
+# Clear only that known residue before switching branches, and refuse to discard source changes.
+# package-lock.json is not in generated_files, so real lockfile changes still merge into dev below.
+git restore --source=HEAD --staged --worktree -- "${pre_switch_files[@]}"
+if ! git diff --quiet || ! git diff --cached --quiet; then
+  echo "Back-merge worktree has unexpected tracked changes:" >&2
+  git status --short --untracked-files=no >&2
+  exit 1
+fi
+
 git switch --force-create "$target_branch" "$remote/$target_branch"
 
 merge_status=0
