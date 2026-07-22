@@ -1,3 +1,10 @@
+## [1.44.0-dev.3](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.44.0-dev.2...v1.44.0-dev.3) (2026-07-22)
+
+### 🐛 Bug Fixes
+
+* resolve reported patch regressions ([d99af82](https://github.com/arandomhooman/hoomans-morphe-patches/commit/d99af82f4dd1babdf11bd14fdffee0880cce5ad0))
+* resolve Symfonium playback and Poweramp settings crashes ([7fe01ae](https://github.com/arandomhooman/hoomans-morphe-patches/commit/7fe01aee708e3b2114b1e4f7a47d5c7b78a0e1f3))
+
 ## [1.44.0-dev.2](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.44.0-dev.1...v1.44.0-dev.2) (2026-07-20)
 
 ### 🐛 Bug Fixes
