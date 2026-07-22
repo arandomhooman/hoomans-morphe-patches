@@ -1,3 +1,9 @@
+## [1.43.4](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.43.3...v1.43.4) (2026-07-22)
+
+### 🐛 Bug Fixes
+
+* handle install residue during release back-merge ([5fe8fb1](https://github.com/arandomhooman/hoomans-morphe-patches/commit/5fe8fb112354c9a3e1b2f41f095ff6176df6b5b3))
+
 ## [1.43.3](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.43.2...v1.43.3) (2026-07-22)
 
 ### 🐛 Bug Fixes
