@@ -13,16 +13,29 @@ internal object LicenseStatusFingerprint : Fingerprint(
     strings = listOf("Probably soon"),
 )
 
-// nh3.e(): the getter for the status written by native startup. It is the only no-arg int method on
-// the manager that recognizes -837 as its uninitialized sentinel. Zero is the normal status; a
-// nonzero value can substitute the ExpiredBeta route or reject an otherwise ready provider.
+// nh3.h(): the async beta-cutoff check. It is the only continuation method on the manager that
+// compares the license sentinel (42) and the six-day cutoff (518400000 ms).
 internal object BetaExpiryStatusFingerprint : Fingerprint(
     classFingerprint = LicenseStatusFingerprint,
-    returnType = "I",
-    parameters = emptyList(),
+    returnType = "Ljava/lang/Object;",
+    parameters = listOf("L"),
     custom = { method, _ ->
-        method.implementation?.instructions?.any { instruction ->
-            (instruction as? WideLiteralInstruction)?.wideLiteral == -837L
-        } == true
+        val literals = method.implementation?.instructions
+            ?.mapNotNull { (it as? WideLiteralInstruction)?.wideLiteral }
+            ?.toSet()
+            .orEmpty()
+        42L in literals && 518_400_000L in literals
     },
+)
+
+// nh3.b(): the Firebase-backed KeyCheck used by media resolution. Re-signing disables the app's
+// Firebase configuration, so pin the method by its encoded key and expected digest.
+internal object MediaKeyCheckFingerprint : Fingerprint(
+    classFingerprint = LicenseStatusFingerprint,
+    returnType = "Ljava/lang/Object;",
+    parameters = listOf("L"),
+    strings = listOf(
+        "S2V5Q2hlY2s=",
+        "0C4D6E1E46285A9F81030288BAFDFD00",
+    ),
 )

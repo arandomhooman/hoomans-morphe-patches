@@ -16,6 +16,7 @@ import com.android.tools.smali.dexlib2.iface.Method
 import com.android.tools.smali.dexlib2.iface.instruction.NarrowLiteralInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
+import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.reference.FieldReference
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 import com.android.tools.smali.dexlib2.iface.reference.StringReference
@@ -617,18 +618,28 @@ val unlockPremiumPatch = bytecodePatch(
         ) {
             throw PatchException("Poweramp: Sync native_process result register shape changed; re-derive.")
         }
-        syncProcess.addInstructions(
+        val normalCleanupIndex = syncProcess.instructions.withIndex()
+            .drop(nativeProcessResultIndex + 1)
+            .firstOrNull { (_, instruction) ->
+                opcodeName(instruction).equals("SPUT_OBJECT", ignoreCase = true) &&
+                    ((instruction as? ReferenceInstruction)?.reference as? FieldReference)?.let { field ->
+                        field.definingClass == sync.type &&
+                            field.type == "Lcom/maxmpz/app/base/BaseApplication;"
+                    } == true
+            }?.index ?: throw PatchException("Poweramp: Sync normal cleanup path not found.")
+        syncProcess.addInstructionsWithLabels(
             nativeProcessResultIndex + 1,
             """
-                move v3, v0
+                if-eqz v0, :restore_license
+                const/4 v0, 0x1
+                invoke-static {v0}, Lcom/maxmpz/audioplayer/Sync;->native_close(I)V
+                :restore_license
                 const/4 v0, 0x4
-                invoke-virtual {v$nativeProcessBufferRegister, v0}, Ljava/nio/Buffer;->position(I)Ljava/nio/Buffer;
-                const/16 v0, $FULL_VERIFIED_CACHED
-                invoke-virtual {v$nativeProcessBufferRegister, v0}, Ljava/nio/ByteBuffer;->putInt(I)Ljava/nio/ByteBuffer;
-                const/4 v0, 0x0
-                invoke-virtual {v$nativeProcessBufferRegister, v0}, Ljava/nio/Buffer;->position(I)Ljava/nio/Buffer;
-                move v0, v3
+                const/16 v3, $FULL_VERIFIED_CACHED
+                invoke-virtual {v$nativeProcessBufferRegister, v0, v3}, Ljava/nio/ByteBuffer;->putInt(II)Ljava/nio/ByteBuffer;
+                goto :normal_cleanup
             """,
+            ExternalLabel("normal_cleanup", syncProcess.getInstruction(normalCleanupIndex)),
         )
 
         val featurePackageStateIndex = getIntState
@@ -702,6 +713,36 @@ val unlockPremiumPatch = bytecodePatch(
             method.returnType == "V" &&
                 method.parameterTypes == listOf(purchaseControllerClass.type)
         } ?: throw PatchException("Poweramp: purchase-state notifier method not found.")
+        val purchaseControllerConstructor = purchaseControllerClass.methods.singleOrNull { method ->
+            method.name == "<init>" &&
+                method.parameterTypes.size == 4 &&
+                method.parameterTypes.count { it == "I" } == 2 &&
+                method.parameterTypes.count { it == "Ljava/lang/String;" } == 2
+        } ?: throw PatchException("Poweramp: purchase controller constructor not found uniquely.")
+        val constructorRegisterCount = purchaseControllerConstructor.implementation?.registerCount
+            ?: throw PatchException("Poweramp: purchase controller constructor has no implementation.")
+        val constructorParameterWords = purchaseControllerConstructor.parameterTypes.sumOf { type ->
+            if (type == "J" || type == "D") 2 else 1
+        }
+        val constructorThisRegister = constructorRegisterCount - constructorParameterWords - 1
+        val kindParameterRegister = constructorThisRegister + 1 +
+            purchaseControllerConstructor.parameterTypes.take(2).sumOf { type ->
+                if (type == "J" || type == "D") 2 else 1
+            }
+        val purchaseControllerKindField = purchaseControllerConstructor.instructions.mapNotNull { instruction ->
+            val registers = instruction as? TwoRegisterInstruction ?: return@mapNotNull null
+            val field = (instruction as? ReferenceInstruction)?.reference as? FieldReference
+                ?: return@mapNotNull null
+            field.takeIf {
+                opcodeName(instruction).equals("IPUT", ignoreCase = true) &&
+                    registers.registerA == kindParameterRegister &&
+                    registers.registerB == constructorThisRegister &&
+                    field.definingClass == purchaseControllerClass.type &&
+                    field.type == "I"
+            }
+        }.singleOrNull() ?: throw PatchException(
+            "Poweramp: purchase controller kind field was not stored uniquely from constructor parameter 3.",
+        )
         val startPurchaseRefresh = purchaseControllerClass.methods.singleOrNull { method ->
             method.returnType == "V" &&
                 method.parameterTypes.isEmpty() &&
@@ -710,7 +751,7 @@ val unlockPremiumPatch = bytecodePatch(
         startPurchaseRefresh.addInstructionsWithLabels(
             0,
             """
-                iget v0, p0, ${purchaseControllerClass.type}->K:I
+                iget v0, p0, ${purchaseControllerClass.type}->${purchaseControllerKindField.name}:I
                 const/16 v1, $PLAY_PURCHASE_CONTROLLER_KIND
                 if-ne v0, v1, :original_purchase_refresh
                 const/4 v0, $FEATURE_PACKAGE_REFRESH_DONE
