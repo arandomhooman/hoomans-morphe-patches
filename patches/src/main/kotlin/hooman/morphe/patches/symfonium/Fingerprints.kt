@@ -39,3 +39,16 @@ internal object MediaKeyCheckFingerprint : Fingerprint(
         "0C4D6E1E46285A9F81030288BAFDFD00",
     ),
 )
+
+// nh3.e(): native provider-init status. It maps uninitialized -837 to zero, but the timeout changes
+// the field to rejected status -1; any other native nonzero status also blocks provider discovery.
+internal object NativeProviderStatusFingerprint : Fingerprint(
+    classFingerprint = LicenseStatusFingerprint,
+    returnType = "I",
+    parameters = emptyList(),
+    custom = { method, _ ->
+        method.implementation?.instructions?.any { instruction ->
+            (instruction as? WideLiteralInstruction)?.wideLiteral == -837L
+        } == true
+    },
+)

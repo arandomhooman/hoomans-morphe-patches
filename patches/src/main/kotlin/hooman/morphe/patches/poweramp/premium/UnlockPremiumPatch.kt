@@ -669,6 +669,96 @@ val unlockPremiumPatch = bytecodePatch(
             "const/16 v0, $FULL_VERIFIED_CACHED",
         )
 
+        // The handler computes this flag from the raw native result before H is forced to 0x111.
+        // PlayerService and widget actions read it directly, so keep it in the non-expired state too.
+        val expiredFlagStore = licenseResultHandler.instructions.withIndex().singleOrNull {
+                (_, instruction) ->
+            opcodeName(instruction).equals("SPUT_BOOLEAN", ignoreCase = true) &&
+                ((instruction as? ReferenceInstruction)?.reference as? FieldReference)?.let { field ->
+                    field.type == "Z" && field.definingClass != baseApplication.type
+                } == true
+        } ?: throw PatchException("Poweramp: expired-state flag store not found uniquely.")
+        val expiredFlagRegister = (expiredFlagStore.value as? OneRegisterInstruction)?.registerA
+            ?: throw PatchException("Poweramp: expired-state flag store shape changed.")
+        val expiredFlagField = (
+            (expiredFlagStore.value as? ReferenceInstruction)?.reference as? FieldReference
+            ) ?: throw PatchException("Poweramp: expired-state flag field reference changed.")
+        // Insert after the labeled stock store so every branch that targets it flows through the
+        // override. An insertion before it can be skipped because dex labels stay on the old store.
+        licenseResultHandler.addInstructions(
+            expiredFlagStore.index + 1,
+            """
+                const/4 v$expiredFlagRegister, 0x0
+                sput-boolean v$expiredFlagRegister, ${expiredFlagField.definingClass}->${expiredFlagField.name}:Z
+            """,
+        )
+
+        // All widget/activity routes pass through this hook. Its native release gate can replace the
+        // requested Intent with ExpiredActivity; the caller has already added FLAG_NEW_TASK when needed.
+        val activityRoute = baseApplication.methods.singleOrNull { method ->
+            method.returnType == "V" &&
+                method.parameterTypes == listOf(
+                    "Landroid/content/Context;",
+                    "Landroid/content/Intent;",
+                ) &&
+                "sac" in method.stringLiterals() &&
+                method.instructions.any { instruction ->
+                    ((instruction as? ReferenceInstruction)?.reference as? MethodReference)?.let { reference ->
+                        reference.definingClass == sync.type &&
+                            reference.name == "native_release" &&
+                            reference.returnType == "I"
+                    } == true
+                }
+        } ?: throw PatchException("Poweramp: native activity-route gate not found uniquely.")
+        activityRoute.addInstructions(
+            0,
+            """
+                invoke-virtual {p1, p2}, Landroid/content/Context;->startActivity(Landroid/content/Intent;)V
+                return-void
+            """,
+        )
+
+        // A cold launcher attach schedules this native license refresh after 250 ms. Native code can
+        // start ExpiredActivity directly before the Java result handler gets a chance to normalize it.
+        val scheduledLicenseRefresh = baseApplication.methods.singleOrNull { method ->
+            method.returnType == "V" &&
+                method.parameterTypes == listOf("Z") &&
+                method.implementation != null &&
+                "__Executors" in method.stringLiterals()
+        } ?: throw PatchException("Poweramp: scheduled native license refresh not found uniquely.")
+        scheduledLicenseRefresh.addInstructions(0, "return-void")
+
+        // Some cold-launch and widget paths can still route through ExpiredActivity before the live
+        // state bus catches up. Force its one full-version state read true so it immediately closes.
+        val expiredActivity = mutableClassDefByOrNull(
+            "Lcom/maxmpz/audioplayer/dialogs/ExpiredActivity;",
+        ) ?: throw PatchException("Poweramp: ExpiredActivity not found.")
+        val expiredOnCreate = expiredActivity.methods.singleOrNull { method ->
+            method.name == "onCreate" &&
+                method.returnType == "V" &&
+                method.parameterTypes == listOf("Landroid/os/Bundle;")
+        } ?: throw PatchException("Poweramp: ExpiredActivity.onCreate not found uniquely.")
+        val fullVersionStateResultIndex = expiredOnCreate.instructions.withIndex().singleOrNull {
+                (_, instruction) ->
+            ((instruction as? ReferenceInstruction)?.reference as? MethodReference)?.let { reference ->
+                reference.definingClass == "Lcom/maxmpz/widget/StateBus;" &&
+                    reference.name == "getBooleanState" &&
+                    reference.returnType == "Z" &&
+                    reference.parameterTypes == listOf("I")
+            } == true
+        }?.index?.plus(1) ?: throw PatchException(
+            "Poweramp: ExpiredActivity full-version state read not found uniquely.",
+        )
+        val fullVersionStateRegister = (
+            expiredOnCreate.instructions.getOrNull(fullVersionStateResultIndex) as? OneRegisterInstruction
+            )?.registerA ?: throw PatchException(
+            "Poweramp: ExpiredActivity full-version state result shape changed.",
+        )
+        expiredOnCreate.addInstructions(
+            fullVersionStateResultIndex + 1,
+            "const/4 v$fullVersionStateRegister, 0x1",
+        )
+
         val featurePackagePreference = mutableClassDefByOrNull(
             "Lcom/maxmpz/audioplayer/preference/FeaturePackPref;",
         ) ?: throw PatchException("Poweramp: FeaturePackPref not found.")

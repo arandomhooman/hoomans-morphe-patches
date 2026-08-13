@@ -24,6 +24,11 @@ import hooman.morphe.patches.wanderlog.ota.disableExpoUpdatesPatch
 // 0x3cb0) makes the helper hand back userTier 'pro' for a free or lapsed account, and every gate that
 // reads it opens. A real paying subscription still flows through the date math and is unaffected.
 //
+// The attachment button has one extra gate: before it opens the file sheet it calls
+// shouldShowSubscribeOrTrialModal(user), then opens the subscribe modal when that returns true. Force
+// this shared predicate false as well. This is the chokepoint for attachment upsells and matches the
+// patch's existing promise to suppress upgrade nags.
+//
 // The two GetById string ids are 16-bit operands, so each swap is two bytes in place (the bundle is
 // STORED, so a same-length overwrite writes back cleanly). The bare `GetById ... 'free'` run is common,
 // so anchor on the surrounding LoadFromEnvironment/UserTier/PutNewOwnById run and refuse to patch unless
@@ -100,6 +105,39 @@ val unlockProPatch = rawResourcePatch(
                 bytes[match + freeStrIdAt] = proLo
                 bytes[match + freeStrIdAt + 1] = proHi
             }
+
+        // shouldShowSubscribeOrTrialModal (#21004). Pin the whole 41-byte function: it unwraps
+        // user.clientLatestSubscription, calls canUserStartSubscription, and returns that result.
+        // Replace only the final five-byte Call2 with an equal-length LoadConstFalse + Mov r0,r0;
+        // the existing Ret r0 remains aligned and returns false.
+        val subscribeModalPredicate = intArrayOf(
+            0x6C, 0x04, 0x01,
+            0x29, 0x00, 0x00,
+            0x2E, 0x02, 0x00, 0x07,
+            0x77, 0x03,
+            0x0E, 0x05, 0x04, 0x03,
+            0x76, 0x01,
+            0x76, 0x00,
+            0x90, 0x09, 0x05,
+            0x37, 0x00, 0x04, 0x01, 0xD0, 0xCE,
+            0x90, 0x05, 0x00,
+            0x77, 0x00,
+            0x53, 0x00, 0x02, 0x01, 0x00,
+            0x5C, 0x00,
+        ).map { it.toByte() }.toByteArray()
+        val subscribeModalMatch = bytes.findUnique(subscribeModalPredicate)
+            ?: throw PatchException(
+                "Subscription-modal signature not found in $bundlePath. This patch targets " +
+                    "Wanderlog 2.208 (Hermes bytecode HBC96); the bundle likely changed in a " +
+                    "newer build and the signature must be re-derived.",
+            )
+
+        val finalCallAt = subscribeModalMatch + 34
+        val forceFalse = intArrayOf(
+            0x79, 0x00, // LoadConstFalse r0
+            0x08, 0x00, 0x00, // Mov r0, r0 (same-length padding before the existing Ret)
+        ).map { it.toByte() }
+        forceFalse.forEachIndexed { i, byte -> bytes[finalCallAt + i] = byte }
 
         bundle.writeBytes(bytes)
     }

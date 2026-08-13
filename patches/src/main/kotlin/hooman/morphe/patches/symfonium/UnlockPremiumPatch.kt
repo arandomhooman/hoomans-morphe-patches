@@ -124,5 +124,15 @@ val unlockPremiumPatch = bytecodePatch(
                 return-object v0
             """,
         )
+
+        // Provider discovery rejects any nonzero native initialization status. The stock getter maps
+        // uninitialized -837 to zero, but a timeout changes it to -1 and native init can set other errors.
+        NativeProviderStatusFingerprint.method.addInstructions(
+            0,
+            """
+                const/4 v0, 0x0
+                return v0
+            """,
+        )
     }
 }

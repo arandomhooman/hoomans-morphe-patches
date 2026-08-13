@@ -7,19 +7,17 @@ import app.morphe.patcher.patch.resourcePatch
 import app.morphe.patcher.patch.stringOption
 import org.w3c.dom.Element
 
-// Moovit registers its Google Maps key (com.google.android.geo.API_KEY in the manifest) against its
-// own signing certificate's SHA-1 plus the package name. Every Morphe build re-signs the APK with a
-// different cert, so Google rejects Moovit's key and the map renders blank. There is no way around
-// that with Moovit's own key, so the patch swaps in a key the user controls. Without a key the map
-// is dead, which is why this refuses to apply unless one is supplied.
+// Moovit uses the same certificate-restricted key for the Maps SDK and its direct Google Places and
+// Geocoding requests. Every Morphe build re-signs the APK, so all three reject Moovit's key. Replace
+// both key entry points with one key the user controls and refuse to apply when it is missing.
 @Suppress("unused")
 val useMapsApiKeyPatch = resourcePatch(
     name = "Use your own Maps API key [REQUIRED]",
-    description = "Required for the map to load. Patching breaks Moovit's built-in Google Maps key, " +
-        "so you have to supply your own from a free Google Cloud project. In this patch's option, " +
-        "create a project, enable Maps SDK for Android, turn on billing, make an API key, and paste " +
-        "it in (leaving it unrestricted is easiest). Remove ads and Unlock Moovit+ both pull this in, " +
-        "so the map keeps working with either.",
+    description = "Required for maps and exact-address search. Patching breaks Moovit's built-in " +
+        "Google Maps Platform key, so supply your own from a Google Cloud project. Enable Maps SDK " +
+        "for Android, Places API (New), and Geocoding API, turn on billing, create an API key, and " +
+        "paste it in (leaving it unrestricted is easiest). Remove ads and Unlock Moovit+ both pull " +
+        "this in.",
 ) {
     compatibleWith(
         Compatibility(
@@ -36,15 +34,14 @@ val useMapsApiKeyPatch = resourcePatch(
     val mapsApiKey by stringOption(
         key = "mapsApiKey",
         default = null,
-        title = "Google Maps API key",
-        description = "Your own Google Maps Android API key (free). In the Google Cloud Console: create " +
-            "a project, enable \"Maps SDK for Android\", and turn on billing for the project (Maps needs " +
-            "a billing account, but normal use stays inside the free monthly credit). Then under " +
-            "Credentials create an API key and paste it here. Easiest is to leave the key unrestricted. " +
-            "If you do restrict it, set Application restrictions to Android apps and add package " +
-            "com.tranzmate with the SHA-1 of the certificate your patched build is signed with (read it " +
-            "from the patched APK). A blank map means the key is empty, restricted to a different cert, " +
-            "or its project is missing \"Maps SDK for Android\" or billing.",
+        title = "Google Maps Platform API key",
+        description = "Your own Google Maps Platform key. In the Google Cloud Console, enable \"Maps " +
+            "SDK for Android\", \"Places API (New)\", and \"Geocoding API\", turn on billing, then " +
+            "create an API key and paste it here. Leaving the key unrestricted is easiest. If you " +
+            "restrict it, set Application restrictions to Android apps and add package com.tranzmate " +
+            "with the SHA-1 of the certificate your patched build is signed with. Also allow all three " +
+            "APIs under API restrictions. A blank map or missing exact-address results means the key, " +
+            "certificate restriction, API list, or billing setup is incomplete.",
         required = true,
     )
 
@@ -52,17 +49,16 @@ val useMapsApiKeyPatch = resourcePatch(
         val key = mapsApiKey
         if (key.isNullOrBlank()) {
             throw PatchException(
-                "No Google Maps API key was provided. Re-signing breaks Moovit's bundled key, so the " +
-                    "map cannot load without your own. Set the \"Google Maps API key\" option on the " +
+                "No Google Maps Platform API key was provided. Re-signing breaks Moovit's bundled key, so the " +
+                    "map cannot load without your own. Set the \"Google Maps Platform API key\" option on the " +
                     "\"Use your own Maps API key\" patch and apply again. See the patch description for " +
                     "how to get a key.",
             )
         }
 
-        // The manifest's geo.API_KEY meta-data points at a string resource (@string/google_wla_api_key).
-        // Overwrite android:value on that element with the literal key so the manifest is self-contained
-        // and does not depend on the string resource keeping its name. The patcher's manifest DOM is not
-        // namespace-aware, so attributes come back under their literal qualified name.
+        // The Maps SDK reads manifest meta-data. Moovit's Places and Geocoding HTTP clients separately
+        // resolve the google_wla_api_key string by name, so both locations must carry the replacement.
+        // The patcher's manifest DOM is not namespace-aware, so attributes use their qualified names.
         fun Element.androidName(): String = getAttribute("android:name")
 
         document("AndroidManifest.xml").use { document ->
@@ -76,6 +72,19 @@ val useMapsApiKeyPatch = resourcePatch(
                 )
 
             apiKeyElement.setAttribute("android:value", key)
+        }
+
+        document("res/values/strings.xml").use { document ->
+            val strings = document.getElementsByTagName("string")
+            val webServicesKey = (0 until strings.length)
+                .mapNotNull { strings.item(it) as? Element }
+                .singleOrNull { it.getAttribute("name") == "google_wla_api_key" }
+                ?: throw PatchException(
+                    "Moovit: the google_wla_api_key string was not found. The Google web-service " +
+                        "key layout changed for this version.",
+                )
+
+            webServicesKey.textContent = key
         }
     }
 }
