@@ -1,3 +1,9 @@
+## [1.45.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.44.0...v1.45.0) (2026-08-15)
+
+### ✨ New Features
+
+* add Moneta Unlock Plus patch ([63d438f](https://github.com/arandomhooman/hoomans-morphe-patches/commit/63d438f5356b26e93071b26234348e350d1cf1df))
+
 ## [1.44.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.43.4...v1.44.0) (2026-08-13)
 
 ### 🐛 Bug Fixes

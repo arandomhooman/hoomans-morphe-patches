@@ -10,7 +10,7 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 ## 🩹 Patches
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.44.0](https://github.com/arandomhooman/hoomans-morphe-patches/releases/tag/v1.44.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;54 patches total
+> **[v1.45.0](https://github.com/arandomhooman/hoomans-morphe-patches/releases/tag/v1.45.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;55 patches total
 <details>
 <summary>📦 Twitch&nbsp;&nbsp;•&nbsp;&nbsp;4 patches</summary>
 <br>
@@ -231,6 +231,21 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Unlock Plus](#unlock-plus) | Unlocks Finch Plus features without a subscription, including the Plus shop items, extra themes and customization, seasonal event tiers, the monthly recap, and Plus insights. It also clears the upgrade prompts. This is the arm64 build. Cloud backup and cross-device sync run on Finch's own servers and still need the real subscription. Re-signing breaks Google sign-in, so log in with email instead. |  |
+
+</details>
+
+<details>
+<summary>📦 Moneta&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 1.2.2 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Plus](#unlock-plus) | Unlocks Moneta Plus features, including the full asset catalog, more than five selected assets, five-minute rate updates, camera price scanning, and extended historical charts. Purchases, restore purchases, and server account state are unchanged. This is the arm64 build. |  |
 
 </details>
 
