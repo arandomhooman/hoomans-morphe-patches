@@ -18,7 +18,7 @@ val blockLiveAdsPatch = bytecodePatch(
             name = "Twitch",
             packageName = "tv.twitch.android.app",
             appIconColor = 0x9147FF,
-            targets = listOf(AppTarget("29.9.1")),
+            targets = listOf(AppTarget("30.7.2")),
         ),
     )
 

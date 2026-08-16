@@ -1,3 +1,39 @@
+## [1.47.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.46.0...v1.47.0) (2026-08-16)
+
+### ✨ New Features
+
+* add Tumblr disable screenshot sharing patch ([dc6e7ac](https://github.com/arandomhooman/hoomans-morphe-patches/commit/dc6e7ac784d1dc192f3e04cdd88b97749923f0b0))
+* add Twitch 7TV and BTTV emotes patch ([1a96a9a](https://github.com/arandomhooman/hoomans-morphe-patches/commit/1a96a9add7efa33c9b90a99f6f649c4ad1c74ba0))
+* support Battery Guru 2.5.0.6 ([8d2ae64](https://github.com/arandomhooman/hoomans-morphe-patches/commit/8d2ae64ea40fc0d9f55ee28a197ddf5db9dce852))
+* support Cronometer 4.57.4 ([4545850](https://github.com/arandomhooman/hoomans-morphe-patches/commit/45458501ba5b91200267d2fcdcba991241f1ed7e))
+* support Tumblr 45.8.0.110 ([0db2412](https://github.com/arandomhooman/hoomans-morphe-patches/commit/0db241228ceb6802e8676b3d842c2aa0e7ba355c))
+* support Twitch 30.7.2 ([083df8c](https://github.com/arandomhooman/hoomans-morphe-patches/commit/083df8c989110f9d6cfd1812ea6e7628c6245b97))
+
+## [1.46.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.45.0...v1.46.0) (2026-08-16)
+
+### ✨ New Features
+
+* add SwiftKey privacy patches ([72e918b](https://github.com/arandomhooman/hoomans-morphe-patches/commit/72e918b91b27198c13be24affbf6fcdf3856f7f1))
+
+## [1.45.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.44.0...v1.45.0) (2026-08-15)
+
+### ✨ New Features
+
+* add Moneta Unlock Plus patch ([63d438f](https://github.com/arandomhooman/hoomans-morphe-patches/commit/63d438f5356b26e93071b26234348e350d1cf1df))
+
+## [1.44.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.43.4...v1.44.0) (2026-08-13)
+
+### 🐛 Bug Fixes
+
+* hide DirectChat message-bubble ad in Unlock Premium ([c5b42c4](https://github.com/arandomhooman/hoomans-morphe-patches/commit/c5b42c4c86c4c9ed02d2adeed1738c1bbf17ff3a))
+* resolve reported app regressions ([c24c92c](https://github.com/arandomhooman/hoomans-morphe-patches/commit/c24c92ca14f93893fc086f34c15963b18c2f381b))
+* resolve reported patch regressions ([332560b](https://github.com/arandomhooman/hoomans-morphe-patches/commit/332560b405623d8888802d7fc89c98af0e9235ae))
+* resolve Symfonium playback and Poweramp settings crashes ([7fe01ae](https://github.com/arandomhooman/hoomans-morphe-patches/commit/7fe01aee708e3b2114b1e4f7a47d5c7b78a0e1f3))
+
+### ✨ New Features
+
+* add DirectChat unlock premium patch ([5c670b0](https://github.com/arandomhooman/hoomans-morphe-patches/commit/5c670b05587cd2f24fc8086c397cf2287f6014d6))
+
 ## [1.44.0-dev.4](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.44.0-dev.3...v1.44.0-dev.4) (2026-08-13)
 
 ### 🐛 Bug Fixes
