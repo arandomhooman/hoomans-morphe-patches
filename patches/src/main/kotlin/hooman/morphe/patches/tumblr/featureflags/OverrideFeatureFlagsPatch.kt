@@ -37,7 +37,7 @@ val overrideFeatureFlagsPatch = bytecodePatch(
             name = "Tumblr",
             packageName = "com.tumblr",
             appIconColor = 0x001935,
-            targets = listOf(AppTarget("45.0.0.109")),
+            targets = listOf(AppTarget("45.8.0.110")),
         ),
     )
 
