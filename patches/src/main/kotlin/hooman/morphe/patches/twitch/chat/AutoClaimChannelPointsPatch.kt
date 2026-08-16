@@ -18,14 +18,14 @@ val autoClaimChannelPointsPatch = bytecodePatch(
             name = "Twitch",
             packageName = "tv.twitch.android.app",
             appIconColor = 0x9147FF,
-            targets = listOf(AppTarget("29.9.1")),
+            targets = listOf(AppTarget("30.7.2")),
         ),
     )
 
     execute {
         // The state provider rebuilds the button's view state on every update. When the incoming state
         // (p1) carries an active claim (field d), a bonus is waiting. Fire the claim through the data
-        // provider it already holds (field m, sk8.H(claimId, ChatModeMetadata)) before building the
+        // provider it already holds (field m, ir8.H(claimId, ChatModeMetadata)) before building the
         // state, passing the claim id (ActiveClaimModel.a) and null metadata. A null claim means no
         // bonus is up, so we skip. Re-claiming a spent bonus is a harmless server no-op, so this is safe
         // even though the method runs on every state update.
@@ -33,12 +33,12 @@ val autoClaimChannelPointsPatch = bytecodePatch(
         method.addInstructionsWithLabels(
             0,
             """
-                iget-object v0, p1, Lxg8;->d:Lnb;
+                iget-object v0, p1, Lmn8;->d:Lkb;
                 if-eqz v0, :skip
-                iget-object v1, v0, Lnb;->a:Ljava/lang/String;
-                iget-object v2, p0, Lkh8;->m:Lsk8;
+                iget-object v1, v0, Lkb;->a:Ljava/lang/String;
+                iget-object v2, p0, Lzn8;->m:Lir8;
                 const/4 v3, 0x0
-                invoke-interface {v2, v1, v3}, Lsk8;->H(Ljava/lang/String;Ltv/twitch/android/shared/one/chat/pub/ChatModeMetadata;)V
+                invoke-interface {v2, v1, v3}, Lir8;->H(Ljava/lang/String;Ltv/twitch/android/shared/one/chat/pub/ChatModeMetadata;)V
             """,
             ExternalLabel("skip", method.getInstruction(0)),
         )
