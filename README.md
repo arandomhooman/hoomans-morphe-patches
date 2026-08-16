@@ -10,18 +10,19 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 ## 🩹 Patches
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.46.0](https://github.com/arandomhooman/hoomans-morphe-patches/releases/tag/v1.46.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;57 patches total
+> **[v1.47.0](https://github.com/arandomhooman/hoomans-morphe-patches/releases/tag/v1.47.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;59 patches total
 <details>
-<summary>📦 Twitch&nbsp;&nbsp;•&nbsp;&nbsp;4 patches</summary>
+<summary>📦 Twitch&nbsp;&nbsp;•&nbsp;&nbsp;5 patches</summary>
 <br>
 
 **🎯 Supported versions:**
 
-| 29.9.1 |
+| 30.7.2 |
 | :---: |
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
+| [7TV and BTTV emotes](#7tv-and-bttv-emotes) | Renders global and current-channel 7TV and BTTV emotes in incoming live chat. Type an emote code normally to send it; this patch does not add a picker or provider login. |  |
 | [Auto claim channel points](#auto-claim-channel-points) | Claims the channel points bonus chest for you automatically. Whenever Twitch makes a bonus available, the claim fires on its own so you don't have to tap the chest. |  |
 | [Block live ads](#block-live-ads) | Routes live streams through a free third-party proxy that strips the ads baked into the stream, so the proxy has to be up for playback to work; turn this patch off if it goes down. Mid-stream ads get dropped reliably, but a single preroll can still slip through when you first open a channel and Twitch has flagged the shared proxy. VOD ads aren't covered. |  |
 | [Hide display ads](#hide-display-ads) | Hides the banner, overlay, and in-feed display ads Twitch shows around the app. This doesn't touch the video ads in the stream itself. |  |
@@ -30,12 +31,12 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 </details>
 
 <details>
-<summary>📦 Tumblr&nbsp;&nbsp;•&nbsp;&nbsp;7 patches</summary>
+<summary>📦 Tumblr&nbsp;&nbsp;•&nbsp;&nbsp;8 patches</summary>
 <br>
 
 **🎯 Supported versions:**
 
-| 45.0.0.109 |
+| 45.8.0.110 |
 | :---: |
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
@@ -45,6 +46,7 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 | [Disable blog notification reminder](#disable-blog-notification-reminder) | Stops the reminder asking you to enable notifications for blogs you visit. |  |
 | [Disable gift message popup](#disable-gift-message-popup) | Stops the popup that suggests buying TumblrMart items for other people. |  |
 | [Disable in-app update](#disable-in-app-update) | Turns off the in-app update check and the update prompt. |  |
+| [Disable screenshot sharing](#disable-screenshot-sharing) | Stops the share sheet that pops up when you take a screenshot in the app. |  |
 | [Enable premium UI](#enable-premium-ui) | Turns on the cosmetic Tumblr Premium look: the premium badge and the premium settings entry. This only changes how the app looks on your device. It does not buy or unlock anything on Tumblr's side, so ad-free, the badge on your blog, and anything the server checks still need a real subscription. Use "Remove ads" for an actually ad-free feed. |  |
 | [Remove ads](#remove-ads) | Removes the ads in Tumblr: the dashboard ads from the ad networks and the Blaze posts (the paid-promoted posts other people pay to inject into the feed). It leaves your own following feed and reblogs untouched. Premium content like ad-free badges and TumblrMart items are sold by Tumblr's servers and still need a purchase. |  |
 
@@ -196,7 +198,7 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 
 **🎯 Supported versions:**
 
-| 4.56.0 |
+| 4.57.4 |
 | :---: |
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
@@ -226,8 +228,8 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 
 **🎯 Supported versions:**
 
-| 2.4.8.1 | 2.5.0.2-beta1 |
-| :---: | :---: |
+| 2.4.8.1 | 2.5.0.2-beta1 | 2.5.0.6 |
+| :---: | :---: | :---: |
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|

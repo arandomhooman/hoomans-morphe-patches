@@ -1,3 +1,14 @@
+## [1.47.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.46.0...v1.47.0) (2026-08-16)
+
+### ✨ New Features
+
+* add Tumblr disable screenshot sharing patch ([dc6e7ac](https://github.com/arandomhooman/hoomans-morphe-patches/commit/dc6e7ac784d1dc192f3e04cdd88b97749923f0b0))
+* add Twitch 7TV and BTTV emotes patch ([1a96a9a](https://github.com/arandomhooman/hoomans-morphe-patches/commit/1a96a9add7efa33c9b90a99f6f649c4ad1c74ba0))
+* support Battery Guru 2.5.0.6 ([8d2ae64](https://github.com/arandomhooman/hoomans-morphe-patches/commit/8d2ae64ea40fc0d9f55ee28a197ddf5db9dce852))
+* support Cronometer 4.57.4 ([4545850](https://github.com/arandomhooman/hoomans-morphe-patches/commit/45458501ba5b91200267d2fcdcba991241f1ed7e))
+* support Tumblr 45.8.0.110 ([0db2412](https://github.com/arandomhooman/hoomans-morphe-patches/commit/0db241228ceb6802e8676b3d842c2aa0e7ba355c))
+* support Twitch 30.7.2 ([083df8c](https://github.com/arandomhooman/hoomans-morphe-patches/commit/083df8c989110f9d6cfd1812ea6e7628c6245b97))
+
 ## [1.46.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.45.0...v1.46.0) (2026-08-16)
 
 ### ✨ New Features
