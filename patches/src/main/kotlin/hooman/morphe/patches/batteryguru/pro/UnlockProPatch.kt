@@ -24,6 +24,7 @@ val unlockProPatch = bytecodePatch(
             targets = listOf(
                 AppTarget("2.4.8.1"),
                 AppTarget("2.5.0.2-beta1"),
+                AppTarget("2.5.0.6"),
             ),
         ),
     )
