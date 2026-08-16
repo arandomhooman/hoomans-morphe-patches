@@ -23,18 +23,18 @@ object DeletedMessageSpanCtorFingerprint : Fingerprint(
     },
 )
 
-// The community-points button state provider (kh8 = CommunityPointsButtonStateProvider). U2(state)
+// The community-points button state provider (zn8 = CommunityPointsButtonStateProvider). V2(state)
 // rebuilds the button's view state on every update; when the incoming state carries an active claim
 // (field d, an ActiveClaimModel) a bonus is waiting to be claimed. The provider holds the data
-// provider that performs the claim (field m, type sk8, exposing H(claimId, ChatModeMetadata)). R8
+// provider that performs the claim (field m, type ir8, exposing H(claimId, ChatModeMetadata)). R8
 // renames the class, so pin it by the MVP state-class name it keeps in a method signature string, plus
-// the U2(state)->viewState shape.
+// the V2(state)->viewState shape.
 object CommunityPointsStateProviderFingerprint : Fingerprint(
     classFingerprint = Fingerprint(
         strings = listOf("CommunityPointsButtonStateProvider\$State"),
     ),
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
-    name = "U2",
-    returnType = "Lvg8;",
-    parameters = listOf("Lxg8;"),
+    name = "V2",
+    returnType = "Lkn8;",
+    parameters = listOf("Lmn8;"),
 )

@@ -17,6 +17,6 @@ object DisplayAdResponseParserFingerprint : Fingerprint(
     ),
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
     name = "a",
-    returnType = "Lnq;",
+    returnType = "Ldq;",
     parameters = listOf("Lretrofit2/adapter/rxjava2/Result;", "Z"),
 )
