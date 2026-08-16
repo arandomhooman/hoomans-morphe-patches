@@ -23,7 +23,7 @@ val removeAdsPatch = bytecodePatch(
             name = "Tumblr",
             packageName = "com.tumblr",
             appIconColor = 0x001935,
-            targets = listOf(AppTarget("45.0.0.109")),
+            targets = listOf(AppTarget("45.8.0.110")),
         ),
     )
 
@@ -64,7 +64,7 @@ val removeAdsPatch = bytecodePatch(
         // extend Post), so an instance-of Post test alone misses it and the promo slips through.
         // Every item runs through the timeline-object factory nf0.c0.b(); returning null there drops it
         // before the feed builder collects it. Drop any BlazedPost outright, and drop a Post when either
-        // blaze flag is set (Post.p1()=getIsBlazed, I1()=getIsTumblrSponsoredPost, both R8-renamed),
+        // blaze flag is set (Post.q1()=getIsBlazed, K1()=getIsTumblrSponsoredPost, both R8-renamed),
         // else fall through to the original factory.
         val factory = TimelineObjectFactoryFingerprint.method
         factory.addInstructionsWithLabels(
@@ -78,9 +78,9 @@ val removeAdsPatch = bytecodePatch(
                 instance-of v1, v0, Lcom/tumblr/rumblr/model/post/Post;
                 if-eqz v1, :original
                 check-cast v0, Lcom/tumblr/rumblr/model/post/Post;
-                invoke-virtual {v0}, Lcom/tumblr/rumblr/model/post/Post;->p1()Z
+                invoke-virtual {v0}, Lcom/tumblr/rumblr/model/post/Post;->q1()Z
                 move-result v1
-                invoke-virtual {v0}, Lcom/tumblr/rumblr/model/post/Post;->I1()Ljava/lang/Boolean;
+                invoke-virtual {v0}, Lcom/tumblr/rumblr/model/post/Post;->K1()Ljava/lang/Boolean;
                 move-result-object v0
                 sget-object v2, Ljava/lang/Boolean;->TRUE:Ljava/lang/Boolean;
                 invoke-virtual {v2, v0}, Ljava/lang/Boolean;->equals(Ljava/lang/Object;)Z
