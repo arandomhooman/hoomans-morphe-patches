@@ -1,3 +1,9 @@
+## [1.46.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.45.0...v1.46.0) (2026-08-16)
+
+### ✨ New Features
+
+* add SwiftKey privacy patches ([72e918b](https://github.com/arandomhooman/hoomans-morphe-patches/commit/72e918b91b27198c13be24affbf6fcdf3856f7f1))
+
 ## [1.45.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.44.0...v1.45.0) (2026-08-15)
 
 ### ✨ New Features

@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.45.0",
+  "version": "1.46.0",
   "patches": [
     {
       "name": "Auto claim channel points",
@@ -132,6 +132,33 @@
       "options": []
     },
     {
+      "name": "Disable cloud sign-in prompt",
+      "description": "Keeps the optional Microsoft cloud sign-in onboarding from replacing SwiftKey's launcher, so local keyboard setup and settings remain usable without an account. This does not sign in or unlock cloud sync and other account-backed features.",
+      "default": true,
+      "dependencies": [
+        "ResourcePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.touchtype.swiftkey",
+          "name": "Microsoft SwiftKey",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#00A4EF",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "9.13.13.5",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Disable gift message popup",
       "description": "Stops the popup that suggests buying TumblrMart items for other people.",
       "default": true,
@@ -174,6 +201,33 @@
           "targets": [
             {
               "version": "45.0.0.109",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Disable telemetry",
+      "description": "Stops SwiftKey's first-party telemetry records and uploads, Adjust attribution, Crashlytics, Firebase Sessions, legacy Google Analytics, and app exception reporting. Push messaging and the multipurpose job service stay enabled.",
+      "default": true,
+      "dependencies": [
+        "ResourcePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.touchtype.swiftkey",
+          "name": "Microsoft SwiftKey",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#00A4EF",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "9.13.13.5",
               "isExperimental": false,
               "minSdk": null,
               "description": null
