@@ -1,3 +1,9 @@
+## [1.48.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.47.0...v1.48.0) (2026-08-16)
+
+### ✨ New Features
+
+* fix Twitch login on patched builds ([fb7d9be](https://github.com/arandomhooman/hoomans-morphe-patches/commit/fb7d9be321401a8d4c791a9331416dd6dee567f0))
+
 ## [1.47.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.46.0...v1.47.0) (2026-08-16)
 
 ### ✨ New Features
