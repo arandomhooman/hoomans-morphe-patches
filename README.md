@@ -10,7 +10,7 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 ## 🩹 Patches
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.49.0](https://github.com/arandomhooman/hoomans-morphe-patches/releases/tag/v1.49.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;63 patches total
+> **[v1.49.1](https://github.com/arandomhooman/hoomans-morphe-patches/releases/tag/v1.49.1)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;63 patches total
 <details>
 <summary>📦 Twitch&nbsp;&nbsp;•&nbsp;&nbsp;6 patches</summary>
 <br>
@@ -230,7 +230,7 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 
 **🎯 Supported versions:**
 
-| 4.57.4 |
+| 4.56.0 |
 | :---: |
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |

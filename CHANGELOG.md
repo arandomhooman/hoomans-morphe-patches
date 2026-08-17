@@ -1,3 +1,9 @@
+## [1.49.1](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.49.0...v1.49.1) (2026-08-17)
+
+### 🐛 Bug Fixes
+
+* **Cronometer:** temporarily remove 4.57.4 support until it is fixed ([5bf005b](https://github.com/arandomhooman/hoomans-morphe-patches/commit/5bf005baf30cf6006667057ccd40cbac54fcd95a))
+
 ## [1.49.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.48.1...v1.49.0) (2026-08-17)
 
 ### ✨ New Features
