@@ -1,3 +1,10 @@
+## [1.49.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.48.1...v1.49.0) (2026-08-17)
+
+### ✨ New Features
+
+* add AutoZen unlock premium and disable analytics patches ([869b233](https://github.com/arandomhooman/hoomans-morphe-patches/commit/869b233115bc18bf4efdcb35970609749beff24d))
+* add Google Phone call recording patch ([b6fbfa9](https://github.com/arandomhooman/hoomans-morphe-patches/commit/b6fbfa95065e5de593724770ab6b3bf237a91042))
+
 ## [1.48.1](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.48.0...v1.48.1) (2026-08-17)
 
 ### 🐛 Bug Fixes

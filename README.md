@@ -10,7 +10,7 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 ## 🩹 Patches
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.48.1](https://github.com/arandomhooman/hoomans-morphe-patches/releases/tag/v1.48.1)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;60 patches total
+> **[v1.49.0](https://github.com/arandomhooman/hoomans-morphe-patches/releases/tag/v1.49.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;63 patches total
 <details>
 <summary>📦 Twitch&nbsp;&nbsp;•&nbsp;&nbsp;6 patches</summary>
 <br>
@@ -54,6 +54,22 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 </details>
 
 <details>
+<summary>📦 AutoZen&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 8.0.10 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Disable analytics](#disable-analytics) | Stops AutoZen from sending its own usage analytics. All app events, screen views, and user properties flow through one tracker list; this empties it so nothing is reported. |  |
+| [Unlock premium](#unlock-premium) | Unlocks AutoZen's premium features (all tiers and lifetime), which also removes the ads since the ad manager only shows ads to non-premium users. Anything AutoZen verifies on its own servers is not affected. |  |
+
+</details>
+
+<details>
 <summary>📦 Microsoft SwiftKey&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
 <br>
 
@@ -81,6 +97,21 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Enable Premium](#enable-premium) | Unlocks BlockerHero's premium features without a subscription or Google sign-in, like uninstall protection, focus mode, custom blocklists, daily and weekly time limits, and more. |  |
+
+</details>
+
+<details>
+<summary>📦 Google Phone&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 161.0.726587057 | 161.0.726587057-downloadable |
+| :---: | :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Enable call recording](#enable-call-recording) | Turns on the built-in call recorder in regions where Google normally hides it. Recordings stay on your phone. Recording calls is regulated in many places, so check what is allowed where you live before using it. |  |
 
 </details>
 
