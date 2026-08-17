@@ -4,6 +4,7 @@ import app.morphe.patcher.patch.AppTarget
 import app.morphe.patcher.patch.Compatibility
 import app.morphe.patcher.patch.PatchException
 import app.morphe.patcher.patch.rawResourcePatch
+import hooman.morphe.patches.cronometer.license.disablePairipLicenseCheckPatch
 
 // Cronometer is Flutter: logic is AOT-compiled into libapp.so, so there's nothing in the DEX to
 // fingerprint. Gold is gated on one cached override (Blutter's field_67) on the User singleton, set
@@ -17,6 +18,10 @@ val unlockGoldPatch = rawResourcePatch(
         "reports, the fasting tracker, custom biometrics, an ad-free view, and more. Anything " +
         "Cronometer works out on its own servers still needs Gold.",
 ) {
+    // 4.57.4 added a PairIP Google Play license check that closes the app on a sideloaded install before
+    // any UI loads. Bundle the DEX bypass so the patched app can actually open.
+    dependsOn(disablePairipLicenseCheckPatch)
+
     compatibleWith(
         Compatibility(
             name = "Cronometer",
