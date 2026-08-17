@@ -1,3 +1,9 @@
+## [1.48.1](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.48.0...v1.48.1) (2026-08-17)
+
+### 🐛 Bug Fixes
+
+* unblock Cronometer 4.57.4 launch by bypassing the PairIP license check ([21a89d7](https://github.com/arandomhooman/hoomans-morphe-patches/commit/21a89d7ba6ff7e8fbe040291c12cde809fdb187e))
+
 ## [1.48.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.47.0...v1.48.0) (2026-08-16)
 
 ### ✨ New Features
