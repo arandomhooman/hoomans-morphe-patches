@@ -1,3 +1,13 @@
+## [1.50.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.49.1...v1.50.0) (2026-08-18)
+
+### ✨ New Features
+
+* support Adobe Acrobat 26.7.1.47181 ([ca40497](https://github.com/arandomhooman/hoomans-morphe-patches/commit/ca404977baf342a1d73b2a93975471a1104899cd))
+* support Cashew 6.6.11 ([8e7cc11](https://github.com/arandomhooman/hoomans-morphe-patches/commit/8e7cc113dcc8ba7009f89c195859214c1d999bec))
+* support Collectr 2.5.6 ([1f54080](https://github.com/arandomhooman/hoomans-morphe-patches/commit/1f54080d4a8db9b1f9a954424703f8b105f21672))
+* support Cronometer 4.57.2 ([bbf8199](https://github.com/arandomhooman/hoomans-morphe-patches/commit/bbf81998808855ac92ed979c80ca5cb249f0a050))
+* support FolderSync 4.12.0 ([1d08212](https://github.com/arandomhooman/hoomans-morphe-patches/commit/1d08212f96c64d1569eafee1a8e3284f48318d3d))
+
 ## [1.49.1](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.49.0...v1.49.1) (2026-08-17)
 
 ### 🐛 Bug Fixes
