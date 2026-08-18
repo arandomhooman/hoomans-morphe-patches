@@ -9,7 +9,9 @@ import app.morphe.patcher.patch.rawResourcePatch
 // fingerprint. Gold is gated on one cached override (Blutter's field_63) on the User singleton, set
 // from the account payload. NOP-ing the tbnz in its setter makes the bool always store true, which
 // unlocks every Gold gate at once. Offsets shift between releases, so match a byte signature
-// anchored on the field_63 store and refuse to patch if it isn't uniquely present.
+// anchored on the field store and refuse to patch if it isn't uniquely present. Each supported build
+// gets its own signature and we apply whichever one is uniquely present; 4.56.0 and 4.57.2 store to
+// field_63 and share the exact same setter bytes, so one signature covers both.
 @Suppress("unused")
 val unlockGoldPatch = rawResourcePatch(
     name = "Unlock Gold",
@@ -22,7 +24,7 @@ val unlockGoldPatch = rawResourcePatch(
             name = "Cronometer",
             packageName = "com.cronometer.android.gold",
             appIconColor = 0xF26B21,
-            targets = listOf(AppTarget("4.56.0")),
+            targets = listOf(AppTarget("4.56.0"), AppTarget("4.57.2")),
         ),
     )
 
@@ -39,23 +41,30 @@ val unlockGoldPatch = rawResourcePatch(
             )
         }
 
+        // One signature per supported build; each is the setter's 7-instruction sequence:
         // tbnz w0,#4,+0xc | add x2,NULL,#0x20 (true) | b +8 | add x2,NULL,#0x30 (false)
-        // | ldur x0,[fp,#-0x18] | ldur x1,[fp,#-8] | stur w2,[x0,#0x63]  (field_63 store)
-        val signature = intArrayOf(
-            0x60, 0x00, 0x20, 0x37, // tbnz w0, #4, +0xc   <- patched to NOP
-            0xC2, 0x82, 0x00, 0x91, // add  x2, NULL, #0x20  (true)
-            0x02, 0x00, 0x00, 0x14, // b    +0x8
-            0xC2, 0xC2, 0x00, 0x91, // add  x2, NULL, #0x30  (false)
-            0xA0, 0x83, 0x5E, 0xF8, // ldur x0, [fp, #-0x18]
-            0xA1, 0x83, 0x5F, 0xF8, // ldur x1, [fp, #-8]
-            0x02, 0x30, 0x06, 0xB8, // stur w2, [x0, #0x63]  (User.field_63 = gold override)
-        ).map { it.toByte() }.toByteArray()
+        // | ldur x0,[fp,#-0x18] | ldur x1,[fp,#-8] | stur w2,[x0,#<field off>]  (field store)
+        // The leading tbnz (first 4 bytes) is what gets NOP-ed. 4.56.0 and 4.57.2 store to field_63
+        // and are byte-identical, so one entry covers both; a version that moves the offset adds one.
+        val signatures = listOf(
+            intArrayOf(
+                0x60, 0x00, 0x20, 0x37, // tbnz w0, #4, +0xc   <- patched to NOP
+                0xC2, 0x82, 0x00, 0x91, // add  x2, NULL, #0x20  (true)
+                0x02, 0x00, 0x00, 0x14, // b    +0x8
+                0xC2, 0xC2, 0x00, 0x91, // add  x2, NULL, #0x30  (false)
+                0xA0, 0x83, 0x5E, 0xF8, // ldur x0, [fp, #-0x18]
+                0xA1, 0x83, 0x5F, 0xF8, // ldur x1, [fp, #-8]
+                0x02, 0x30, 0x06, 0xB8, // stur w2, [x0, #0x63]  (User.field_63 = gold override; 4.56.0 + 4.57.2)
+            ).map { it.toByte() }.toByteArray(),
+        )
 
         val bytes = lib.readBytes()
-        val match = bytes.findUnique(signature)
+        // Apply whichever signature is uniquely present. findUnique throws if a signature matches
+        // more than once, so an ambiguous match is a hard error rather than a blind patch.
+        val match = signatures.firstNotNullOfOrNull { bytes.findUnique(it) }
             ?: throw PatchException(
                 "Gold-override signature not found in $libPath. This patch targets " +
-                    "Cronometer 4.56.0 (arm64); the AOT layout likely changed in a newer " +
+                    "Cronometer 4.56.0 and 4.57.2 (arm64); the AOT layout likely changed in a newer " +
                     "build and the signature must be re-derived.",
             )
 
