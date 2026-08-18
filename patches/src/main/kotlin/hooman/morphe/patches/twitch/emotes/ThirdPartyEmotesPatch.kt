@@ -19,8 +19,11 @@ private const val EXTENSION = "Lapp/morphe/extension/twitch/emotes/EmoteSupport;
 @Suppress("unused")
 val thirdPartyEmotesPatch = bytecodePatch(
     name = "7TV and BTTV emotes",
-    description = "Renders global and current-channel 7TV and BTTV emotes in incoming live chat. " +
-        "Type an emote code normally to send it; this patch does not add a picker or provider login.",
+    description = "Displays 7TV and BTTV emotes directly in Twitch live chat. It loads the global " +
+        "emote sets and the emotes for the channel you are watching, then replaces matching emote " +
+        "codes in incoming messages with their emote images. Sending works through normal Twitch " +
+        "chat: type an emote's text code and send it normally. The patch does not add an emote " +
+        "picker, 7TV/BTTV login, or account linking.",
 ) {
     compatibleWith(
         Compatibility(
