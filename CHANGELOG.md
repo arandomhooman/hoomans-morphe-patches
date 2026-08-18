@@ -1,3 +1,9 @@
+## [1.50.1](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.50.0...v1.50.1) (2026-08-18)
+
+### 🐛 Bug Fixes
+
+* stop the Twitch 7TV/BTTV emotes patch from breaking chat ([57d24ee](https://github.com/arandomhooman/hoomans-morphe-patches/commit/57d24ee1cec93c34622613d0cf749ba6311767f2))
+
 ## [1.50.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.49.1...v1.50.0) (2026-08-18)
 
 ### ✨ New Features
