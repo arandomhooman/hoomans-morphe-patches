@@ -27,19 +27,27 @@ public final class EmoteSupport {
             new View.OnAttachStateChangeListener() {
                 @Override
                 public void onViewAttachedToWindow(View view) {
-                    TextView textView = (TextView) view;
-                    BoundMessage message;
-                    synchronized (LOCK) {
-                        message = BOUND_MESSAGES.get(textView);
-                    }
-                    if (message != null) {
-                        scheduleRender(textView, message);
+                    // Runs on the chat RecyclerView's views; a throw here would be uncaught on the UI
+                    // thread and crash Twitch, so keep it contained.
+                    try {
+                        TextView textView = (TextView) view;
+                        BoundMessage message;
+                        synchronized (LOCK) {
+                            message = BOUND_MESSAGES.get(textView);
+                        }
+                        if (message != null) {
+                            scheduleRender(textView, message);
+                        }
+                    } catch (Throwable ignored) {
                     }
                 }
 
                 @Override
                 public void onViewDetachedFromWindow(View view) {
-                    stopAnimations(((TextView) view).getText());
+                    try {
+                        stopAnimations(((TextView) view).getText());
+                    } catch (Throwable ignored) {
+                    }
                 }
             };
 
@@ -48,17 +56,44 @@ public final class EmoteSupport {
     private EmoteSupport() {
     }
 
+    // Patched into Twitch's ChannelChatConnectionKey constructor. That constructor has no handler of
+    // its own, so a throw here would abort chat-connection setup; never let anything escape. (#196)
     public static void onChannelChanged(String channelId, String channelName) {
-        String normalized = normalizeChannelId(channelId);
-        if (normalized != null) {
-            lastRoomId = normalized;
+        try {
+            String normalized = normalizeChannelId(channelId);
+            if (normalized != null) {
+                lastRoomId = normalized;
+            }
+        } catch (Throwable ignored) {
         }
     }
 
+    // Patched in right after Twitch's own setText in the chat-row binder (udc.D). That binder runs
+    // inside RecyclerView.onBindViewHolder and has no try/catch, so anything thrown here unwinds
+    // through the adapter and takes out the whole chat list and message input. This hook must never
+    // throw. (#196)
     public static void bind(TextView textView, String sourceChannelId) {
         if (textView == null) {
             return;
         }
+        try {
+            bindInternal(textView, sourceChannelId);
+        } catch (Throwable ignored) {
+            forget(textView);
+        }
+    }
+
+    private static void forget(TextView textView) {
+        try {
+            synchronized (LOCK) {
+                BOUND_MESSAGES.remove(textView);
+            }
+            textView.removeOnAttachStateChangeListener(VIEW_LIFECYCLE);
+        } catch (Throwable ignored) {
+        }
+    }
+
+    private static void bindInternal(TextView textView, String sourceChannelId) {
         CharSequence current = textView.getText();
         synchronized (LOCK) {
             BOUND_MESSAGES.remove(textView);
@@ -86,6 +121,15 @@ public final class EmoteSupport {
     }
 
     private static void render(TextView textView, BoundMessage message) {
+        // Reached on the UI thread from bind and from posted refreshes; contain any failure so a bad
+        // emote/image can never crash Twitch or blank the row.
+        try {
+            renderInternal(textView, message);
+        } catch (Throwable ignored) {
+        }
+    }
+
+    private static void renderInternal(TextView textView, BoundMessage message) {
         synchronized (LOCK) {
             if (BOUND_MESSAGES.get(textView) != message) {
                 return;
@@ -205,28 +249,36 @@ public final class EmoteSupport {
         return trimmed;
     }
 
+    // Invoked from the catalog/image executor threads. An uncaught throw here would be fatal to the
+    // whole app, so keep it contained.
     private static void refreshImage(String url) {
-        List<Map.Entry<TextView, BoundMessage>> snapshot = boundMessages();
-        for (Map.Entry<TextView, BoundMessage> entry : snapshot) {
-            TextView textView = entry.getKey();
-            BoundMessage message = entry.getValue();
-            if (textView != null && message != null && message.pendingImages.contains(url)) {
-                scheduleRender(textView, message);
+        try {
+            List<Map.Entry<TextView, BoundMessage>> snapshot = boundMessages();
+            for (Map.Entry<TextView, BoundMessage> entry : snapshot) {
+                TextView textView = entry.getKey();
+                BoundMessage message = entry.getValue();
+                if (textView != null && message != null && message.pendingImages.contains(url)) {
+                    scheduleRender(textView, message);
+                }
             }
+        } catch (Throwable ignored) {
         }
     }
 
     private static void refreshCatalog(String channelId) {
-        List<Map.Entry<TextView, BoundMessage>> snapshot = boundMessages();
-        for (Map.Entry<TextView, BoundMessage> entry : snapshot) {
-            TextView textView = entry.getKey();
-            BoundMessage message = entry.getValue();
-            if (textView == null || message == null) {
-                continue;
+        try {
+            List<Map.Entry<TextView, BoundMessage>> snapshot = boundMessages();
+            for (Map.Entry<TextView, BoundMessage> entry : snapshot) {
+                TextView textView = entry.getKey();
+                BoundMessage message = entry.getValue();
+                if (textView == null || message == null) {
+                    continue;
+                }
+                if (channelId == null || channelId.equals(message.channelId)) {
+                    scheduleRender(textView, message);
+                }
             }
-            if (channelId == null || channelId.equals(message.channelId)) {
-                scheduleRender(textView, message);
-            }
+        } catch (Throwable ignored) {
         }
     }
 
