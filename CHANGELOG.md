@@ -1,3 +1,9 @@
+## [1.50.2](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.50.1...v1.50.2) (2026-08-18)
+
+### 🐛 Bug Fixes
+
+* clarify Twitch 7TV and BTTV patch details ([702146d](https://github.com/arandomhooman/hoomans-morphe-patches/commit/702146df60fa1ffc9c8b76ef52ba50510252c625))
+
 ## [1.50.1](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.50.0...v1.50.1) (2026-08-18)
 
 ### 🐛 Bug Fixes
