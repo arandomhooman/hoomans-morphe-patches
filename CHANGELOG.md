@@ -1,3 +1,9 @@
+## [1.51.1](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.51.0...v1.51.1) (2026-08-25)
+
+### 🐛 Bug Fixes
+
+* remove Projectivy Launcher Unlock Premium patch (DMCA takedown request) ([e151176](https://github.com/arandomhooman/hoomans-morphe-patches/commit/e151176b337568dcbb30919b68331f01d9d11f80))
+
 ## [1.51.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.50.3...v1.51.0) (2026-08-25)
 
 ### ✨ New Features

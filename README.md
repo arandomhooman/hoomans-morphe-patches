@@ -10,7 +10,7 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 ## 🩹 Patches
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.51.0](https://github.com/arandomhooman/hoomans-morphe-patches/releases/tag/v1.51.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;64 patches total
+> **[v1.51.1](https://github.com/arandomhooman/hoomans-morphe-patches/releases/tag/v1.51.1)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;63 patches total
 <details>
 <summary>📦 Twitch&nbsp;&nbsp;•&nbsp;&nbsp;6 patches</summary>
 <br>
@@ -462,21 +462,6 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Unlock Premium](#unlock-premium) | Unlocks Poweramp's full version state and Feature Package #1. |  |
-
-</details>
-
-<details>
-<summary>📦 Projectivy Launcher&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
-<br>
-
-**🎯 Supported versions:**
-
-| 4.68 | 4.70 |
-| :---: | :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Premium](#unlock-premium) | Unlocks Projectivy Launcher's premium so the paywall stops sending you to the upgrade screen. Display profiles, custom wallpapers and backgrounds, parental controls, and the locked settings and customization options all open up. The gate is decided on the device, so there is no account to sign in to. |  |
 
 </details>
 
