@@ -448,6 +448,31 @@
       "options": []
     },
     {
+      "name": "No date first",
+      "description": "Moves undated tasks to the top of the task list in grouped views, so tasks without a due date appear before dated ones. The reordering is applied on the client side when the section list is built; synced data and server behaviour are untouched.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.todoist",
+          "name": "Todoist",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#E44332",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "v12190",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Remove Ads",
       "description": "Stops the banner and interstitial ads SofaScore shows around scores and between screens. Every ad site reads one decision method off the cached account, and the app's own ad master switch caches that method's result, so forcing it to \"no ads\" turns them all off with no login needed. The result holds across a sync because the switch re-reads the same method. Ads that are served by the video/story SDK inside embedded content are not affected. The patch also keeps Firebase notification registration compatible with the re-signed build. Re-signing breaks SofaScore's login (it only offers Google and Facebook sign-in, both of which reject the new signature), but removing ads does not need an account so the patch still works.",
       "default": true,
