@@ -4,6 +4,7 @@ import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.patch.AppTarget
 import app.morphe.patcher.patch.Compatibility
 import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patcher.patch.stringOption
 
 @Suppress("unused")
 val blockLiveAdsPatch = bytecodePatch(
@@ -21,6 +22,24 @@ val blockLiveAdsPatch = bytecodePatch(
         ),
     )
 
+    val proxyUrl by stringOption(
+        key = "proxyUrl",
+        title = "Custom Proxy URL",
+        default = "https://lb-as.cdn-perfprod.com/live/",
+        values = mapOf(
+            "https://eu.luminous.dev/live/" to "https://eu.luminous.dev/live/",
+            "https://as.luminous.dev/live/" to "https://as.luminous.dev/live/",
+            "https://lb-eu.cdn-perfprod.com/live/" to "https://lb-eu.cdn-perfprod.com/live/",
+            "https://lb-na.cdn-perfprod.com/live/" to "https://lb-na.cdn-perfprod.com/live/",
+            "https://lb-as.cdn-perfprod.com/live/" to "https://lb-as.cdn-perfprod.com/live/",
+            "https://lb-sa.cdn-perfprod.com/live/" to "https://lb-sa.cdn-perfprod.com/live/"
+        ),
+        required = true,
+        validator = {
+            value -> value != null && value.startsWith("https://") && value.endsWith("/")
+        }
+    )
+
     execute {
         // The live HLS URL is built in one lambda; its second instance field (b) holds the stream name.
         // Replace the whole body with PerfProd's live manifest URL. The proxy obtains its own token,
@@ -33,7 +52,7 @@ val blockLiveAdsPatch = bytecodePatch(
             """
                 new-instance v0, Ljava/lang/StringBuilder;
                 invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
-                const-string v1, "https://lb-as.cdn-perfprod.com/live/"
+                const-string v1, "$proxyUrl"
                 invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
                 iget-object v1, p0, $streamNameField
                 invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
