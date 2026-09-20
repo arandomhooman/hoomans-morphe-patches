@@ -3,12 +3,17 @@ package hooman.morphe.patches.tumblr.ads
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.instructions
 import app.morphe.patcher.patch.AppTarget
 import app.morphe.patcher.patch.Compatibility
 import app.morphe.patcher.patch.PatchException
 import app.morphe.patcher.patch.bytecodePatch
 import app.morphe.patcher.util.smali.ExternalLabel
 import com.android.tools.smali.dexlib2.AccessFlags
+import com.android.tools.smali.dexlib2.Opcode
+import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
+import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
+import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 
 @Suppress("unused")
 val removeAdsPatch = bytecodePatch(
@@ -147,6 +152,55 @@ val removeAdsPatch = bytecodePatch(
                 return-object v0
             """,
             ExternalLabel("original", factory.getInstruction(0)),
+        )
+
+        // The blog-search cache accepts the factory results as a platform List and dereferences every
+        // element. Unlike the dashboard builder, it does not discard null entries. Skip the nulls the
+        // ad filter returns before TimelineMemoryCacheImpl indexes them by timeline ID.
+        val memoryCacheDef = classDefByStrings("TimelineMemoryCacheImpl").singleOrNull()
+            ?: throw PatchException(
+                "Tumblr: TimelineMemoryCacheImpl was not found uniquely. The timeline cache changed.",
+            )
+        val memoryCache = mutableClassDefBy(memoryCacheDef)
+        val bulkAdd = memoryCache.methods.singleOrNull { method ->
+            method.returnType == "V" &&
+                method.parameterTypes == listOf("Ljava/util/List;") &&
+                method.implementation?.instructions?.any { instruction ->
+                    val reference = (instruction as? ReferenceInstruction)?.reference as? MethodReference
+                    reference?.definingClass == "Lcom/google/common/collect/Multimap;" &&
+                        reference.name == "put"
+                } == true
+        } ?: throw PatchException(
+            "Tumblr: TimelineMemoryCacheImpl bulk add(List) method was not found uniquely.",
+        )
+
+        val cacheInstructions = bulkAdd.instructions
+        val dereferenceIndex = cacheInstructions.indexOfFirst { instruction ->
+            val reference = (instruction as? ReferenceInstruction)?.reference as? MethodReference
+            reference?.definingClass == "Lhg0/n0;" &&
+                reference.name == "l" &&
+                reference.returnType == "Lcom/tumblr/rumblr/model/Timelineable;"
+        }
+        val timelineObjectRegister = (cacheInstructions.getOrNull(dereferenceIndex) as? FiveRegisterInstruction)
+            ?.registerC
+            ?: throw PatchException(
+                "Tumblr: TimelineMemoryCacheImpl timeline-object dereference changed shape.",
+            )
+        val putIndex = cacheInstructions.indexOfFirst { instruction ->
+            val reference = (instruction as? ReferenceInstruction)?.reference as? MethodReference
+            reference?.definingClass == "Lcom/google/common/collect/Multimap;" &&
+                reference.name == "put"
+        }
+        val continueIndex = (putIndex + 1 until cacheInstructions.size).firstOrNull { index ->
+            cacheInstructions[index].opcode in setOf(Opcode.GOTO, Opcode.GOTO_16, Opcode.GOTO_32)
+        } ?: throw PatchException(
+            "Tumblr: TimelineMemoryCacheImpl bulk-add loop back edge was not found.",
+        )
+
+        bulkAdd.addInstructionsWithLabels(
+            dereferenceIndex,
+            "if-eqz v$timelineObjectRegister, :next",
+            ExternalLabel("next", bulkAdd.getInstruction(continueIndex)),
         )
     }
 }
