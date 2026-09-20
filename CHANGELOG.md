@@ -1,3 +1,14 @@
+## [1.52.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.51.1...v1.52.0) (2026-09-20)
+
+### 🐛 Bug Fixes
+
+* **tumblr:** guard ad filtering against null items ([41abcaf](https://github.com/arandomhooman/hoomans-morphe-patches/commit/41abcafa6f86e03547817f6479e089e6dd8ad6b1))
+* **twitch:** repair ads and deleted messages ([7db6045](https://github.com/arandomhooman/hoomans-morphe-patches/commit/7db604596da5f1d47123b1e60705b95b492ffda0))
+
+### ✨ New Features
+
+* **twitch:** restore push notifications ([0c11967](https://github.com/arandomhooman/hoomans-morphe-patches/commit/0c11967f4b1a92a3a655d2f0a687193607b383f7))
+
 ## [1.51.1](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.51.0...v1.51.1) (2026-08-25)
 
 ### 🐛 Bug Fixes
