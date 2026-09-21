@@ -10,7 +10,7 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 ## 🩹 Patches
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.52.0](https://github.com/arandomhooman/hoomans-morphe-patches/releases/tag/v1.52.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;64 patches total
+> **[v1.52.1](https://github.com/arandomhooman/hoomans-morphe-patches/releases/tag/v1.52.1)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;64 patches total
 <details>
 <summary>📦 Twitch&nbsp;&nbsp;•&nbsp;&nbsp;7 patches</summary>
 <br>
@@ -327,7 +327,7 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
-| [Unlock Plus](#unlock-plus) | Removes ads and unlocks the on-device Quizlet Plus features without a subscription, including unlimited Learn and Test rounds and textbook explanation views that free accounts meter. The AI tools, like Magic Notes and generation, run on Quizlet's servers and stay locked. |  |
+| [Unlock Plus](#unlock-plus) | Removes ads and unlocks the on-device Quizlet Plus features without a subscription, including unlimited Learn and Test rounds. Textbook and expert answers remain subject to Quizlet's server limits. AI tools like Magic Notes and generation stay locked. |  |
 
 </details>
 
