@@ -10,7 +10,7 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 ## 🩹 Patches
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.52.1](https://github.com/arandomhooman/hoomans-morphe-patches/releases/tag/v1.52.1)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;64 patches total
+> **[v1.53.0](https://github.com/arandomhooman/hoomans-morphe-patches/releases/tag/v1.53.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;64 patches total
 <details>
 <summary>📦 Twitch&nbsp;&nbsp;•&nbsp;&nbsp;7 patches</summary>
 <br>
@@ -24,7 +24,7 @@ Personal [Morphe](https://morphe.software) patches for paid Android apps.
 |----------|----------------|-----------|
 | [7TV and BTTV emotes](#7tv-and-bttv-emotes) | Displays 7TV and BTTV emotes directly in Twitch live chat. It loads the global emote sets and the emotes for the channel you are watching, then replaces matching emote codes in incoming messages with their emote images. Sending works through normal Twitch chat: type an emote's text code and send it normally. The patch does not add an emote picker, 7TV/BTTV login, or account linking. |  |
 | [Auto claim channel points](#auto-claim-channel-points) | Claims the channel points bonus chest for you automatically. Whenever Twitch makes a bonus available, the claim fires on its own so you don't have to tap the chest. |  |
-| [Block live ads](#block-live-ads) | Routes live streams through a free third-party manifest proxy in an ad-free region. Playback depends on the proxy, and the shared exit can still occasionally receive ads. VOD ads aren't covered. |  |
+| [Block live ads](#block-live-ads) | Routes live streams through a free third-party manifest proxy in an ad-free region. Playback depends on the proxy, and the shared exit can still occasionally receive ads. VOD ads aren't covered. | • Custom Proxy URL |
 | [Fix login](#fix-login) | Fixes the "This app version/OS is not currently supported" error that blocks login after the app has been patched. Twitch runs a Play Integrity check in the background and reports the result to its login server; re-signing makes that check fail, so the server refuses the login. This stops the app from sending that attestation, so it looks like a device without Google Play, where login works normally. It does not change anything else about how you log in. |  |
 | [Fix notifications](#fix-notifications) | Fixes push notifications after patching. Firebase rejects device registration because the patched APK has a different signing certificate; this sends Twitch's original certificate fingerprint only with Firebase Installations requests so registration can finish. |  |
 | [Hide display ads](#hide-display-ads) | Hides the banner, overlay, and in-feed display ads Twitch shows around the app. This doesn't touch the video ads in the stream itself. |  |

@@ -1,3 +1,9 @@
+## [1.53.0](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.52.1...v1.53.0) (2026-09-21)
+
+### ✨ New Features
+
+* **twitch:** add custom proxy URL option ([1b6c1c1](https://github.com/arandomhooman/hoomans-morphe-patches/commit/1b6c1c12aa748bdcb53afa8a3f61ec549a1ad0e3))
+
 ## [1.52.1](https://github.com/arandomhooman/hoomans-morphe-patches/compare/v1.52.0...v1.52.1) (2026-09-21)
 
 ### 🐛 Bug Fixes
