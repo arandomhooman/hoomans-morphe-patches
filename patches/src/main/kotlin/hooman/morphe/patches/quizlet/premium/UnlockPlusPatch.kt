@@ -16,9 +16,9 @@ import com.android.tools.smali.dexlib2.iface.reference.StringReference
 val unlockPlusPatch = bytecodePatch(
     name = "Unlock Plus",
     description = "Removes ads and unlocks the on-device Quizlet Plus features without a " +
-        "subscription, including unlimited Learn and Test rounds and textbook explanation views " +
-        "that free accounts meter. The AI tools, like Magic Notes and generation, run on " +
-        "Quizlet's servers and stay locked.",
+        "subscription, including unlimited Learn and Test rounds. Textbook and expert answers " +
+        "remain subject to Quizlet's server limits. AI tools like Magic Notes and generation " +
+        "stay locked.",
 ) {
     compatibleWith(
         Compatibility(
@@ -260,39 +260,8 @@ val unlockPlusPatch = bytecodePatch(
             }
         }
 
-        // Textbook / explanation answers use ExplanationsMeteringInfo (k1). Force ctor inputs so
-        // computed atLimit is false and remaining is large: numEvents=0, threshold=9999.
-        val explanationsMeteringDef = classDefByStrings("ExplanationsMeteringInfo(numEvents=")
-            .singleOrNull()
-            ?: throw PatchException(
-                "Quizlet: ExplanationsMeteringInfo class not found. Re-derive textbook metering pin.",
-            )
-        val explanationsMetering = mutableClassDefBy(explanationsMeteringDef)
-        val expCtor = explanationsMetering.methods.firstOrNull {
-            it.name == "<init>" && it.parameterTypes.size == 2 && it.returnType == "V"
-        } ?: throw PatchException("Quizlet: ExplanationsMeteringInfo(II) constructor not found.")
-        expCtor.addInstructions(
-            0,
-            """
-                const/4 p1, 0x0
-                const/16 p2, 0x270f
-            """,
-        )
-
-        // QuestionDetailsWithMetering / ExerciseDetailsWithMetering: force isContentLimited arg
-        // (3rd param p3) false before the original iputs run.
-        for (limitedPin in listOf(
-            "QuestionDetailsWithMetering(question=",
-            "ExerciseDetailsWithMetering(exerciseDetails=",
-        )) {
-            val def = classDefByStrings(limitedPin).singleOrNull()
-                ?: throw PatchException("Quizlet: $limitedPin host class not found.")
-            val host = mutableClassDefBy(def)
-            val ctor = host.methods.firstOrNull {
-                it.name == "<init>" && it.parameterTypes.size == 3 && it.returnType == "V"
-            } ?: throw PatchException("Quizlet: $limitedPin 3-arg constructor not found.")
-            ctor.addInstructions(0, "const/4 p3, 0x0")
-        }
+        // Preserve explanation meters and isContentLimited. Ignoring them displays scrambled
+        // server previews as answers; the client cannot recover the missing text (#254).
 
         // Server entitlement payload: canUseFeature is the first ctor boolean (p1). Force true at
         // entry so Moshi-built instances are usable without post-return iputs (which broke Verify).
