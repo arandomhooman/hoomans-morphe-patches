@@ -48,7 +48,10 @@ reparenting do not retain a stale cache. This costs a linear scan of the display
 adapter items per subtask bind. The style does not require an attached RecyclerView.
 Padding, text size, and the previous foreground are restored when a holder is reused
 for a top-level task. Keyed view tags use an application-range high byte. Guide insets
-use START gravity for RTL layouts, and the triangular arrow head is mirrored in RTL.
+use START gravity for RTL layouts. A single antialiased 1.6-unit red stroke forms a
+quadratic elbow and an open chevron, with round caps and joins. The 14 x 16 viewport
+keeps the stroke within its bounds and is mirrored in RTL. The gray guide uses 25%
+opacity and rounded ends to stay visually secondary in both light and dark themes.
 The priority getter is discovered from the holder's checkmark renderer, without using
 its obfuscated name. Priority buckets use Todoist's stored values (P1=4 through P4=1).
 
@@ -73,7 +76,10 @@ DEX interpreter executes the injected depth and ordering instructions for roots,
 direct children, grandchildren, priority conflicts, equal-priority stability,
 idempotence, missing parents, same-size reparenting, cross-section children, duplicate
 IDs, other-adapter bypass, 1,000-level chains, and cycles. It also verifies that an
-arrow-head shape is installed.
+arrow-head shape is installed. Geometry checks execute the generated instructions at
+six screen densities in LTR and RTL, checking positive dimensions, shared guide origin,
+quadratic control points, stroke settings, red color, and chevron direction. Geometry
+registers stay separate from color values to avoid corrupting sizes and insets.
 It does not emulate Android's rendering or ART's verifier.
 
 ## Device validation

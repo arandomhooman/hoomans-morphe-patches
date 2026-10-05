@@ -365,76 +365,7 @@ private fun styleInstructions(
         const v7, 0x40000000
         mul-float v7, v7, v6
         float-to-int v7, v7
-        mul-int/lit8 v6, v7, 0x5
-        new-instance v1, Landroid/graphics/drawable/GradientDrawable;
-        invoke-direct {v1}, Landroid/graphics/drawable/GradientDrawable;-><init>()V
-        invoke-virtual {v1, v6, v7}, Landroid/graphics/drawable/GradientDrawable;->setSize(II)V
-        const v6, 0xffdb4c3f
-        invoke-virtual {v1, v6}, Landroid/graphics/drawable/GradientDrawable;->setColor(I)V
-        new-instance v6, Landroid/graphics/drawable/GradientDrawable;
-        invoke-direct {v6}, Landroid/graphics/drawable/GradientDrawable;-><init>()V
-        invoke-virtual {v6, v7, v7}, Landroid/graphics/drawable/GradientDrawable;->setSize(II)V
-        const v7, 0x8c8c8c8c
-        invoke-virtual {v6, v7}, Landroid/graphics/drawable/GradientDrawable;->setColor(I)V
-        # Arrow head: logical 4x8 triangle, scaled with the same density as the shaft.
-        new-instance v8, Landroid/graphics/Path;
-        invoke-direct {v8}, Landroid/graphics/Path;-><init>()V
-        iget-object v0, v4, $holderType->${views.container}:${views.containerType}
-        invoke-virtual {v0}, Landroid/view/View;->getLayoutDirection()I
-        move-result v0
-        const/4 v9, 0x0
-        const v5, 0x40800000
-        if-eqz v0, :arrow_ltr
-        invoke-virtual {v8, v5, v9}, Landroid/graphics/Path;->moveTo(FF)V
-        invoke-virtual {v8, v9, v5}, Landroid/graphics/Path;->lineTo(FF)V
-        const v9, 0x41000000
-        invoke-virtual {v8, v5, v9}, Landroid/graphics/Path;->lineTo(FF)V
-        goto :arrow_shape
-        :arrow_ltr
-        invoke-virtual {v8, v9, v9}, Landroid/graphics/Path;->moveTo(FF)V
-        invoke-virtual {v8, v5, v5}, Landroid/graphics/Path;->lineTo(FF)V
-        const v5, 0x41000000
-        invoke-virtual {v8, v9, v5}, Landroid/graphics/Path;->lineTo(FF)V
-        :arrow_shape
-        invoke-virtual {v8}, Landroid/graphics/Path;->close()V
-        new-instance v0, Landroid/graphics/drawable/shapes/PathShape;
-        const v5, 0x40800000
-        const v9, 0x41000000
-        invoke-direct {v0, v8, v5, v9}, Landroid/graphics/drawable/shapes/PathShape;-><init>(Landroid/graphics/Path;FF)V
-        new-instance v8, Landroid/graphics/drawable/ShapeDrawable;
-        invoke-direct {v8, v0}, Landroid/graphics/drawable/ShapeDrawable;-><init>(Landroid/graphics/drawable/shapes/Shape;)V
-        mul-int/lit8 v0, v7, 0x2
-        invoke-virtual {v8, v0}, Landroid/graphics/drawable/ShapeDrawable;->setIntrinsicWidth(I)V
-        mul-int/lit8 v0, v7, 0x4
-        invoke-virtual {v8, v0}, Landroid/graphics/drawable/ShapeDrawable;->setIntrinsicHeight(I)V
-        add-int v5, v3, v0
-        invoke-virtual {v8}, Landroid/graphics/drawable/ShapeDrawable;->getPaint()Landroid/graphics/Paint;
-        move-result-object v0
-        const v9, 0xffdb4c3f
-        invoke-virtual {v0, v9}, Landroid/graphics/Paint;->setColor(I)V
-        const/4 v9, 0x1
-        invoke-virtual {v0, v9}, Landroid/graphics/Paint;->setAntiAlias(Z)V
-        const/4 v2, 0x3
-        new-array v2, v2, [Landroid/graphics/drawable/Drawable;
-        const/4 v7, 0x0
-        aput-object v6, v2, v7
-        const/4 v7, 0x1
-        aput-object v1, v2, v7
-        const/4 v7, 0x2
-        aput-object v8, v2, v7
-        new-instance v6, Landroid/graphics/drawable/LayerDrawable;
-        invoke-direct {v6, v2}, Landroid/graphics/drawable/LayerDrawable;-><init>([Landroid/graphics/drawable/Drawable;)V
-        const/4 v1, 0x0
-        const v7, 0x800073
-        invoke-virtual {v6, v1, v7}, Landroid/graphics/drawable/LayerDrawable;->setLayerGravity(II)V
-        invoke-virtual {v6, v1, v3}, Landroid/graphics/drawable/LayerDrawable;->setLayerInsetStart(II)V
-        const/4 v1, 0x1
-        const v7, 0x800013
-        invoke-virtual {v6, v1, v7}, Landroid/graphics/drawable/LayerDrawable;->setLayerGravity(II)V
-        invoke-virtual {v6, v1, v3}, Landroid/graphics/drawable/LayerDrawable;->setLayerInsetStart(II)V
-        const/4 v1, 0x2
-        invoke-virtual {v6, v1, v7}, Landroid/graphics/drawable/LayerDrawable;->setLayerGravity(II)V
-        invoke-virtual {v6, v1, v5}, Landroid/graphics/drawable/LayerDrawable;->setLayerInsetStart(II)V
+        ${roundedArrowInstructions(holderType, views)}
         iget-object v1, v4, $holderType->${views.container}:${views.containerType}
         const v2, 0x7e711004
         invoke-virtual {v1, v2}, Landroid/view/View;->getTag(I)Ljava/lang/Object;
@@ -527,3 +458,90 @@ private fun styleInstructions(
         :original
         return-void
     """.trimIndent()
+
+// A single stroked path keeps the curved elbow and open chevron joined at every density.
+// Coordinates leave room for the rounded 1.6-unit stroke inside the 14 x 16 viewport.
+private fun roundedArrowInstructions(holderType: String, views: HolderViews): String {
+    fun path(rtl: Boolean): String {
+        fun bits(value: Float) = "0x" + value.toRawBits().toUInt().toString(16)
+        fun point(method: String, vararg coordinates: Float): String {
+            val regs = listOf("v2", "v5", "v8", "v9").take(coordinates.size)
+            val constants = coordinates.mapIndexed { i, value ->
+                val mirrored = if (rtl && i % 2 == 0) 14f - value else value
+                "const ${regs[i]}, ${bits(mirrored)}"
+            }.joinToString("\n")
+            return "$constants\ninvoke-virtual {v0, ${regs.joinToString()}}, " +
+                "Landroid/graphics/Path;->$method(${"F".repeat(coordinates.size)})V"
+        }
+        return listOf(
+            point("moveTo", 1f, 1f),
+            point("lineTo", 1f, 3f),
+            point("quadTo", 1f, 8f, 6f, 8f),
+            point("lineTo", 12f, 8f),
+            point("moveTo", 9f, 5f),
+            point("lineTo", 12f, 8f),
+            point("lineTo", 9f, 11f),
+        ).joinToString("\n")
+    }
+    return """
+        # v7 remains the density-scaled 2dp unit throughout drawable construction.
+        new-instance v0, Landroid/graphics/Path;
+        invoke-direct {v0}, Landroid/graphics/Path;-><init>()V
+        iget-object v2, v4, $holderType->${views.container}:${views.containerType}
+        invoke-virtual {v2}, Landroid/view/View;->getLayoutDirection()I
+        move-result v2
+        if-eqz v2, :rounded_ltr
+        ${path(true)}
+        goto :rounded_shape
+        :rounded_ltr
+        ${path(false)}
+        :rounded_shape
+        new-instance v1, Landroid/graphics/drawable/shapes/PathShape;
+        const v2, 0x41600000
+        const v5, 0x41800000
+        invoke-direct {v1, v0, v2, v5}, Landroid/graphics/drawable/shapes/PathShape;-><init>(Landroid/graphics/Path;FF)V
+        new-instance v8, Landroid/graphics/drawable/ShapeDrawable;
+        invoke-direct {v8, v1}, Landroid/graphics/drawable/ShapeDrawable;-><init>(Landroid/graphics/drawable/shapes/Shape;)V
+        mul-int/lit8 v0, v7, 0x7
+        invoke-virtual {v8, v0}, Landroid/graphics/drawable/ShapeDrawable;->setIntrinsicWidth(I)V
+        mul-int/lit8 v0, v7, 0x8
+        invoke-virtual {v8, v0}, Landroid/graphics/drawable/ShapeDrawable;->setIntrinsicHeight(I)V
+        invoke-virtual {v8}, Landroid/graphics/drawable/ShapeDrawable;->getPaint()Landroid/graphics/Paint;
+        move-result-object v0
+        const v9, 0xffdb4c3f
+        invoke-virtual {v0, v9}, Landroid/graphics/Paint;->setColor(I)V
+        const/4 v9, 0x1
+        invoke-virtual {v0, v9}, Landroid/graphics/Paint;->setAntiAlias(Z)V
+        const v9, 0x3fcccccd
+        invoke-virtual {v0, v9}, Landroid/graphics/Paint;->setStrokeWidth(F)V
+        sget-object v9, Landroid/graphics/Paint${'$'}Style;->STROKE:Landroid/graphics/Paint${'$'}Style;
+        invoke-virtual {v0, v9}, Landroid/graphics/Paint;->setStyle(Landroid/graphics/Paint${'$'}Style;)V
+        sget-object v9, Landroid/graphics/Paint${'$'}Cap;->ROUND:Landroid/graphics/Paint${'$'}Cap;
+        invoke-virtual {v0, v9}, Landroid/graphics/Paint;->setStrokeCap(Landroid/graphics/Paint${'$'}Cap;)V
+        sget-object v9, Landroid/graphics/Paint${'$'}Join;->ROUND:Landroid/graphics/Paint${'$'}Join;
+        invoke-virtual {v0, v9}, Landroid/graphics/Paint;->setStrokeJoin(Landroid/graphics/Paint${'$'}Join;)V
+        new-instance v1, Landroid/graphics/drawable/GradientDrawable;
+        invoke-direct {v1}, Landroid/graphics/drawable/GradientDrawable;-><init>()V
+        invoke-virtual {v1, v7, v7}, Landroid/graphics/drawable/GradientDrawable;->setSize(II)V
+        const v0, 0x408c8c8c
+        invoke-virtual {v1, v0}, Landroid/graphics/drawable/GradientDrawable;->setColor(I)V
+        int-to-float v0, v7
+        invoke-virtual {v1, v0}, Landroid/graphics/drawable/GradientDrawable;->setCornerRadius(F)V
+        const/4 v2, 0x2
+        new-array v2, v2, [Landroid/graphics/drawable/Drawable;
+        const/4 v0, 0x0
+        aput-object v1, v2, v0
+        const/4 v0, 0x1
+        aput-object v8, v2, v0
+        new-instance v6, Landroid/graphics/drawable/LayerDrawable;
+        invoke-direct {v6, v2}, Landroid/graphics/drawable/LayerDrawable;-><init>([Landroid/graphics/drawable/Drawable;)V
+        const/4 v1, 0x0
+        const v7, 0x800073
+        invoke-virtual {v6, v1, v7}, Landroid/graphics/drawable/LayerDrawable;->setLayerGravity(II)V
+        invoke-virtual {v6, v1, v3}, Landroid/graphics/drawable/LayerDrawable;->setLayerInsetStart(II)V
+        const/4 v1, 0x1
+        const v7, 0x800013
+        invoke-virtual {v6, v1, v7}, Landroid/graphics/drawable/LayerDrawable;->setLayerGravity(II)V
+        invoke-virtual {v6, v1, v3}, Landroid/graphics/drawable/LayerDrawable;->setLayerInsetStart(II)V
+    """.trimIndent()
+}

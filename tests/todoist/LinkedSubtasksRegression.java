@@ -100,6 +100,7 @@ public final class LinkedSubtasksRegression {
         }
         check(submissionHooked, "reorder before adapter submission");
         new OrderingVm(order, emit, helper).verify();
+        ArrowGeometry.verify(helper);
         check(instructions(helper).stream().anyMatch(i -> i instanceof ReferenceInstruction ri &&
             ri.getReference() instanceof TypeReference t && t.getType().equals("Landroid/graphics/drawable/shapes/PathShape;")),
             "arrow head shape installed");
