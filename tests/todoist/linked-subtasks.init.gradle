@@ -1,0 +1,29 @@
+// Opt-in integration checks; the repository's normal build configuration is untouched.
+allprojects {
+    afterEvaluate { project ->
+        if (project.path == ':patches') {
+            def regression = project.sourceSets.create('linkedSubtasksRegression') {
+                java.srcDir(project.rootProject.file('tests/todoist'))
+                compileClasspath += project.sourceSets.main.output
+                runtimeClasspath += project.sourceSets.main.output
+            }
+            project.configurations.getByName(regression.implementationConfigurationName)
+                .extendsFrom(project.configurations.compileClasspath)
+            project.tasks.named(regression.compileJavaTaskName) {
+                sourceCompatibility = '17'
+                targetCompatibility = '17'
+            }
+            project.tasks.register('testLinkedSubtasks', JavaExec) {
+                group = 'verification'
+                description = 'Test the Todoist patch against an original APK and renamed DEX.'
+                dependsOn(regression.classesTaskName)
+                classpath = regression.runtimeClasspath
+                mainClass.set('hooman.morphe.patches.todoist.subtasks.LinkedSubtasksRegression')
+                maxHeapSize = '3g'
+                doFirst {
+                    args(project.providers.gradleProperty('todoistApk').get())
+                }
+            }
+        }
+    }
+}
