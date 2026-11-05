@@ -19,13 +19,13 @@ val removeAdsPatch = bytecodePatch(
             name = "WEBTOON",
             packageName = "com.naver.linewebtoon",
             appIconColor = 0x00DC64,
-            targets = listOf(AppTarget("3.9.5")),
+            targets = listOf(AppTarget("26.102.1")),
         ),
     )
 
     execute {
         // Every ad surface (reader top/end, home feed, title-page banner) gates ad loading on one use
-        // case: IsAdFreeUserUseCaseImpl.invoke() = isLoggedIn() && adFreeBenefitCache.isActive(). Forcing
+        // case: IsAdFreeUserUseCaseImpl.a() = isLoggedIn() && adFreeBenefitCache.isActive(). Forcing
         // it true makes them all skip the ad, even logged out. The benefit is only written from the server
         // response, so a login or refresh can't reset it. (Splash ad is gated by onboarding, not this use
         // case, so it's out of scope.) R8 flattens the class + method to one-letter names, so pin it by the
@@ -39,8 +39,7 @@ val removeAdsPatch = bytecodePatch(
             if (!hasCacheField) return@classDefForEach
 
             val isAdFree = classDef.methods.firstOrNull { method ->
-                method.name == "invoke" &&
-                    method.returnType == "Z" &&
+                method.returnType == "Z" &&
                     method.parameterTypes.isEmpty()
             } ?: return@classDefForEach
 
@@ -59,7 +58,7 @@ val removeAdsPatch = bytecodePatch(
         if (patched == 0) {
             throw PatchException(
                 "WEBTOON: the IsAdFreeUser use case (a class with an AdFreeBenefitStatusV2Cache field " +
-                    "and a no-arg ()Z invoke) was not found. The ad-free gate shape changed; re-derive " +
+                    "and a no-arg ()Z method) was not found. The ad-free gate shape changed; re-derive " +
                     "before shipping.",
             )
         }
