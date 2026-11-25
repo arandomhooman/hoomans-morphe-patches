@@ -1,3 +1,5 @@
+**DEVELOPMENT HAS BEEN PAUSED, AND CURRENTLY THESE PATCHES COME AS THEY ARE.**
+
 # 🍃 Hooman's Morphe Patches
 
 Personal [Morphe](https://morphe.software) patches for paid Android apps.
